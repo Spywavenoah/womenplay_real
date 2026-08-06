@@ -1,0 +1,6 @@
+{
+  "name": "WomenPlay",
+  "description": "An elegant, full-featured corporate platform empowering women through leadership, social networking, and community-driven events, complete with a member portal, interactive roadmap todo list planner, and admin dashboard.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

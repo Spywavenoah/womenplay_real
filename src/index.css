@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-brand-pink-light: #fdf2f8; /* pink-50 */
+  --color-brand-pink-mid: #f472b6; /* pink-400 */
+  --color-brand-pink: #db2777; /* pink-600 */
+  --color-brand-pink-dark: #be185d; /* pink-700 */
+  --color-brand-gold-light: #fffbeb; /* amber-50 */
+  --color-brand-gold: #f59e0b; /* amber-500 */
+  --color-brand-gold-dark: #b45309; /* amber-700 */
+  --color-brand-gold-glow: rgba(245, 158, 11, 0.15);
+  
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  body {
+    @apply font-sans bg-slate-50 text-slate-800 antialiased overflow-x-hidden selection:bg-brand-pink/20 selection:text-brand-pink;
+  }
+}
+
+/* Luxury gold gradients */
+.gold-gradient {
+  background: linear-gradient(135deg, #fffcf5 0%, #fff7e6 50%, #fdf2f8 100%);
+}
+
+.gold-text-gradient {
+  background: linear-gradient(135deg, #db2777 0%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-button-gradient {
+  background: linear-gradient(135deg, #db2777 0%, #f43f5e 50%, #f59e0b 100%);
+}
+
+.gold-border {
+  border-color: #f59e0b;
+}
+
+.luxury-shadow {
+  box-shadow: 0 20px 40px -15px rgba(219, 39, 119, 0.12), 0 1px 3px rgba(245, 158, 11, 0.05);
+}
+
+.gold-shadow {
+  box-shadow: 0 10px 40px -15px rgba(245, 158, 11, 0.3);
+}
+
+/* Announcement marquee ticker */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: marquee 40s linear infinite;
+}
+
+.marquee-track:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fffbeb;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #db2777;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #be185d;
+}
+

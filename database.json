@@ -1,0 +1,434 @@
+{
+  "users": [
+    {
+      "id": "admin-1",
+      "email": "admin@womenplay.org",
+      "fullName": "Eleanor Vance",
+      "role": "ADMIN",
+      "membershipStatus": "ACTIVE",
+      "membershipTier": "ELITE",
+      "title": "Executive Director",
+      "company": "Aura Global",
+      "bio": "Advocate for gender diversity, executive coach, and founder of Aura Network with 20+ years of leadership experience.",
+      "avatarUrl": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200",
+      "emailVerified": true,
+      "passwordHash": "$2b$10$dy.bKR6oNMZHRkRuAkqCfeY/bp7SHog22ulZM29PvRqTKUPAqYdqy",
+      "createdAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "admin-2",
+      "email": "sarah.jenkins@womenplay.org",
+      "fullName": "Sarah Jenkins",
+      "role": "ADMIN",
+      "membershipStatus": "ACTIVE",
+      "membershipTier": "ELITE",
+      "title": "Co-Director & VP of Governance",
+      "company": "WomenPlay Global",
+      "bio": "Overseeing executive partnerships, regional chapters, and leadership accelerator initiatives.",
+      "avatarUrl": "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200",
+      "emailVerified": true,
+      "passwordHash": "$2b$10$dy.bKR6oNMZHRkRuAkqCfeY/bp7SHog22ulZM29PvRqTKUPAqYdqy",
+      "createdAt": "2025-02-15T00:00:00.000Z"
+    },
+    {
+      "id": "member-1",
+      "email": "spywavenoah@gmail.com",
+      "fullName": "Noah Sterling",
+      "role": "MEMBER",
+      "membershipStatus": "ACTIVE",
+      "membershipTier": "PREMIUM",
+      "title": "Senior Product Manager",
+      "company": "TechVanguard",
+      "bio": "Passionate about creating modern digital products, design systems, and fostering female leadership in technology.",
+      "avatarUrl": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
+      "emailVerified": true,
+      "createdAt": "2026-06-15T00:00:00.000Z",
+      "passwordHash": "$2b$10$MlUGAXitbh16mrzeUhgIVe.GVdscPY1F8lRIa3k7mcj4efkmZIAyK"
+    },
+    {
+      "id": "member-2",
+      "email": "clara.m@nexus.io",
+      "fullName": "Clara Montgomery",
+      "role": "MEMBER",
+      "membershipStatus": "PENDING",
+      "membershipTier": "BASIC",
+      "title": "Investment Associate",
+      "company": "Nexus Venture Capital",
+      "bio": "Focusing on early-stage investments. Eager to connect with fellow pioneers and women leaders in fintech.",
+      "avatarUrl": "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200",
+      "emailVerified": true,
+      "createdAt": "2026-07-10T00:00:00.000Z",
+      "passwordHash": "$2b$10$MlUGAXitbh16mrzeUhgIVe.GVdscPY1F8lRIa3k7mcj4efkmZIAyK"
+    }
+  ],
+  "events": [
+    {
+      "id": "event-1",
+      "title": "Aura Annual Women in Leadership Summit 2026",
+      "description": "Join over 500 trailblazing women leaders for an inspiring day of keynotes, panel discussions, and structured networking. This year we focus on sustainable innovation, inclusive boardrooms, and navigating modern venture capital landscapes.",
+      "date": "2026-09-15",
+      "time": "09:00 AM - 05:00 PM",
+      "location": "Grand Ballroom, The Plaza Hotel & Virtual",
+      "image": "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=1200",
+      "category": "Conference",
+      "capacity": 250,
+      "registeredCount": 42,
+      "status": "upcoming",
+      "packages": [
+        {
+          "id": "pkg-1-1",
+          "name": "Standard Badge",
+          "fee": 150,
+          "benefits": [
+            "Access to all panel discussions",
+            "Catered networking lunch",
+            "Summit digital folder",
+            "Post-event recordings access"
+          ],
+          "description": "Perfect for mid-level professionals seeking networking and learning."
+        },
+        {
+          "id": "pkg-1-2",
+          "name": "VIP Gold Badge",
+          "fee": 350,
+          "benefits": [
+            "Front-row premium seating",
+            "Exclusive VIP Speaker luncheon",
+            "One-on-one executive feedback coaching session",
+            "Annual Aura membership standard renewal"
+          ],
+          "description": "Tailored for senior directors and leaders looking for deep engagement and high-profile networking."
+        }
+      ]
+    },
+    {
+      "id": "event-2",
+      "title": "Sunset Networking Cocktail & Social Gala",
+      "description": "An elegant evening of curated connections, live classical performances, and premium wine tasting. Mingle with partners, board members, and potential collaborators under the golden sky.",
+      "date": "2026-08-05",
+      "time": "06:30 PM - 10:00 PM",
+      "location": "The Gold Terrace Gardens, San Francisco",
+      "image": "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=1200",
+      "category": "Networking",
+      "capacity": 100,
+      "registeredCount": 88,
+      "status": "upcoming",
+      "packages": [
+        {
+          "id": "pkg-2-1",
+          "name": "Gala Ticket",
+          "fee": 90,
+          "benefits": [
+            "Premium cocktail selection",
+            "Deluxe culinary bites",
+            "Networking directory database access"
+          ],
+          "description": "All-inclusive ticket to the outdoor networking gala."
+        }
+      ]
+    },
+    {
+      "id": "event-3",
+      "title": "Interactive Workshop: Executive Presence and Pitching",
+      "description": "A highly interactive, practical workshop focused on refining public speaking, voice coaching, boardroom confidence, and crafting high-impact investment pitches that secure venture funding.",
+      "date": "2026-06-20",
+      "time": "02:00 PM - 05:00 PM",
+      "location": "Aura Creative Hub, Downtown Center",
+      "image": "https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&q=80&w=1200",
+      "category": "Workshop",
+      "capacity": 40,
+      "registeredCount": 40,
+      "status": "past",
+      "packages": [
+        {
+          "id": "pkg-3-1",
+          "name": "Interactive Access",
+          "fee": 50,
+          "benefits": [
+            "Personalized pitch review",
+            "Worksheet templates",
+            "Networking breakout session"
+          ],
+          "description": "Full workshop participation."
+        }
+      ]
+    }
+  ],
+  "registrations": [
+    {
+      "id": "reg-1",
+      "eventId": "event-1",
+      "userId": "member-1",
+      "packageId": "pkg-1-2",
+      "packageName": "VIP Gold Badge",
+      "amountPaid": 350,
+      "paymentId": "pay-1",
+      "badgeCode": "AURA-E1-VIP-84920",
+      "registeredAt": "2026-07-05T00:00:00.000Z",
+      "attended": false
+    }
+  ],
+  "payments": [
+    {
+      "id": "pay-1",
+      "userId": "member-1",
+      "amount": 350,
+      "purpose": "Event Registration",
+      "itemId": "event-1",
+      "status": "completed",
+      "method": "Credit Card",
+      "transactionId": "TXN-AURA-9481023",
+      "createdAt": "2026-07-05T00:00:00.000Z",
+      "receiptNumber": "RCPT-2026-94820"
+    }
+  ],
+  "posts": [
+    {
+      "id": "post-1",
+      "userId": "admin-1",
+      "userFullName": "Eleanor Vance",
+      "userTitle": "Executive Director, Aura Network",
+      "userAvatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200",
+      "content": "Incredible session yesterday with our local fellowship mentors! Remember, leadership isn't about being in charge. It's about taking care of those in our charge. Let us continue uplifting each other.",
+      "likes": [
+        "member-1"
+      ],
+      "commentsCount": 1,
+      "createdAt": "2026-07-19T10:00:00.000Z"
+    }
+  ],
+  "comments": [
+    {
+      "id": "comment-1",
+      "postId": "post-1",
+      "userId": "member-1",
+      "userFullName": "Noah Sterling",
+      "userAvatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
+      "content": "Thank you Eleanor, that was extremely insightful! Our team is implementing these guidelines next week.",
+      "createdAt": "2026-07-19T11:15:00.000Z"
+    }
+  ],
+  "successStories": [
+    {
+      "id": "story-1",
+      "userId": "member-1",
+      "userFullName": "Noah Sterling",
+      "userAvatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
+      "title": "Fostering Diversity at TechVanguard",
+      "content": "With the networking and backing of Aura Network, I successfully launched a regional Women-in-Tech mentorship program at TechVanguard. Within six months, we recruited 12 board-level mentors and saw a 35% increase in promotion rates for our female engineers!",
+      "approved": true,
+      "createdAt": "2026-07-02T00:00:00.000Z"
+    }
+  ],
+  "supportTickets": [
+    {
+      "id": "ticket-1",
+      "userId": "member-1",
+      "userFullName": "Noah Sterling",
+      "email": "spywavenoah@gmail.com",
+      "subject": "Access Pass Download Query",
+      "message": "I registered for the Leadership Summit but wanted to verify if my digital pass will sync automatically to Apple Wallet or if I should keep the PDF on my phone.",
+      "category": "Event",
+      "status": "in_progress",
+      "createdAt": "2026-07-19T14:30:00.000Z",
+      "responses": [
+        {
+          "sender": "ADMIN",
+          "message": "Hi Noah! Yes, you can download the elegant digital badge directly from your portal dashboard, which comes with a standard QR code suitable for print or phone display. We are currently rolling out Wallet integrations. Let us know if you need any additional assistance!",
+          "createdAt": "2026-07-19T16:00:00.000Z"
+        }
+      ]
+    }
+  ],
+  "blogs": [
+    {
+      "id": "blog-1",
+      "title": "Unlocking Boards: Strategic Audits for Female Leaders",
+      "content": "Entering the boardroom is not just about tenure; it is about building a distinct executive brand. Discover the three pillars of boardroom readiness: strategic financial oversight, dynamic network sponsorship, and clear personal value proposition.",
+      "category": "Leadership",
+      "author": "Eleanor Vance",
+      "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800",
+      "createdAt": "2026-07-12T00:00:00.000Z",
+      "status": "published"
+    },
+    {
+      "id": "blog-2",
+      "title": "Fostering Genuine Connections in a Virtual Business Landscape",
+      "content": "With remote and hybrid operations remaining standard, virtual engagement needs more than quick handshakes or standard emails. We explore active virtual sponsorships, digital coffee chats that work, and creating lasting impressions beyond camera lenses.",
+      "category": "Networking",
+      "author": "Olivia Chen",
+      "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800",
+      "createdAt": "2026-07-18T00:00:00.000Z",
+      "status": "published"
+    }
+  ],
+  "announcements": [
+    {
+      "id": "announce-4",
+      "title": "Member Spotlight: Executive Presence Council Town Hall Announced",
+      "content": "Join fellow executives for an interactive town hall exploring boardroom presence, storytelling, and leadership visibility.",
+      "priority": "low",
+      "createdAt": "2026-08-03T09:47:43.568Z",
+      "active": true
+    },
+    {
+      "id": "announce-3",
+      "title": "New Board Nomination Mentorship Cohort: Applications Close August 30",
+      "content": "Secure a seat in our signature mentorship track pairing you with veteran board directors and nomination committee chairs.",
+      "priority": "medium",
+      "createdAt": "2026-08-04T09:47:43.568Z",
+      "active": true
+    },
+    {
+      "id": "announce-2",
+      "title": "WomenPlay Global Leadership Summit — Early Bird Registration Now Live",
+      "content": "Early bird passes for the 2026 Global Leadership Summit are now open to members. Limited executive suites available.",
+      "priority": "high",
+      "createdAt": "2026-08-05T09:47:43.568Z",
+      "active": true
+    },
+    {
+      "id": "announce-1",
+      "title": "Applications open for the Executive Fellowship Program 2026!",
+      "content": "Apply today to receive executive sponsorship, personal leadership training, and board appointment prep. Deadline: August 25, 2026.",
+      "priority": "high",
+      "createdAt": "2026-08-06T09:47:43.568Z",
+      "active": true
+    }
+  ],
+  "auditLogs": [
+    {
+      "id": "log-1",
+      "adminId": "admin-1",
+      "adminName": "Eleanor Vance",
+      "action": "MEMBERSHIP_APPROVED",
+      "details": "Approved membership for member 'Noah Sterling'",
+      "timestamp": "2026-06-16T00:00:00.000Z"
+    }
+  ],
+  "contactMessages": [],
+  "foundingMembers": [],
+  "settings": {
+    "stripePublicKey": "",
+    "stripeSecretKey": "",
+    "isSubscriptionRequired": false
+  },
+  "carouselSlides": [
+    {
+      "id": "slide-1",
+      "image": "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=1600",
+      "title": "Empower Your Executive Network",
+      "description": "Connect with FTSE 100 directors, venture partners, and corporate pioneers in a curated ecosystem built for high-impact female leaders."
+    },
+    {
+      "id": "slide-2",
+      "image": "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=1600",
+      "title": "Elevate Your Boardroom Influence",
+      "description": "Access exclusive masterclasses, corporate board directories, and annual summits designed to amplify your professional footprint."
+    },
+    {
+      "id": "slide-3",
+      "image": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=1600",
+      "title": "Intentional High-Society Alliances",
+      "description": "Engage in private roundtables and sunset cocktail galas with leading mentors, investors, and policymakers driving systemic change."
+    }
+  ],
+  "galleryItems": [
+    {
+      "id": "gallery-1",
+      "title": "Sunset Networking Cocktail",
+      "caption": "Private mixers where women executives connect, share ideas, and build meaningful relationships.",
+      "category": "Networking",
+      "image": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=1200",
+      "featured": true,
+      "createdAt": "2026-06-10T00:00:00.000Z"
+    },
+    {
+      "id": "gallery-2",
+      "title": "Boardroom Masterclasses",
+      "caption": "Interactive sessions preparing women for non-executive director nominations and board leadership.",
+      "category": "Summits",
+      "image": "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=1200",
+      "featured": true,
+      "createdAt": "2026-06-12T00:00:00.000Z"
+    },
+    {
+      "id": "gallery-3",
+      "title": "Brunch & Bloom Socials",
+      "caption": "Elegant dining experiences with beautiful tablescapes, conversation, and laughter.",
+      "category": "Socials",
+      "image": "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=1200",
+      "featured": false,
+      "createdAt": "2026-06-15T00:00:00.000Z"
+    },
+    {
+      "id": "gallery-4",
+      "title": "Founding Circle Launch",
+      "caption": "Celebrating the distinguished women who founded and championed the WomenPlay network.",
+      "category": "Milestones",
+      "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1200",
+      "featured": true,
+      "createdAt": "2026-06-20T00:00:00.000Z"
+    },
+    {
+      "id": "gallery-5",
+      "title": "Games Evenings",
+      "caption": "Laughter-filled nights designed for fun, ease, and genuine connection.",
+      "category": "Socials",
+      "image": "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=1200",
+      "featured": false,
+      "createdAt": "2026-06-25T00:00:00.000Z"
+    },
+    {
+      "id": "gallery-6",
+      "title": "Annual WomenPlay Summit",
+      "caption": "Our flagship luxury summit gathering female C-suite leaders from around the world.",
+      "category": "Summits",
+      "image": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=1200",
+      "featured": true,
+      "createdAt": "2026-06-28T00:00:00.000Z"
+    }
+  ],
+  "subscriptions": [],
+  "membershipBadges": [
+    {
+      "id": "badge-basic",
+      "tier": "BASIC",
+      "name": "Basic Access Badge",
+      "cost": 0,
+      "benefits": [
+        "Access to community feed",
+        "Digital contact exchange",
+        "View public event listings"
+      ]
+    },
+    {
+      "id": "badge-premium",
+      "tier": "PREMIUM",
+      "name": "Premium Leadership Badge",
+      "cost": 100,
+      "benefits": [
+        "All Basic benefits",
+        "Access to Sunset Networking Cocktail",
+        "Join monthly masterclass circles",
+        "Receive premium silver digital badge"
+      ]
+    },
+    {
+      "id": "badge-elite",
+      "tier": "ELITE",
+      "name": "Elite Boardroom Sponsor Badge",
+      "cost": 250,
+      "benefits": [
+        "All Premium benefits",
+        "Front-row premium VIP gold badge",
+        "Elite AI boardroom mentoring",
+        "1-on-1 sponsorship preparation"
+      ]
+    }
+  ],
+  "founders": [],
+  "volunteers": [],
+  "attendance": [],
+  "launchTickets": []
+}

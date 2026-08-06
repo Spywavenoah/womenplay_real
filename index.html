@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link rel="dns-prefetch" href="https://images.unsplash.com" />
+    <script>
+      // Prevent "Cannot set property fetch of #<Window> which has only a getter" errors by ensuring window.fetch and globalThis.fetch are writable
+      (function() {
+        try {
+          let currentFetch = window.fetch || (typeof globalThis !== 'undefined' ? globalThis.fetch : null);
+          if (currentFetch) {
+            const desc = {
+              get() {
+                return currentFetch;
+              },
+              set(v) {
+                currentFetch = v;
+              },
+              configurable: true,
+              enumerable: true
+            };
+            Object.defineProperty(window, 'fetch', desc);
+            if (typeof globalThis !== 'undefined') {
+              Object.defineProperty(globalThis, 'fetch', desc);
+            }
+          }
+        } catch (e) {
+          console.warn("Failed to patch window.fetch:", e);
+        }
+      })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#db2777" />
+    <link rel="icon" type="image/png" href="/assets/logo.png" />
+    <link rel="apple-touch-icon" href="/assets/logo.png" />
+    <link rel="canonical" href="https://womenplay.org/" />
+
+    <meta name="robots" content="index, follow" />
+    <meta
+      name="description"
+      content="WomenPlay is an executive network and membership platform for high-impact women leaders — events, celebration, wellness, travel, community and meaningful connection for women across Canada."
+    />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="WomenPlay" />
+    <meta property="og:title" content="WomenPlay — Platform for High-Impact Women Leaders" />
+    <meta
+      property="og:description"
+      content="An executive network and membership platform for high-impact women leaders. Events, celebration, wellness, travel, community and connection."
+    />
+    <meta property="og:url" content="https://womenplay.org/" />
+    <meta property="og:image" content="https://womenplay.org/assets/logo.png" />
+    <meta property="og:locale" content="en_CA" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="WomenPlay — Platform for High-Impact Women Leaders" />
+    <meta
+      name="twitter:description"
+      content="An executive network and membership platform for high-impact women leaders."
+    />
+    <meta name="twitter:image" content="https://womenplay.org/assets/logo.png" />
+
+    <title>WomenPlay — Platform for High-Impact Women Leaders</title>
+
+    <!-- Structured data: Organization -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "WomenPlay",
+        "url": "https://womenplay.org",
+        "logo": "https://womenplay.org/assets/logo.png",
+        "sameAs": [],
+        "description": "An executive network and membership platform empowering high-impact women through events, celebration, wellness, travel and community."
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      (function(d,t) {
+        var BASE_URL="https://app.chatwoot.com";
+        var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src=BASE_URL+"/packs/js/sdk.js";
+        g.async = true;
+        s.parentNode.insertBefore(g,s);
+        g.onload=function(){
+          window.chatwootSDK.run({
+            websiteToken: 'VpyX7GipB6pQquVPu7oEgQZW',
+            baseUrl: BASE_URL
+          })
+        }
+      })(document,"script");
+    </script>
+  </body>
+</html>
+
