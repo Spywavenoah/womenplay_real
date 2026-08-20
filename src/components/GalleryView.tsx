@@ -106,7 +106,7 @@ export default function GalleryView({ onNavigateHome }: GalleryViewProps) {
                 className="group relative rounded-2xl overflow-hidden luxury-shadow border border-slate-100 bg-white text-left cursor-pointer hover:-translate-y-1 transition-all duration-300"
               >
                 <div className="h-64 overflow-hidden bg-slate-100">
-                  <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
+                  <img src={item.image} alt={item.title} onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=1200"; }} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
                 </div>
                 <div className="p-5">
                   <div className="flex items-center justify-between gap-2">

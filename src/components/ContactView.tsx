@@ -7,7 +7,14 @@ interface ContactViewProps {
 }
 
 export default function ContactView({ onNavigateHome }: ContactViewProps) {
-  const [contactForm, setContactForm] = React.useState({ name: "", email: "", subject: "", message: "" });
+  const [contactForm, setContactForm] = React.useState({
+    firstName: "",
+    email: "",
+    phone: "",
+    interest: "General question",
+    organization: "",
+    message: ""
+  });
   const [contactSubmitted, setContactSubmitted] = React.useState(false);
   const [contactSubmitting, setContactSubmitting] = React.useState(false);
   const [newsletterEmail, setNewsletterEmail] = React.useState("");
@@ -31,21 +38,30 @@ export default function ContactView({ onNavigateHome }: ContactViewProps) {
 
   const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!contactForm.name || !contactForm.email || !contactForm.message) return;
+    if (!contactForm.firstName || !contactForm.email || !contactForm.interest || !contactForm.message) return;
     setContactSubmitting(true);
     try {
       await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: contactForm.name,
+          firstName: contactForm.firstName,
           email: contactForm.email,
-          subject: contactForm.subject || "Website Contact Inquiry",
+          phone: contactForm.phone,
+          interest: contactForm.interest,
+          organization: contactForm.organization,
           message: contactForm.message
         })
       });
       setContactSubmitted(true);
-      setContactForm({ name: "", email: "", subject: "", message: "" });
+      setContactForm({
+        firstName: "",
+        email: "",
+        phone: "",
+        interest: "General question",
+        organization: "",
+        message: ""
+      });
     } catch (err) {
       console.error("Error submitting contact inquiry:", err);
     } finally {
@@ -173,23 +189,27 @@ export default function ContactView({ onNavigateHome }: ContactViewProps) {
             ) : (
               <form onSubmit={handleContactSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <label className="text-[11px] uppercase tracking-wider font-bold text-slate-500">Full Name</label>
+                  <div className="space-y-1.5 mira-field">
+                    <label className="text-[11px] uppercase tracking-wider font-bold text-slate-500">FIRST NAME *</label>
                     <input
+                      name="firstName"
                       type="text"
                       required
-                      placeholder="Your name"
-                      value={contactForm.name}
-                      onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
-                      id="input-contact-name"
+                      autoComplete="given-name"
+                      placeholder="Your first name"
+                      value={contactForm.firstName}
+                      onChange={(e) => setContactForm({ ...contactForm, firstName: e.target.value })}
+                      id="input-contact-firstname"
                       className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:ring-2 focus:ring-brand-pink/20"
                     />
                   </div>
-                  <div className="space-y-1.5">
-                    <label className="text-[11px] uppercase tracking-wider font-bold text-slate-500">Email Address</label>
+                  <div className="space-y-1.5 mira-field">
+                    <label className="text-[11px] uppercase tracking-wider font-bold text-slate-500">EMAIL ADDRESS *</label>
                     <input
+                      name="email"
                       type="email"
                       required
+                      autoComplete="email"
                       placeholder="your@email.com"
                       value={contactForm.email}
                       onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
@@ -199,21 +219,59 @@ export default function ContactView({ onNavigateHome }: ContactViewProps) {
                   </div>
                 </div>
 
-                <div className="space-y-1.5">
-                  <label className="text-[11px] uppercase tracking-wider font-bold text-slate-500">Subject</label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-1.5 mira-field">
+                    <label className="text-[11px] uppercase tracking-wider font-bold text-slate-500">PHONE NUMBER (OPTIONAL)</label>
+                    <input
+                      name="phone"
+                      type="tel"
+                      autoComplete="tel"
+                      placeholder="(555) 000-0000"
+                      value={contactForm.phone}
+                      onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })}
+                      id="input-contact-phone"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:ring-2 focus:ring-brand-pink/20"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5 mira-field">
+                    <label className="text-[11px] uppercase tracking-wider font-bold text-slate-500">AREA OF INTEREST *</label>
+                    <select
+                      name="interest"
+                      required
+                      value={contactForm.interest}
+                      onChange={(e) => setContactForm({ ...contactForm, interest: e.target.value })}
+                      id="select-contact-interest"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:ring-2 focus:ring-brand-pink/20 text-slate-800"
+                    >
+                      <option>Event attendance</option>
+                      <option>Membership</option>
+                      <option>Partnership</option>
+                      <option>Sponsorship</option>
+                      <option>Vendor</option>
+                      <option>Volunteer</option>
+                      <option>General question</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="space-y-1.5 mira-field">
+                  <label className="text-[11px] uppercase tracking-wider font-bold text-slate-500">BUSINESS OR ORGANIZATION (IF APPLICABLE)</label>
                   <input
+                    name="organization"
                     type="text"
-                    placeholder="How can we help?"
-                    value={contactForm.subject}
-                    onChange={(e) => setContactForm({ ...contactForm, subject: e.target.value })}
-                    id="input-contact-subject"
+                    placeholder="Your company or group name"
+                    value={contactForm.organization}
+                    onChange={(e) => setContactForm({ ...contactForm, organization: e.target.value })}
+                    id="input-contact-organization"
                     className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:ring-2 focus:ring-brand-pink/20"
                   />
                 </div>
 
-                <div className="space-y-1.5">
-                  <label className="text-[11px] uppercase tracking-wider font-bold text-slate-500">Message</label>
+                <div className="space-y-1.5 mira-field">
+                  <label className="text-[11px] uppercase tracking-wider font-bold text-slate-500">YOUR MESSAGE OR PROPOSAL *</label>
                   <textarea
+                    name="message"
                     required
                     rows={4}
                     placeholder="Tell us about yourself, your idea, or how you'd like to partner with us..."

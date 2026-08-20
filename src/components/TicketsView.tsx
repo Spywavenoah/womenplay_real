@@ -1,4 +1,4 @@
-﻿import React, { useState } from "react";
+import React, { useState } from "react";
 import { ArrowRight, Check, Loader2 } from "lucide-react";
 import HeroBanner from "./HeroBanner";
 
@@ -8,9 +8,9 @@ interface TicketsViewProps {
 
 // Map the dropdown labels to the server-side authoritative ticket tier ids
 const TICKET_TIER_MAP: Record<string, string> = {
-  "Early Bird â€” $49.99": "early-bird",
-  "Regular â€” $69.99": "regular",
-  "Last Call â€” $79.99": "last-call",
+  "Early Bird — $49.99": "early-bird",
+  "Regular — $69.99": "regular",
+  "Last Call — $79.99": "last-call",
 };
 
 export default function TicketsView({ onNavigateHome }: TicketsViewProps) {
@@ -19,7 +19,7 @@ export default function TicketsView({ onNavigateHome }: TicketsViewProps) {
     fullName: "",
     email: "",
     phone: "",
-    ticketType: "Regular â€” $69.99",
+    ticketType: "Regular — $69.99",
     quantity: "1",
     teamPreference: "No preference",
     agreedToWaiver: false,
@@ -59,7 +59,7 @@ export default function TicketsView({ onNavigateHome }: TicketsViewProps) {
 
   const handleSelectTicket = (tier: { id: string; name: string; price: string }) => {
     setSelectedTicket(tier.id);
-    setFormData(prev => ({ ...prev, ticketType: `${tier.name} â€” ${tier.price}` }));
+    setFormData(prev => ({ ...prev, ticketType: `${tier.name} — ${tier.price}` }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -283,9 +283,9 @@ export default function TicketsView({ onNavigateHome }: TicketsViewProps) {
                   onChange={handleInputChange}
                   className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-brand-pink focus:outline-none focus:ring-2 focus:ring-brand-pink/20 transition bg-white"
                 >
-                  <option>Early Bird â€” $49.99</option>
-                  <option>Regular â€” $69.99</option>
-                  <option>Last Call â€” $79.99</option>
+                  <option>Early Bird — $49.99</option>
+                  <option>Regular — $69.99</option>
+                  <option>Last Call — $79.99</option>
                 </select>
               </div>
             </div>
@@ -315,10 +315,12 @@ export default function TicketsView({ onNavigateHome }: TicketsViewProps) {
                   className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-brand-pink focus:outline-none focus:ring-2 focus:ring-brand-pink/20 transition bg-white"
                 >
                   <option>No preference</option>
-                  <option>Team Wildflowers</option>
-                  <option>Team Classy</option>
-                  <option>Team Tomboy-Tribe</option>
-                  <option>Team Softhearts</option>
+                  <option>Team Classy Queens 👑</option>
+                  <option>Team Tomboy Tribe 🏀</option>
+                  <option>Team Simple Souls ✨</option>
+                  <option>Team Free Spirits 🦋</option>
+                  <option>Team Fearless 🔥</option>
+                  <option>Team Wildflowers 🌸</option>
                 </select>
               </div>
             </div>

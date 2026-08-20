@@ -17,7 +17,7 @@ export default function SponsorshipView({ onNavigateHome, onOpenAuth }: Sponsors
     companyName: "",
     contactName: "",
     email: "",
-    tier: "Executive Chapter Sponsor ($25,000)",
+    tier: "Community Experience Partner ($5,000)",
     message: ""
   });
 
@@ -30,10 +30,10 @@ export default function SponsorshipView({ onNavigateHome, onOpenAuth }: Sponsors
 
   // Calculate pricing
   const getTierPrice = (tierStr: string) => {
-    if (tierStr.includes("25") || tierStr.includes("Chapter")) return 25000;
-    if (tierStr.includes("50") || tierStr.includes("Global") || tierStr.includes("Title")) return 50000;
-    if (tierStr.includes("5") || tierStr.includes("Custom")) return 5000;
-    return 10000; // Fellowship default
+    if (tierStr.includes("25") || tierStr.includes("Lifestyle")) return 25000;
+    if (tierStr.includes("10") || tierStr.includes("Title")) return 10000;
+    if (tierStr.includes("2,500") || tierStr.includes("Custom")) return 2500;
+    return 5000; // Community default
   };
 
   // Helper for auto slash formatting in expiry date (MM/YY)
@@ -108,11 +108,11 @@ export default function SponsorshipView({ onNavigateHome, onOpenAuth }: Sponsors
         eyebrow={
           <span className="inline-flex items-center gap-2">
             <Sparkles className="w-4 h-4" />
-            Corporate Partnership & Sponsorship
+            Partnership & Brand Collaboration
           </span>
         }
-        title="Empower Extraordinary Women Leaders"
-        description="Align your enterprise with top-tier female executives, board members, and venture founders. Partner with WomenPlay to champion executive diversity and gain direct visibility at global leadership summits."
+        title="Partner with WomenPlay"
+        description="Connect your brand with an engaged, joy-driven community of women. Partner with WomenPlay across our signature play gatherings, wellness socials, and launch experiences."
         onNavigateHome={onNavigateHome}
       >
         <div className="flex flex-wrap gap-4 pt-2 justify-center">
@@ -120,7 +120,7 @@ export default function SponsorshipView({ onNavigateHome, onOpenAuth }: Sponsors
             href="#inquiry-form-section"
             className="px-6 py-3 rounded-full bg-brand-pink hover:bg-brand-pink-dark text-white font-bold text-xs shadow-lg shadow-brand-pink/25 transition flex items-center space-x-2"
           >
-            <span>Proceed to Sponsorship Registration</span>
+            <span>Proceed to Partner Registration</span>
             <ArrowRight className="w-4 h-4" />
           </a>
         </div>
@@ -131,20 +131,20 @@ export default function SponsorshipView({ onNavigateHome, onOpenAuth }: Sponsors
         {/* High Impact Numbers */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           <div className="bg-white p-6 rounded-2xl border border-slate-100 luxury-shadow text-center space-y-1">
-            <p className="text-2xl md:text-3xl font-extrabold text-slate-900 font-display">12,000+</p>
-            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">C-Suite Members</p>
+            <p className="text-2xl md:text-3xl font-extrabold text-slate-900 font-display">100</p>
+            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Launch Capacity</p>
           </div>
           <div className="bg-white p-6 rounded-2xl border border-slate-100 luxury-shadow text-center space-y-1">
-            <p className="text-2xl md:text-3xl font-extrabold text-brand-pink font-display">85+</p>
-            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Board Seats Facilitated</p>
+            <p className="text-2xl md:text-3xl font-extrabold text-brand-pink font-display">6</p>
+            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Signature Teams</p>
           </div>
           <div className="bg-white p-6 rounded-2xl border border-slate-100 luxury-shadow text-center space-y-1">
-            <p className="text-2xl md:text-3xl font-extrabold text-brand-gold-dark font-display">24</p>
-            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Annual Global Summits</p>
+            <p className="text-2xl md:text-3xl font-extrabold text-brand-gold-dark font-display">100%</p>
+            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Joy & Connection</p>
           </div>
           <div className="bg-white p-6 rounded-2xl border border-slate-100 luxury-shadow text-center space-y-1">
-            <p className="text-2xl md:text-3xl font-extrabold text-slate-900 font-display">$1.2B+</p>
-            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Syndicate Venture Deals</p>
+            <p className="text-2xl md:text-3xl font-extrabold text-slate-900 font-display">Infinite</p>
+            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Shared Memories</p>
           </div>
         </div>
 
@@ -153,9 +153,9 @@ export default function SponsorshipView({ onNavigateHome, onOpenAuth }: Sponsors
           <div className="max-w-2xl mx-auto space-y-6">
             <div className="text-center space-y-2">
               <Building2 className="w-8 h-8 text-brand-pink mx-auto" />
-              <h3 className="text-2xl font-bold text-slate-900 font-display">Submit Sponsorship Inquiry & Payment</h3>
+              <h3 className="text-2xl font-bold text-slate-900 font-display">Submit Partnership Inquiry & Payment</h3>
               <p className="text-xs text-slate-500">
-                Sponsorship records are officially saved and activated immediately upon successful payment processing.
+                Partnership records are officially saved and confirmed upon payment processing.
               </p>
             </div>
 
@@ -259,16 +259,16 @@ export default function SponsorshipView({ onNavigateHome, onOpenAuth }: Sponsors
                       />
                     </div>
                     <div>
-                      <label className="block text-slate-700 mb-1">Select Sponsorship Tier *</label>
+                      <label className="block text-slate-700 mb-1">Select Partnership Tier *</label>
                       <select
                         value={formData.tier}
                         onChange={e => setFormData({ ...formData, tier: e.target.value })}
                         className="w-full p-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-brand-pink outline-none transition font-bold"
                       >
-                        <option value="Fellowship Sponsor ($10,000)">Board Fellowship Sponsor ($10,000 / yr)</option>
-                        <option value="Executive Chapter Sponsor ($25,000)">Executive Chapter Sponsor ($25,000 / yr)</option>
-                        <option value="Global Title Partner ($50,000)">Global Title Partner ($50,000 / yr)</option>
-                        <option value="Custom Event Branding ($5,000)">Custom Event Branding ($5,000)</option>
+                        <option value="Community Experience Partner ($5,000)">Community Experience Partner ($5,000)</option>
+                        <option value="Signature Event Title Partner ($10,000)">Signature Event Title Partner ($10,000)</option>
+                        <option value="Official Lifestyle & Play Partner ($25,000)">Official Lifestyle & Play Partner ($25,000)</option>
+                        <option value="Custom Brand Collaboration ($2,500)">Custom Brand Collaboration ($2,500)</option>
                       </select>
                     </div>
                   </div>
@@ -277,7 +277,7 @@ export default function SponsorshipView({ onNavigateHome, onOpenAuth }: Sponsors
                     <label className="block text-slate-700 mb-1">Additional Objectives / Notes (Optional)</label>
                     <textarea
                       rows={2}
-                      placeholder="Tell us about your organization's executive diversity goals or specific summit sponsorship requests..."
+                      placeholder="Tell us about your brand or how you'd like to collaborate with WomenPlay..."
                       value={formData.message}
                       onChange={e => setFormData({ ...formData, message: e.target.value })}
                       className="w-full p-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-brand-pink outline-none transition"

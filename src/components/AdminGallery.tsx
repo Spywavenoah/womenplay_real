@@ -431,6 +431,7 @@ export default function AdminGallery({ gallery, onRefresh }: AdminGalleryProps) 
                       src={item.image}
                       alt={item.title}
                       referrerPolicy="no-referrer"
+                      onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=1200"; }}
                       className="w-full md:w-44 h-32 object-cover rounded-xl border border-slate-100 shrink-0 self-center md:self-start shadow-sm"
                     />
                   )}

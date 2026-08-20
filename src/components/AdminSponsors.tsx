@@ -368,6 +368,7 @@ export default function AdminSponsors({ onRefreshData }: AdminSponsorsProps) {
                 <img
                   src={viewingSponsor.logoUrl}
                   alt={viewingSponsor.name}
+                  onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&q=80&w=300"; }}
                   className="w-16 h-16 rounded-2xl object-cover border border-slate-200 bg-white p-1"
                 />
               ) : (

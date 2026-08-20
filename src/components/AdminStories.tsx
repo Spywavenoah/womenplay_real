@@ -371,7 +371,7 @@ export default function AdminStories({ stories, currentUser, onRefresh }: AdminS
                 <label className="text-[10px] uppercase font-bold text-slate-400">Featured Image URL</label>
                 <input
                   type="url"
-                  placeholder="https://images.unsplash.com/photo-..."
+                  placeholder="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2"
                   value={storyForm.imageUrl}
                   onChange={(e) => setStoryForm({ ...storyForm, imageUrl: e.target.value })}
                   className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-xs focus:outline-none"
@@ -434,6 +434,7 @@ export default function AdminStories({ stories, currentUser, onRefresh }: AdminS
                       src={story.imageUrl}
                       alt={story.title}
                       referrerPolicy="no-referrer"
+                      onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200"; }}
                       className="w-full md:w-32 h-24 object-cover rounded-xl border border-slate-100 shrink-0 self-center md:self-start"
                     />
                   )}

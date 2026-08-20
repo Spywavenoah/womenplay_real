@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { MapPin, Calendar, Clock, Ticket, ChevronRight } from "lucide-react";
 import HeroBanner from "./HeroBanner";
 
@@ -12,7 +12,7 @@ export default function LaunchView({ onNavigateHome, onNavigateTickets }: { onNa
 
   // Countdown Timer Logic
   React.useEffect(() => {
-    const launchDate = new Date("2026-09-19T13:00:00").getTime();
+    const launchDate = new Date("2026-10-24T13:00:00").getTime();
     
     const updateCountdown = () => {
       const now = new Date().getTime();
@@ -71,14 +71,14 @@ export default function LaunchView({ onNavigateHome, onNavigateTickets }: { onNa
                   <Calendar className="w-5 h-5 text-brand-pink flex-shrink-0 mt-1" />
                   <div>
                     <p className="text-xs uppercase tracking-wider font-bold text-slate-500">Date</p>
-                    <p className="text-slate-900 font-semibold">Saturday, September 19, 2026</p>
+                    <p className="text-slate-900 font-semibold">Saturday, October 24, 2026</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <Clock className="w-5 h-5 text-brand-pink flex-shrink-0 mt-1" />
                   <div>
-                    <p className="text-xs uppercase tracking-wider font-bold text-slate-500">Time</p>
-                    <p className="text-slate-900 font-semibold">1:00 PM â€“ 6:00 PM</p>
+                    <p className="text-xs uppercase tracking-wider font-bold text-slate-500">Schedule</p>
+                    <p className="text-slate-900 font-semibold">Afternoon Experience (Official Hours Announced Soon)</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
@@ -93,7 +93,7 @@ export default function LaunchView({ onNavigateHome, onNavigateTickets }: { onNa
 
             {/* Description */}
             <p className="text-slate-600 text-lg leading-relaxed md:text-xl">
-              A high-energy women-only play experience for 100 women â€” created as an exciting launch for the WomenPlay.Org brand.
+              A high-energy women-only play experience for 100 women — created as an exciting launch for the WomenPlay.Org brand.
             </p>
 
             {/* CTA Buttons */}
@@ -119,7 +119,7 @@ export default function LaunchView({ onNavigateHome, onNavigateTickets }: { onNa
 
             {/* Note */}
             <p className="text-sm text-slate-500 italic pt-2">
-              The launch is a featured WomenPlay experience â€” not the full story of the brand.
+              The launch is a featured WomenPlay experience &mdash; not the full story of the brand.
             </p>
           </div>
 
@@ -129,12 +129,13 @@ export default function LaunchView({ onNavigateHome, onNavigateTickets }: { onNa
             <img
               src="/assets/jessy.jpeg"
               alt="WomenPlay Launch Jersey Style Event"
+              onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=800"; }}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent z-20 flex items-end p-6 md:p-8">
               <div className="text-white text-left">
                 <p className="text-3xl md:text-4xl font-display font-bold">Jersey Style</p>
-                <p className="text-sm text-white/80 mt-2">September 19 Â· Surrey, BC</p>
+                <p className="text-sm text-white/80 mt-2">October 24, 2026 &middot; Surrey, BC</p>
               </div>
             </div>
           </div>
@@ -153,7 +154,7 @@ export default function LaunchView({ onNavigateHome, onNavigateTickets }: { onNa
               Countdown to Launch Day
             </h2>
             <p className="text-slate-600 text-lg md:text-xl">
-              September 19, 2026 | 1:00 PM â€“ 6:00 PM
+              Saturday, October 24, 2026 | Surrey, BC
             </p>
           </div>
 
@@ -293,8 +294,8 @@ export default function LaunchView({ onNavigateHome, onNavigateTickets }: { onNa
             <div className="grid grid-cols-1 gap-4 pt-2">
               {[
                 { label: "Event Name", val: "WomenPlay Experience — Jersey Style" },
-                { label: "Date", val: "Saturday, September 19, 2026" },
-                { label: "Time", val: "1:00 PM – 6:00 PM" },
+                { label: "Date", val: "Saturday, October 24, 2026" },
+                { label: "Schedule", val: "Afternoon Experience (Exact hours announced closer to launch)" },
                 { label: "Venue", val: "Surrey, BC — indoor venue to be confirmed" },
                 { label: "Attendance Cap", val: "100 women" },
                 { label: "Dress Code", val: "Jersey Style — sports jerseys, biker shorts/leggings, sneakers, team colours" },

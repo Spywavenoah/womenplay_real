@@ -77,7 +77,7 @@ export interface EventItem {
   time: string;
   location: string;
   image: string;
-  category: "Conference" | "Networking" | "Leadership" | "Social" | "Workshop";
+  category: "Conference" | "Networking" | "Leadership" | "Social" | "Socials" | "Play & Games" | "Wellness" | "Gatherings" | "Workshop" | string;
   capacity: number;
   registeredCount: number;
   packages: EventPackage[];
@@ -338,9 +338,12 @@ export interface ContactMessageReply {
 
 export interface ContactMessage {
   id: string;
-  fullName: string;
+  firstName: string;
+  fullName?: string;
   email: string;
   phone?: string;
+  interest: string;
+  organization?: string;
   subject?: string;
   message: string;
   status: "new" | "read" | "replied" | "archived";
@@ -422,5 +425,6 @@ export interface LocalDatabase {
   attendance?: Attendance[];
   tasks?: TaskItem[];
   launchTickets?: LaunchTicket[];
+  processedWebhookEvents?: string[];
 }
 

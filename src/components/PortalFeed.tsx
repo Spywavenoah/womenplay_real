@@ -144,6 +144,7 @@ export default function PortalFeed({ currentUser }: PortalFeedProps) {
         <img
           src={currentUser.avatarUrl || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200"}
           alt={currentUser.fullName}
+          onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200"; }}
           className="w-10 h-10 rounded-full border border-brand-gold object-cover"
         />
         <div className="flex-1 flex flex-col gap-2">
@@ -184,6 +185,7 @@ export default function PortalFeed({ currentUser }: PortalFeedProps) {
                   <img
                     src={post.userAvatar || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200"}
                     alt={post.userFullName}
+                    onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200"; }}
                     className="w-11 h-11 rounded-full object-cover border border-brand-gold/60"
                   />
                   <div className="text-left leading-snug">
@@ -226,7 +228,7 @@ export default function PortalFeed({ currentUser }: PortalFeedProps) {
                   <div className="space-y-3">
                     {activePostComments[post.id].comments.map((comm) => (
                       <div key={comm.id} className="flex gap-2 text-left">
-                        <img src={comm.userAvatar} alt={comm.userFullName} className="w-7 h-7 rounded-full object-cover" />
+                        <img src={comm.userAvatar} alt={comm.userFullName} onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200"; }} className="w-7 h-7 rounded-full object-cover" />
                         <div className="bg-white p-2.5 rounded-xl border border-slate-200 flex-1">
                           <p className="font-bold text-slate-900 text-[11px]">{comm.userFullName}</p>
                           <p className="text-slate-600 mt-1">{comm.content}</p>

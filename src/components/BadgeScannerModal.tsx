@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { X, Camera, Check, AlertCircle, RefreshCw, Sparkles, UserPlus, FileText, Globe, History } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+import { X, Camera, Check, AlertCircle, RefreshCw, Sparkles, Globe, History, Volume2 } from "lucide-react";
+import { motion } from "motion/react";
 import { UserRole } from "../types";
 import type { User } from "../types";
+import { playSuccessChime, playWarningTone, playErrorBuzzer } from "../lib/audioFeedback";
 
 interface BadgeScannerModalProps {
   isOpen: boolean;
@@ -153,9 +154,10 @@ export default function BadgeScannerModal({
     setTimeout(() => {
       setScannedMember(member);
       setScanStatus("success");
+      playSuccessChime();
       onAddContact(member);
       addScanToHistory(member);
-    }, 1500);
+    }, 1200);
   };
 
   const handleManualCodeSubmit = (e: React.FormEvent) => {
@@ -166,27 +168,26 @@ export default function BadgeScannerModal({
     
     // Simulate lookup based on entered code
     setTimeout(() => {
-      // Find a member other than self to simulate a successful scan
       const code = manualCode.trim().toUpperCase();
       
-      // Select a member deterministically based on code or just use the first available other member
       const memberIndex = Math.abs(code.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0)) % (otherMembers.length || 1);
       const selected = otherMembers[memberIndex];
       
       if (selected) {
         setScannedMember(selected);
         setScanStatus("success");
+        playSuccessChime();
         onAddContact(selected);
         addScanToHistory(selected);
       } else {
         setErrorMessage("No executive member found matching this credentials index.");
         setScanStatus("error");
+        playErrorBuzzer();
       }
-    }, 1200);
+    }, 1000);
   };
 
   const handleViewProfile = (member: User) => {
-    // Dispatch event to change view and select profile in Portal
     const event = new CustomEvent("view-member-profile", {
       detail: { member }
     });
@@ -205,12 +206,14 @@ export default function BadgeScannerModal({
           </div>
           <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider">Access Restricted</h3>
           <p className="text-xs text-slate-400">Scanning of QR codes and taking of event attendance is restricted exclusively to executive administrators.</p>
-          <button
+          <motion.button
+            whileTap={{ scale: 0.97 }}
             onClick={onClose}
-            className="w-full py-2 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-xl text-xs transition cursor-pointer"
+            aria-label="Close restricted access modal"
+            className="w-full min-h-[44px] py-2.5 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-xl text-xs transition cursor-pointer flex items-center justify-center"
           >
             Close
-          </button>
+          </motion.button>
         </div>
       </div>
     );
@@ -221,16 +224,25 @@ export default function BadgeScannerModal({
       <div className="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-xl text-left overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
         {/* Modal Header */}
         <div className="p-5 border-b border-slate-800 flex items-center justify-between bg-slate-950">
-          <div className="flex items-center gap-2">
-            <Camera className="w-5 h-5 text-brand-pink animate-pulse" />
+          <div className="flex items-center gap-2.5">
+            <div className="w-9 h-9 rounded-xl bg-brand-pink/10 border border-brand-pink/20 flex items-center justify-center text-brand-pink">
+              <Camera className="w-5 h-5 animate-pulse" />
+            </div>
             <div>
-              <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider">Executive Scanner</h3>
-              <p className="text-[10px] text-slate-400">Scan QR codes for effortless networking connections</p>
+              <div className="flex items-center gap-2">
+                <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider">Executive Scanner</h3>
+                <span className="text-[10px] bg-brand-pink/15 text-brand-pink border border-brand-pink/20 font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
+                  <Volume2 className="w-2.5 h-2.5" /> Chime Active
+                </span>
+              </div>
+              <p className="text-[10px] text-slate-400">Instant verification with audio feedback and real-time ledger</p>
             </div>
           </div>
           <button
+            type="button"
             onClick={onClose}
-            className="p-1.5 hover:bg-slate-800 rounded-lg text-slate-400 hover:text-slate-200 transition cursor-pointer"
+            aria-label="Close executive scanner modal"
+            className="min-w-[44px] min-h-[44px] flex items-center justify-center hover:bg-slate-800 rounded-xl text-slate-400 hover:text-slate-200 transition cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
@@ -245,7 +257,7 @@ export default function BadgeScannerModal({
               animate={{ scale: 1, opacity: 1 }}
               className="text-center py-6 space-y-5"
             >
-              <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 mx-auto flex items-center justify-center">
+              <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 mx-auto flex items-center justify-center shadow-lg shadow-emerald-500/10">
                 <Check className="w-8 h-8" />
               </div>
               <div>
@@ -254,7 +266,7 @@ export default function BadgeScannerModal({
               </div>
 
               {/* Business Card Preview */}
-              <div className="bg-gradient-to-r from-slate-950 to-slate-900 border border-slate-800 p-5 rounded-2xl text-left max-w-sm mx-auto space-y-4 relative overflow-hidden">
+              <div className="bg-gradient-to-r from-slate-950 to-slate-900 border border-slate-800 p-5 rounded-2xl text-left max-w-sm mx-auto space-y-4 relative overflow-hidden shadow-xl">
                 <div className="absolute top-0 right-0 w-24 h-24 bg-brand-pink/5 rounded-full blur-xl pointer-events-none" />
                 
                 <div className="flex items-center gap-3">
@@ -288,24 +300,28 @@ export default function BadgeScannerModal({
               </div>
 
               <div className="pt-2 flex justify-center gap-3 max-w-sm mx-auto">
-                <button
+                <motion.button
+                  whileTap={{ scale: 0.97 }}
                   type="button"
                   onClick={() => {
                     setScannedMember(null);
                     setScanStatus("scanning");
                     startCamera();
                   }}
-                  className="flex-1 py-2 px-4 bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold rounded-xl transition cursor-pointer"
+                  aria-label="Scan another badge"
+                  className="flex-1 min-h-[44px] py-2.5 px-4 bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold rounded-xl transition cursor-pointer flex items-center justify-center"
                 >
                   Scan Another
-                </button>
-                <button
+                </motion.button>
+                <motion.button
+                  whileTap={{ scale: 0.97 }}
                   type="button"
                   onClick={onClose}
-                  className="flex-1 py-2 px-4 bg-brand-pink hover:bg-brand-pink/90 text-white text-xs font-bold rounded-xl transition cursor-pointer"
+                  aria-label="Finish scanning"
+                  className="flex-1 min-h-[44px] py-2.5 px-4 bg-brand-pink hover:bg-brand-pink-dark text-white text-xs font-bold rounded-xl transition cursor-pointer shadow-md flex items-center justify-center"
                 >
                   Done
-                </button>
+                </motion.button>
               </div>
             </motion.div>
           ) : (
@@ -332,7 +348,7 @@ export default function BadgeScannerModal({
                     <div>
                       <p className="text-xs font-bold text-slate-300">Camera Feed Restricted</p>
                       <p className="text-[10px] text-slate-500 max-w-xs mx-auto">
-                        Your browser or iframe has blocked camera permissions, or no device was detected. You can use the manual decoder or simulator controls below!
+                        Camera permissions are disabled or unavailable in this environment. Use the manual lookup or one-click simulator below to test scanning with audio feedback.
                       </p>
                     </div>
                   </div>
@@ -348,13 +364,11 @@ export default function BadgeScannerModal({
                 {/* Laser/Scanner targeting Overlay */}
                 {scanStatus === "scanning" && hasCameraAccess === true && (
                   <div className="absolute inset-0 flex flex-col justify-between p-6 pointer-events-none">
-                    {/* Corners */}
                     <div className="flex justify-between">
                       <div className="w-5 h-5 border-t-2 border-l-2 border-brand-pink" />
                       <div className="w-5 h-5 border-t-2 border-r-2 border-brand-pink" />
                     </div>
                     
-                    {/* Glowing Laser line */}
                     <div className="w-full h-0.5 bg-brand-pink shadow-[0_0_8px_#ff2a85] animate-bounce" />
 
                     <div className="flex justify-between">
@@ -377,14 +391,16 @@ export default function BadgeScannerModal({
 
               {/* RE-TRY CAMERA ACCESS IN CASE BLOCKED */}
               {hasCameraAccess === false && (
-                <button
+                <motion.button
+                  whileTap={{ scale: 0.97 }}
                   type="button"
                   onClick={startCamera}
-                  className="w-full py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-[10px] font-bold transition flex items-center justify-center gap-1 cursor-pointer"
+                  aria-label="Retry connecting camera feed"
+                  className="w-full min-h-[44px] py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <RefreshCw className="w-3 h-3" />
+                  <RefreshCw className="w-3.5 h-3.5" />
                   <span>Retry Camera Connection</span>
-                </button>
+                </motion.button>
               )}
 
               {/* SIMULATION DROPDOWN - EXTREMELY USER FRIENDLY */}
@@ -396,26 +412,28 @@ export default function BadgeScannerModal({
                   </h4>
                 </div>
                 <p className="text-[10px] text-slate-500 leading-relaxed">
-                  Webcams may not have physical badges handy to hold up. Select any of the pre-registered executive fellows below to simulate high-fidelity badge detection:
+                  Select any pre-registered executive fellow below to simulate high-fidelity badge detection with audio chime:
                 </p>
 
                 {otherMembers.length > 0 ? (
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {otherMembers.slice(0, 4).map((member) => (
-                      <button
+                      <motion.button
+                        whileTap={{ scale: 0.97 }}
                         key={member.id}
                         type="button"
                         onClick={() => handleSimulateScan(member)}
-                        className="py-2 px-3 bg-slate-900 hover:bg-slate-850 hover:border-brand-pink/50 border border-slate-800 rounded-xl text-left text-xs transition cursor-pointer flex items-center justify-between group"
+                        aria-label={`Simulate scanning badge for ${member.fullName}`}
+                        className="min-h-[44px] py-2 px-3 bg-slate-900 hover:bg-slate-850 hover:border-brand-pink/50 border border-slate-800 rounded-xl text-left text-xs transition cursor-pointer flex items-center justify-between group"
                       >
                         <div className="truncate pr-2">
                           <p className="font-bold text-slate-200 group-hover:text-brand-pink transition">{member.fullName}</p>
                           <p className="text-[9px] text-slate-500 truncate">{member.title || "Elite Member"}</p>
                         </div>
-                        <span className="text-[8px] bg-slate-800 group-hover:bg-brand-pink group-hover:text-white px-2 py-0.5 rounded text-slate-400 font-bold transition whitespace-nowrap">
-                          Scan Badges
+                        <span className="text-[8px] bg-slate-800 group-hover:bg-brand-pink group-hover:text-white px-2 py-1 rounded text-slate-400 font-bold transition whitespace-nowrap">
+                          Scan Badge
                         </span>
-                      </button>
+                      </motion.button>
                     ))}
                   </div>
                 ) : (
@@ -434,17 +452,20 @@ export default function BadgeScannerModal({
                     placeholder="e.g. REG-AURA-101"
                     value={manualCode}
                     onChange={(e) => setManualCode(e.target.value)}
-                    className="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-600 focus:outline-none focus:border-brand-pink"
+                    aria-label="Credential badge code"
+                    className="flex-1 min-h-[44px] bg-slate-950 border border-slate-800 rounded-xl px-3 text-xs text-white placeholder-slate-600 focus:outline-none focus:border-brand-pink"
                   />
-                  <button
+                  <motion.button
+                    whileTap={{ scale: 0.97 }}
                     type="submit"
-                    className="py-2 px-4 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-xs font-bold transition cursor-pointer"
+                    aria-label="Look up credential badge code"
+                    className="min-h-[44px] px-5 bg-brand-pink hover:bg-brand-pink-dark text-white rounded-xl text-xs font-bold transition cursor-pointer flex items-center justify-center shadow-sm"
                   >
                     Lookup
-                  </button>
+                  </motion.button>
                 </div>
                 {errorMessage && (
-                  <div className="flex items-center gap-1 text-rose-400 text-[10px] mt-1">
+                  <div className="flex items-center gap-1.5 text-rose-400 text-[10px] mt-1.5 bg-rose-500/10 p-2 rounded-lg border border-rose-500/20">
                     <AlertCircle className="w-3.5 h-3.5 shrink-0" />
                     <span>{errorMessage}</span>
                   </div>
@@ -464,7 +485,8 @@ export default function BadgeScannerModal({
                     <button
                       type="button"
                       onClick={handleClearHistory}
-                      className="text-[9px] text-slate-500 hover:text-rose-400 transition cursor-pointer"
+                      aria-label="Clear recent encounters history"
+                      className="min-h-[44px] px-2 text-[10px] text-slate-500 hover:text-rose-400 transition cursor-pointer flex items-center"
                     >
                       Clear History
                     </button>
@@ -495,20 +517,21 @@ export default function BadgeScannerModal({
                             <button
                               type="button"
                               onClick={() => handleViewProfile(entry.member)}
-                              className="px-2 py-1 bg-brand-pink/10 hover:bg-brand-pink text-brand-pink hover:text-white text-[9px] font-bold rounded transition cursor-pointer"
+                              aria-label={`View profile for ${entry.member.fullName}`}
+                              className="min-h-[44px] px-3 bg-brand-pink/10 hover:bg-brand-pink text-brand-pink hover:text-white text-[10px] font-bold rounded-xl transition cursor-pointer flex items-center justify-center"
                             >
                               View Profile
                             </button>
-                            <span className="text-[8px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded font-mono">
+                            <span className="text-[8px] bg-slate-800 text-slate-400 px-2 py-1 rounded font-mono">
                               {entry.scannedAt}
                             </span>
                             <button
                               type="button"
                               onClick={() => handleDeleteEntry(entry.id)}
-                              className="p-1 hover:bg-slate-800 rounded text-slate-500 hover:text-rose-400 transition cursor-pointer"
-                              title="Delete Encounter"
+                              className="min-w-[44px] min-h-[44px] flex items-center justify-center hover:bg-slate-800 rounded-xl text-slate-500 hover:text-rose-400 transition cursor-pointer"
+                              aria-label={`Delete encounter with ${entry.member.fullName}`}
                             >
-                              <X className="w-3.5 h-3.5" />
+                              <X className="w-4 h-4" />
                             </button>
                           </div>
                         </div>
@@ -523,7 +546,8 @@ export default function BadgeScannerModal({
                             placeholder="e.g. Interested in board role, follow up with pitch deck next Monday..."
                             value={entry.notes || ""}
                             onChange={(e) => handleUpdateNotes(entry.id, e.target.value)}
-                            className="w-full bg-slate-950 border border-slate-800/80 rounded-xl px-3 py-1.5 text-[11px] text-slate-200 placeholder-slate-600 focus:outline-none focus:border-brand-pink/60 transition resize-none leading-relaxed"
+                            aria-label="Private meeting notes"
+                            className="w-full bg-slate-950 border border-slate-800/80 rounded-xl px-3 py-2 text-[11px] text-slate-200 placeholder-slate-600 focus:outline-none focus:border-brand-pink/60 transition resize-none leading-relaxed"
                           />
                         </div>
                       </div>
@@ -537,13 +561,15 @@ export default function BadgeScannerModal({
 
         {/* Footer */}
         <div className="p-4 bg-slate-950 border-t border-slate-800 flex justify-end no-print shrink-0">
-          <button
+          <motion.button
+            whileTap={{ scale: 0.97 }}
             type="button"
             onClick={onClose}
-            className="py-2 px-5 bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-400 hover:text-slate-200 font-bold rounded-xl transition text-xs cursor-pointer"
+            aria-label="Close badge scanner"
+            className="min-h-[44px] px-6 bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-400 hover:text-slate-200 font-bold rounded-xl transition text-xs cursor-pointer flex items-center justify-center"
           >
             Close Scanner
-          </button>
+          </motion.button>
         </div>
       </div>
     </div>

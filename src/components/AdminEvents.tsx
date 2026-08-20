@@ -1,7 +1,9 @@
 import React from "react";
-import { Check, Trash2, Edit3, Plus, Download, FileText, Search, RefreshCw, X, AlertCircle, Calendar, MapPin, Clock, Users, QrCode, UploadCloud, Image as ImageIcon, Link as LinkIcon } from "lucide-react";
+import { Check, Trash2, Edit3, Plus, Download, FileText, Search, RefreshCw, X, AlertCircle, Calendar, MapPin, Clock, Users, QrCode, UploadCloud, Image as ImageIcon, Link as LinkIcon, Radio, Volume2 } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
 import type { EventItem, EventPackage } from "../types";
 import { showConfirmDialog } from "../lib/swal";
+import { playSuccessChime, playWarningTone, playErrorBuzzer } from "../lib/audioFeedback";
 
 interface AdminEventsProps {
   events: EventItem[];
@@ -13,6 +15,8 @@ export default function AdminEvents({ events, onRefresh }: AdminEventsProps) {
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState("");
   const [successMsg, setSuccessMsg] = React.useState("");
+  const [sseConnected, setSseConnected] = React.useState(false);
+  const [liveActivityTicker, setLiveActivityTicker] = React.useState<string | null>(null);
 
   // Selection
   const [selectedEventId, setSelectedEventId] = React.useState<string | null>(null);
@@ -93,6 +97,59 @@ export default function AdminEvents({ events, onRefresh }: AdminEventsProps) {
       setAttendanceRecords([]);
     }
   }, [selectedEventId, loadRegistrations, loadAttendance]);
+
+  // Connect to SSE stream for live real-time check-in updates
+  React.useEffect(() => {
+    let eventSource: EventSource | null = null;
+    try {
+      eventSource = new EventSource("/api/admin/attendance/stream");
+      
+      eventSource.onopen = () => {
+        setSseConnected(true);
+      };
+
+      eventSource.onmessage = (event) => {
+        try {
+          const payload = JSON.parse(event.data);
+          if (payload.type === "INITIAL_CONNECTED" || payload.type === "PING") {
+            setSseConnected(true);
+            return;
+          }
+
+          if (payload.type === "CHECK_IN_SUCCESS" || payload.type === "ATTENDANCE_RECORDED") {
+            playSuccessChime();
+            setLiveActivityTicker(`Checked-in: ${payload.attendee?.fullName || payload.registration?.userName || "Attendee"} (${new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })})`);
+            onRefresh();
+            if (selectedEventId && (selectedEventId === payload.eventId || selectedEventId === payload.attendee?.eventId)) {
+              loadAttendance(selectedEventId);
+              loadRegistrations(selectedEventId);
+            }
+          } else if (payload.type === "REGISTRATION_CREATED") {
+            playWarningTone();
+            setLiveActivityTicker(`New Ticket Booked: ${payload.registration?.packageName || "Attendee"}`);
+            onRefresh();
+            if (selectedEventId && selectedEventId === payload.eventId) {
+              loadRegistrations(selectedEventId);
+            }
+          }
+        } catch (e) {
+          console.error("Failed to parse admin attendance SSE payload", e);
+        }
+      };
+
+      eventSource.onerror = () => {
+        setSseConnected(false);
+      };
+    } catch (err) {
+      console.warn("SSE connection error in AdminEvents:", err);
+    }
+
+    return () => {
+      if (eventSource) {
+        eventSource.close();
+      }
+    };
+  }, [selectedEventId, loadAttendance, loadRegistrations, onRefresh]);
 
   const resetForm = () => {
     setEventForm({
@@ -259,17 +316,21 @@ export default function AdminEvents({ events, onRefresh }: AdminEventsProps) {
       if (res.ok) {
         if (data.alreadyCheckedIn) {
           setCheckInMsg(data.message);
+          playWarningTone();
         } else {
           setCheckInMsg(data.message);
           setScannedBadgeCode("");
+          playSuccessChime();
         }
         loadRegistrations(selectedEventId);
         loadAttendance(selectedEventId);
       } else {
         setCheckInError(data.error || "Failed to process check-in.");
+        playErrorBuzzer();
       }
     } catch (err) {
       setCheckInError("Server error verifying credentials.");
+      playErrorBuzzer();
     }
   };
 
@@ -427,34 +488,57 @@ export default function AdminEvents({ events, onRefresh }: AdminEventsProps) {
       {/* Action Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-5 rounded-2xl border border-slate-100 luxury-shadow">
         <div>
-          <h2 className="text-sm font-bold text-slate-800">Active Event Listings & Check-in</h2>
-          <p className="text-xs text-slate-500 mt-1">Schedule summits, assign ticket tiers, track high-society subscribers, and scanning attendance.</p>
+          <div className="flex items-center gap-2.5 flex-wrap">
+            <h2 className="text-sm font-bold text-slate-800">Active Event Listings & Live Check-in</h2>
+            <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold border transition ${
+              sseConnected 
+                ? "bg-emerald-50 text-emerald-700 border-emerald-200" 
+                : "bg-amber-50 text-amber-700 border-amber-200"
+            }`}>
+              <span className={`w-2 h-2 rounded-full ${sseConnected ? "bg-emerald-500 animate-pulse" : "bg-amber-500"}`} />
+              <span>{sseConnected ? "SSE Real-Time Sync Active" : "Connecting Live Stream..."}</span>
+              <Volume2 className="w-2.5 h-2.5 ml-0.5 text-emerald-600" />
+            </div>
+          </div>
+          <p className="text-xs text-slate-500 mt-1">Schedule summits, assign ticket tiers, track attendees with live real-time sync, and scan badges instantly.</p>
+          {liveActivityTicker && (
+            <div className="mt-2 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-900 text-slate-200 text-[10px] font-mono animate-in fade-in duration-300">
+              <Radio className="w-3 h-3 text-brand-pink animate-pulse" />
+              <span>{liveActivityTicker}</span>
+            </div>
+          )}
         </div>
         <div className="flex gap-2 w-full sm:w-auto">
-          <button
+          <motion.button
+            whileTap={{ scale: 0.96 }}
             onClick={exportToCSV}
-            className="flex-1 sm:flex-initial py-1.5 px-3 bg-white border border-slate-200 text-slate-700 rounded-xl font-bold text-xs hover:bg-slate-50 flex items-center justify-center gap-1 transition"
+            aria-label="Export events data to CSV format"
+            className="flex-1 sm:flex-initial min-h-[44px] py-2 px-3.5 bg-white border border-slate-200 text-slate-700 rounded-xl font-bold text-xs hover:bg-slate-50 flex items-center justify-center gap-1.5 transition cursor-pointer"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Export CSV</span>
-          </button>
-          <button
+          </motion.button>
+          <motion.button
+            whileTap={{ scale: 0.96 }}
             onClick={exportToPDF}
-            className="flex-1 sm:flex-initial py-1.5 px-3 bg-white border border-slate-200 text-slate-700 rounded-xl font-bold text-xs hover:bg-slate-50 flex items-center justify-center gap-1 transition"
+            aria-label="Export events data to PDF format"
+            className="flex-1 sm:flex-initial min-h-[44px] py-2 px-3.5 bg-white border border-slate-200 text-slate-700 rounded-xl font-bold text-xs hover:bg-slate-50 flex items-center justify-center gap-1.5 transition cursor-pointer"
           >
             <FileText className="w-3.5 h-3.5" />
             <span>Export PDF</span>
-          </button>
-          <button
+          </motion.button>
+          <motion.button
+            whileTap={{ scale: 0.96 }}
             onClick={() => {
               resetForm();
               setIsCreating(true);
             }}
-            className="flex-1 sm:flex-initial py-1.5 px-3 bg-brand-pink text-white rounded-xl font-bold text-xs hover:bg-brand-pink-dark flex items-center justify-center gap-1 transition"
+            aria-label="Schedule a new executive summit"
+            className="flex-1 sm:flex-initial min-h-[44px] py-2 px-4 bg-brand-pink text-white rounded-xl font-bold text-xs hover:bg-brand-pink-dark flex items-center justify-center gap-1.5 transition shadow-sm cursor-pointer"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>New Summit</span>
-          </button>
+          </motion.button>
         </div>
       </div>
 
@@ -822,6 +906,7 @@ export default function AdminEvents({ events, onRefresh }: AdminEventsProps) {
                         src={event.image}
                         alt={event.title}
                         referrerPolicy="no-referrer"
+                        onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=1200"; }}
                         className="w-full md:w-36 h-24 object-cover rounded-xl border border-slate-100 shrink-0 self-center md:self-start"
                       />
                     )}
@@ -1137,17 +1222,18 @@ export default function AdminEvents({ events, onRefresh }: AdminEventsProps) {
                   </div>
                   <div className="min-w-0">
                     <p className="text-xs font-mono tracking-wider font-extrabold uppercase text-slate-100">
-                      QR Scanner Popup
+                      QR Scanner Desk
                     </p>
                     <p className="text-[10px] text-slate-400 truncate">{ev.title}</p>
                   </div>
                 </div>
                 <button
+                  type="button"
                   onClick={closeScanner}
-                  className="p-2 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white transition shrink-0"
-                  aria-label="Close scanner"
+                  className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl hover:bg-slate-800 text-slate-400 hover:text-white transition shrink-0 cursor-pointer"
+                  aria-label="Close scanner modal"
                 >
-                  <X className="w-4 h-4" />
+                  <X className="w-5 h-5" />
                 </button>
               </div>
 
@@ -1155,27 +1241,29 @@ export default function AdminEvents({ events, onRefresh }: AdminEventsProps) {
               <div className="p-5 space-y-4">
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                   <div className="flex items-center gap-2">
-                    <span className={`w-2 h-2 rounded-full ${scannerEnabled ? "bg-emerald-400 animate-pulse" : "bg-slate-400"}`} />
+                    <span className={`w-2.5 h-2.5 rounded-full ${scannerEnabled ? "bg-emerald-400 animate-pulse" : "bg-slate-400"}`} />
                     <span className="text-xs font-bold text-slate-700">
-                      {scannerEnabled ? "Scanner Active" : "Scanner Disabled"}
+                      {scannerEnabled ? "Camera Beam Active" : "Scanner Beam Idle"}
                     </span>
                   </div>
-                  <button
+                  <motion.button
+                    whileTap={{ scale: 0.97 }}
                     type="button"
                     onClick={() => setScannerEnabled(!scannerEnabled)}
-                    className={`py-1.5 px-3.5 rounded-xl font-bold text-xs flex items-center gap-2 transition cursor-pointer ${
+                    aria-label={scannerEnabled ? "Disable scanner camera" : "Enable scanner camera"}
+                    className={`min-h-[44px] py-2 px-4 rounded-xl font-bold text-xs flex items-center gap-2 transition cursor-pointer ${
                       scannerEnabled
                         ? "bg-emerald-50 text-emerald-800 border border-emerald-200 hover:bg-emerald-100"
                         : "bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200"
                     }`}
                   >
                     {scannerEnabled ? "Disable Scanner" : "Enable Scanner"}
-                  </button>
+                  </motion.button>
                 </div>
 
                 {/* Viewport Display */}
                 {scannerEnabled ? (
-                  <div className="h-52 bg-black rounded-xl relative flex flex-col items-center justify-center border border-slate-800 overflow-hidden">
+                  <div className="h-52 bg-black rounded-xl relative flex flex-col items-center justify-center border border-slate-800 overflow-hidden shadow-inner">
                     <div className="absolute inset-x-10 top-1/2 h-[2px] bg-brand-pink shadow-[0_0_12px_#DB2777] animate-bounce"></div>
                     <div className="absolute top-4 left-4 w-5 h-5 border-t-2 border-l-2 border-brand-pink"></div>
                     <div className="absolute top-4 right-4 w-5 h-5 border-t-2 border-r-2 border-brand-pink"></div>
@@ -1184,18 +1272,21 @@ export default function AdminEvents({ events, onRefresh }: AdminEventsProps) {
 
                     <QrCode className="w-12 h-12 text-slate-600 animate-pulse" />
                     <span className="text-[11px] font-mono text-slate-400 font-bold uppercase tracking-widest mt-2">
-                      Position QR Code / Access Pass within frame
+                      Hold attendee badge in front of camera
                     </span>
                   </div>
                 ) : (
                   <div className="h-28 bg-slate-100 rounded-xl flex flex-col items-center justify-center border border-slate-200 text-slate-500 text-xs font-medium gap-2">
                     <span>QR Code Scanner is currently disabled.</span>
-                    <button
+                    <motion.button
+                      whileTap={{ scale: 0.97 }}
+                      type="button"
                       onClick={() => setScannerEnabled(true)}
-                      className="py-1 px-3 bg-brand-pink text-white rounded-lg text-xs font-bold hover:bg-brand-pink-dark transition"
+                      aria-label="Enable scanner"
+                      className="min-h-[44px] px-4 bg-brand-pink text-white rounded-xl text-xs font-bold hover:bg-brand-pink-dark transition flex items-center justify-center"
                     >
                       Enable Scanner
-                    </button>
+                    </motion.button>
                   </div>
                 )}
 
@@ -1208,21 +1299,27 @@ export default function AdminEvents({ events, onRefresh }: AdminEventsProps) {
                       placeholder="E.g. AURA-EVT-8923 or Pass Token..."
                       value={scannedBadgeCode}
                       onChange={(e) => setScannedBadgeCode(e.target.value)}
-                      className="flex-1 bg-slate-50 border border-slate-300 text-slate-900 rounded-xl px-3 py-2 text-xs font-mono focus:outline-none focus:ring-1 focus:ring-brand-pink"
+                      aria-label="Badge pass code"
+                      className="flex-1 min-h-[44px] bg-slate-50 border border-slate-300 text-slate-900 rounded-xl px-3 text-xs font-mono focus:outline-none focus:ring-1 focus:ring-brand-pink"
                     />
-                    <button
+                    <motion.button
+                      whileTap={{ scale: 0.97 }}
+                      type="button"
                       onClick={() => handleBadgeCheckIn()}
-                      className="bg-brand-pink hover:bg-brand-pink-dark text-white font-bold px-4 py-2 rounded-xl transition text-xs uppercase shrink-0"
+                      aria-label="Verify badge pass code"
+                      className="min-h-[44px] bg-brand-pink hover:bg-brand-pink-dark text-white font-bold px-4 rounded-xl transition text-xs uppercase shrink-0 flex items-center justify-center shadow-xs cursor-pointer"
                     >
                       Verify Pass Code
-                    </button>
-                    <button
+                    </motion.button>
+                    <motion.button
+                      whileTap={{ scale: 0.97 }}
                       type="button"
                       onClick={simulateFastScan}
-                      className="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold px-4 py-2 rounded-xl transition text-xs uppercase shrink-0"
+                      aria-label="Simulate fast attendee badge scan"
+                      className="min-h-[44px] bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold px-4 rounded-xl transition text-xs uppercase shrink-0 flex items-center justify-center cursor-pointer"
                     >
                       Simulate Scan
-                    </button>
+                    </motion.button>
                   </div>
                 </div>
 

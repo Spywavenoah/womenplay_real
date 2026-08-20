@@ -232,7 +232,7 @@ export default function AdminAdmins({ currentUser, onRefreshData }: AdminAdminsP
     (a.title && a.title.toLowerCase().includes(searchTerm.toLowerCase()))
   );
 
-  const nonAdminMembers = allMembers.filter(m => m.role !== UserRole.ADMIN && m.role !== "ADMIN");
+  const nonAdminMembers = allMembers.filter(m => m.role !== UserRole.ADMIN && (m.role as any) !== "ADMIN");
   const filteredPromoteMembers = nonAdminMembers.filter(m =>
     m.fullName.toLowerCase().includes(promoteSearch.toLowerCase()) ||
     m.email.toLowerCase().includes(promoteSearch.toLowerCase())

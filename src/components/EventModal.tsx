@@ -45,6 +45,7 @@ export default function EventModal({
             <img
               src={event.image}
               alt={event.title}
+              onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=1200"; }}
               className="w-full h-full object-cover opacity-85"
             />
           ) : (

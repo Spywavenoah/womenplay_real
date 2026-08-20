@@ -16,12 +16,13 @@ export default function Footer({ onNavigate }: FooterProps) {
             <img
               src="/assets/logo.png"
               alt="WomenPlay Logo"
+              onError={(e) => { (e.target as HTMLImageElement).src = "/logo.png"; }}
               className="h-12 w-auto object-contain filter drop-shadow-md cursor-pointer"
               onClick={() => onNavigate("home")}
             />
           </div>
           <p className="text-xs text-slate-400 leading-relaxed">
-            Empowering high-impact women leaders globally through luxury executive gatherings, strategic capital partnerships, and career elevation.
+            Because life is better when… Women can play too! Private venue experiences where every woman gets her spotlight moment. No judgment — just laughter, singing, and shared joy.
           </p>
           {/* Social Media Connections */}
           <div className="flex items-center space-x-3 pt-2">
@@ -83,16 +84,16 @@ export default function Footer({ onNavigate }: FooterProps) {
           <h4 className="font-bold text-slate-200 uppercase tracking-widest text-[10px]">Experience & Access</h4>
           <ul className="space-y-2 text-slate-400">
             <li>
-              <a href={VIEW_PATHS.launch} onClick={(e) => { e.preventDefault(); onNavigate("launch"); }} className="hover:text-brand-pink transition cursor-pointer">Jersey Launch Experience</a>
+              <a href={VIEW_PATHS.events} onClick={(e) => { e.preventDefault(); onNavigate("events"); }} className="hover:text-brand-pink transition cursor-pointer">Jersey Launch Experience</a>
             </li>
             <li>
               <a href={VIEW_PATHS.tickets} onClick={(e) => { e.preventDefault(); onNavigate("tickets"); }} className="hover:text-brand-pink transition cursor-pointer">Tickets & Passes</a>
             </li>
             <li>
-              <a href={VIEW_PATHS.sponsorship} onClick={(e) => { e.preventDefault(); onNavigate("sponsorship"); }} className="hover:text-brand-pink transition cursor-pointer">Sponsorship Packages</a>
+              <a href={VIEW_PATHS.sponsorship} onClick={(e) => { e.preventDefault(); onNavigate("sponsorship"); }} className="hover:text-brand-pink transition cursor-pointer">Sponsorship & Partnerships</a>
             </li>
             <li>
-              <a href={VIEW_PATHS.portal} onClick={(e) => { e.preventDefault(); onNavigate("portal"); }} className="hover:text-brand-pink transition cursor-pointer">Executive Member Portal</a>
+              <a href={VIEW_PATHS.founders} onClick={(e) => { e.preventDefault(); onNavigate("founders"); }} className="hover:text-brand-pink transition cursor-pointer">Founding Circle</a>
             </li>
             <li>
               <a href={VIEW_PATHS.volunteer} onClick={(e) => { e.preventDefault(); onNavigate("volunteer"); }} className="hover:text-brand-pink transition cursor-pointer">Volunteer Opportunities</a>
@@ -104,24 +105,24 @@ export default function Footer({ onNavigate }: FooterProps) {
         </div>
 
         <div className="space-y-2 text-xs">
-          <h4 className="font-bold text-slate-200 uppercase tracking-widest text-[10px]">Secretariat & Support</h4>
+          <h4 className="font-bold text-slate-200 uppercase tracking-widest text-[10px]">Support & Inquiries</h4>
           <p className="text-slate-400 leading-relaxed">
-            WomenPlay Executive Secretariat<br />
-            Grand Terrace Gardens, San Francisco<br />
-            <a href="mailto:secretariat@womenplay.org" className="text-brand-pink hover:underline font-semibold">secretariat@womenplay.org</a>
+            WomenPlay Community Support<br />
+            British Columbia, Canada<br />
+            <a href="mailto:womenplay.org@gmail.com" className="text-brand-pink hover:underline font-semibold">womenplay.org@gmail.com</a>
           </p>
           <a
             href={VIEW_PATHS.contact}
             onClick={(e) => { e.preventDefault(); onNavigate("contact"); }}
             className="text-xs text-brand-gold hover:text-white transition font-bold underline cursor-pointer mt-3 block"
           >
-            Contact Concierge Support →
+            Contact Team →
           </a>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto mt-10 pt-6 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center text-[11px] text-slate-500 gap-4">
-        <p>© 2026 WomenPlay. Empowering Distinguished Women Leaders. All Rights Reserved.</p>
+        <p>© 2026 WomenPlay. Because life is better when… Women can play too! All Rights Reserved.</p>
         <div className="flex flex-wrap justify-center gap-6">
           <a
             href={VIEW_PATHS.contact}

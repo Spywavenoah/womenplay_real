@@ -53,7 +53,7 @@ export default function AdminCarousel({ slides, onRefresh }: AdminCarouselProps)
         body: JSON.stringify({
           title: slideForm.title,
           description: slideForm.description,
-          image: slideForm.image || "https://images.unsplash.com/photo-1542744094-2ab25be78b90?auto=format&fit=crop&w=1200&q=80",
+          image: slideForm.image || "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1200&q=80",
           overlayColor: slideForm.overlayColor
         })
       });
@@ -367,6 +367,7 @@ export default function AdminCarousel({ slides, onRefresh }: AdminCarouselProps)
                       src={slide.image}
                       alt={slide.title}
                       referrerPolicy="no-referrer"
+                      onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1200&q=80"; }}
                       className="w-full md:w-44 h-32 object-cover rounded-xl border border-slate-100 shrink-0 self-center md:self-start shadow-sm"
                     />
                   )}

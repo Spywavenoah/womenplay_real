@@ -35,6 +35,7 @@ const Mandatory2FAModal = React.lazy(() => import("./components/Mandatory2FAModa
 const ResetPasswordPage = React.lazy(() => import("./components/ResetPassword"));
 const VerifyEmailPage = React.lazy(() => import("./components/VerifyEmail"));
 const ActivateAccountPage = React.lazy(() => import("./components/ActivateAccount"));
+const MiraChatbot = React.lazy(() => import("./components/MiraChatbot"));
 
 function ViewFallback() {
   return (
@@ -1022,6 +1023,11 @@ export default function App() {
           />
         </React.Suspense>
       )}
+
+      {/* MIRA CONCIERGE CHATBOT WIDGET */}
+      <React.Suspense fallback={null}>
+        <MiraChatbot onNavigate={navigate} />
+      </React.Suspense>
     </div>
   );
 }

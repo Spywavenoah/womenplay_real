@@ -14,7 +14,7 @@ interface EventsViewProps {
   onNavigateHome: () => void;
 }
 
-const CATEGORY_TABS = ["all", "Conference", "Networking", "Leadership", "Workshop"] as const;
+const CATEGORY_TABS = ["all", "Play & Games", "Socials", "Wellness", "Gatherings"] as const;
 type CategoryTab = (typeof CATEGORY_TABS)[number];
 
 export default function EventsView({
@@ -45,15 +45,15 @@ export default function EventsView({
         eyebrow={
           <span className="inline-flex items-center gap-2">
             <CalendarDays className="w-4 h-4" />
-            Upcoming & Previous Sessions
+            Upcoming & Past Experiences
           </span>
         }
         title={
           <>
-            Our <em className="gold-text-gradient not-italic">Distinguished Events</em>
+            Our <em className="gold-text-gradient not-italic">Community Gatherings</em>
           </>
         }
-        description="Explore luxury summits, curated dinners, pitch sessions, and professional board workshops. Book premium registration badges directly inside."
+        description="Explore our launch experiences, playful socials, wellness gatherings, and community events where every woman gets her spotlight moment."
         onNavigateHome={onNavigateHome}
       />
 
@@ -122,6 +122,7 @@ export default function EventsView({
                           alt={event.title}
                           loading="lazy"
                           decoding="async"
+                          onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=1200"; }}
                           className="w-full h-full object-cover"
                         />
                         <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm py-1 px-3 rounded-full border border-slate-200 text-[10px] font-bold uppercase tracking-wider text-slate-800 shadow-sm">

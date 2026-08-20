@@ -2106,7 +2106,7 @@ export default function AdminDashboard({
                 </p>
               </div>
               <span className={`px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider ${smtpForm.enableAlerts ? "bg-emerald-50 text-emerald-600 border border-emerald-200" : "bg-amber-50 text-amber-600 border border-amber-200"}`}>
-                {smtpForm.enableAlerts ? "â— Outgoing Alerts Active" : "â—‹ Alerts Paused"}
+                {smtpForm.enableAlerts ? "● Outgoing Alerts Active" : "○ Alerts Paused"}
               </span>
             </div>
 
@@ -2176,7 +2176,7 @@ export default function AdminDashboard({
                         <label className="font-bold text-slate-600">SMTP Password</label>
                         <input
                           type="password"
-                          placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
+                          placeholder="••••••••••••"
                           value={smtpForm.pass}
                           onChange={(e) => setSmtpForm({ ...smtpForm, pass: e.target.value })}
                           className="w-full bg-white border border-slate-200 p-2.5 rounded-lg focus:outline-none focus:border-brand-pink text-slate-800"
@@ -2738,8 +2738,9 @@ export default function AdminDashboard({
               <div className="flex items-center gap-2">
                 <button
                   type="button"
-                  onClick={exportToCSV}
-                  className="py-1.5 px-3 bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 rounded-lg text-xs font-bold transition flex items-center gap-1.5 cursor-pointer"
+                  onClick={() => exportToCSV()}
+                  aria-label="Export CSV File"
+                  className="min-h-[44px] py-2 px-3.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer"
                 >
                   <Download className="w-3.5 h-3.5" />
                   <span>CSV File</span>
@@ -2747,7 +2748,8 @@ export default function AdminDashboard({
                 <button
                   type="button"
                   onClick={handlePrintPDF}
-                  className="py-1.5 px-4 bg-brand-pink hover:bg-brand-pink/95 text-white rounded-lg text-xs font-bold transition flex items-center gap-1.5 cursor-pointer shadow-sm"
+                  aria-label="Print PDF Report"
+                  className="min-h-[44px] py-2 px-4 bg-brand-pink hover:bg-brand-pink/95 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer shadow-sm"
                 >
                   <Printer className="w-3.5 h-3.5" />
                   <span>Print / Save PDF</span>

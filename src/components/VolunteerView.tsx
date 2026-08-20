@@ -201,7 +201,7 @@ export default function VolunteerView({ onNavigateHome }: { onNavigateHome: () =
             <aside className="lg:col-span-2 space-y-5">
               <h3 className="text-2xl md:text-3xl font-display font-extrabold text-black">Become a Founding Volunteer</h3>
               <p className="text-black/80 text-sm leading-relaxed">
-                We are seeking dependable, warm and community-minded adults who can support the September 19, 2026 launch in Surrey, BC.
+                We are seeking dependable, warm and community-minded adults who can support the October 24, 2026 launch in Surrey, BC.
               </p>
               <p className="text-black/80 text-sm leading-relaxed">
                 <strong className="text-black">Expected commitment:</strong> orientation, final briefing and an assigned event-day shift.

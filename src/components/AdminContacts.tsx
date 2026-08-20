@@ -25,9 +25,12 @@ export default function AdminContacts({ contacts = [], onRefreshData }: AdminCon
   // Filter contacts
   const filteredContacts = useMemo(() => {
     return contacts.filter(c => {
+      const nameStr = c.firstName || c.fullName || "";
       const matchesSearch = 
-        c.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        nameStr.toLowerCase().includes(searchTerm.toLowerCase()) ||
         c.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (c.interest || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (c.organization || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
         (c.subject || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
         c.message.toLowerCase().includes(searchTerm.toLowerCase());
       
@@ -146,12 +149,14 @@ export default function AdminContacts({ contacts = [], onRefreshData }: AdminCon
   // Export CSV
   const handleExportCSV = () => {
     if (contacts.length === 0) return;
-    const headers = ["ID", "Full Name", "Email", "Phone", "Subject", "Message", "Status", "Submitted At"];
+    const headers = ["ID", "First Name", "Email", "Phone", "Area of Interest", "Organization", "Subject", "Message", "Status", "Submitted At"];
     const rows = contacts.map(c => [
       c.id,
-      `"${c.fullName.replace(/"/g, '""')}"`,
+      `"${(c.firstName || c.fullName || "").replace(/"/g, '""')}"`,
       `"${c.email.replace(/"/g, '""')}"`,
       `"${(c.phone || "").replace(/"/g, '""')}"`,
+      `"${(c.interest || "").replace(/"/g, '""')}"`,
+      `"${(c.organization || "").replace(/"/g, '""')}"`,
       `"${(c.subject || "").replace(/"/g, '""')}"`,
       `"${(c.message || "").replace(/"/g, '""')}"`,
       c.status,
@@ -342,11 +347,11 @@ export default function AdminContacts({ contacts = [], onRefreshData }: AdminCon
                           <div className={`w-9 h-9 rounded-full flex items-center justify-center font-bold text-xs uppercase shadow-xs ${
                             isNew ? "bg-amber-500 text-white" : "bg-slate-100 text-slate-700"
                           }`}>
-                            {c.fullName.charAt(0) || "U"}
+                            {(c.firstName || c.fullName || "U").charAt(0)}
                           </div>
                           <div>
                             <div className="text-slate-900 font-bold flex items-center space-x-1.5">
-                              <span>{c.fullName}</span>
+                              <span>{c.firstName || c.fullName}</span>
                               {isNew && <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />}
                             </div>
                             <div className="text-slate-500 text-[11px] flex items-center space-x-2">
@@ -359,8 +364,18 @@ export default function AdminContacts({ contacts = [], onRefreshData }: AdminCon
 
                       <td className="py-4 px-6">
                         <div className="max-w-xs space-y-0.5">
-                          <div className="text-slate-900 font-medium truncate">{c.subject || "Website General Inquiry"}</div>
+                          <div className="text-slate-900 font-medium truncate flex items-center gap-1.5">
+                            {c.interest && (
+                              <span className="bg-brand-pink/10 text-brand-pink text-[10px] px-2 py-0.5 rounded-md font-bold uppercase tracking-wider shrink-0">
+                                {c.interest}
+                              </span>
+                            )}
+                            <span className="truncate">{c.subject || c.interest || "Website General Inquiry"}</span>
+                          </div>
                           <div className="text-slate-400 text-[11px] truncate">{c.message}</div>
+                          {c.organization && (
+                            <div className="text-slate-500 text-[10px] italic">Org: {c.organization}</div>
+                          )}
                         </div>
                       </td>
 
@@ -443,7 +458,12 @@ export default function AdminContacts({ contacts = [], onRefreshData }: AdminCon
                 <div className="space-y-1">
                   <div className="flex items-center space-x-2 text-slate-900 font-bold text-sm">
                     <User className="w-4 h-4 text-brand-pink" />
-                    <span>{selectedContact.fullName}</span>
+                    <span>{selectedContact.firstName || selectedContact.fullName}</span>
+                    {selectedContact.interest && (
+                      <span className="bg-brand-pink/10 text-brand-pink text-[10px] px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider">
+                        {selectedContact.interest}
+                      </span>
+                    )}
                   </div>
                   <div className="text-slate-500 text-xs flex items-center space-x-3 pl-6">
                     <a href={`mailto:${selectedContact.email}`} className="hover:underline text-brand-pink">
@@ -456,6 +476,11 @@ export default function AdminContacts({ contacts = [], onRefreshData }: AdminCon
                       </span>
                     )}
                   </div>
+                  {selectedContact.organization && (
+                    <div className="text-slate-600 text-xs pl-6 pt-0.5 font-medium">
+                      Organization: <span className="text-slate-900 font-bold">{selectedContact.organization}</span>
+                    </div>
+                  )}
                 </div>
 
                 <div className="flex items-center space-x-2">

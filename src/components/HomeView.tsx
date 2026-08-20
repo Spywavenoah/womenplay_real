@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { 
   ArrowRight, Star, Check,
   Sparkles, Quote, ChevronRight, ChevronLeft,
@@ -6,7 +6,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import type { BlogArticle, SuccessStory, Founder } from "../types";
-import mentorImg from "../assets/images/executive_tea_party_1785235353940.jpg";
+// import mentorImg from "../assets/images/executive_tea_party_1785235353940.jpg";
 import FoundingCircle from "./FoundingCircle";
 
 interface HomeViewProps {
@@ -96,7 +96,7 @@ export default function HomeView({
                       className="inline-flex items-center space-x-2 bg-brand-gold-dark/20 border border-brand-gold/40 py-1.5 px-4 rounded-full shadow-xs"
                     >
                       <Sparkles className="w-4 h-4 text-brand-gold animate-pulse" />
-                      <span className="text-[10px] uppercase tracking-wider font-extrabold text-brand-gold">âœ¨ Elite High-Society Corporate Network</span>
+                      <span className="text-[10px] uppercase tracking-wider font-extrabold text-brand-gold">WomenPlay Community</span>
                     </motion.div>
 
                     <motion.h1
@@ -215,10 +215,10 @@ export default function HomeView({
         )}
       </section>
 
-      {/* 2. For Women â€” Who We're For */}
+      {/* 2. For Women — Who We're For */}
       <section className="py-20 px-6 md:px-12 max-w-7xl mx-auto text-center space-y-14" id="about-section-landing">
         <div className="max-w-3xl mx-auto space-y-4">
-          <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold-dark">PLAY â€¢ CONNECT â€¢ PLAY AGAIN</span>
+          <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold-dark">PLAY • CONNECT • PLAY AGAIN</span>
           <h2 className="text-3xl md:text-4xl font-display font-extrabold text-slate-900">
             WomenPlay Is For Women <em className="gold-text-gradient not-italic">Who...</em>
           </h2>
@@ -232,7 +232,7 @@ export default function HomeView({
             "Don't need permission to be silly, bold, and fully themselves",
             "Are tired of networking events that feel like work",
             "Want to play without worrying about being judged",
-            "Want to feel like a kid again â€” with the confidence of a grown woman",
+            "Want to feel like a kid again — with the confidence of a grown woman",
             "Want to laugh until their stomach hurts",
             "Want to reconnect with the carefree version of themselves",
             "Want to collect memories instead of just attending another event"
@@ -283,12 +283,12 @@ export default function HomeView({
           {/* Experience Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {[
-              { icon: "<span class='exp-icon'></span>", name: "Brunch & Bloom", txt: "Elegant dining experiences with beautiful tablescapes, conversation, laughter, and the kind of connection that makes mornings memorable." },
-              { icon: "ðŸŽ¤", name: "Karaoke Socials", txt: "Private venue experiences where every woman gets her spotlight moment. No judgment â€” just laughter, singing, and shared joy." },
-              { icon: "ðŸŽ²", name: "Games Evenings", txt: "Laughter-filled nights designed for fun, ease, and genuine connection. Great company, good drinks, and playful competition." },
-              { icon: "ðŸ§˜", name: "Wellness Moments", txt: "Restorative experiences focused on peace, self-care, reflection, beauty, and renewal. Because every woman deserves to exhale." },
-              { icon: "âœ¨", name: "Themed Socials", txt: "Seasonal gatherings, tea parties, cultural experiences, celebration nights, and elevated social events designed to delight and inspire." },
-              { icon: "ðŸ¥‚", name: "Networking & Lifestyle Mixers", txt: "Stylish gatherings where women connect, share ideas, build meaningful relationships, and enjoy memorable conversations." }
+              { icon: "🌸", name: "Brunch & Bloom", txt: "Elegant dining experiences with beautiful tablescapes, conversation, laughter, and the kind of connection that makes mornings memorable." },
+              { icon: "🎤", name: "Karaoke Socials", txt: "Private venue experiences where every woman gets her spotlight moment. No judgment — just laughter, singing, and shared joy." },
+              { icon: "🎲", name: "Games Evenings", txt: "Laughter-filled nights designed for fun, ease, and genuine connection. Great company, good drinks, and playful competition." },
+              { icon: "🧘🏾‍♀️", name: "Wellness Moments", txt: "Restorative experiences focused on peace, self-care, reflection, beauty, and renewal. Because every woman deserves to exhale." },
+              { icon: "🫖", name: "Themed Socials", txt: "Seasonal gatherings, tea parties, cultural experiences, celebration nights, and elevated social events designed to delight and inspire." },
+              { icon: "🥂", name: "Networking & Lifestyle Mixers", txt: "Stylish gatherings where women connect, share ideas, build meaningful relationships, and enjoy memorable conversations." }
             ].map((exp, i) => (
               <div
                 key={i}
@@ -328,21 +328,21 @@ export default function HomeView({
         </div>
       </section>
 
-      {/* 4. Interactive Success Stories & Executive AI Mentor Section */}
+      {/* 4. Interactive Community Voices & Gatherings Section */}
       <section className="py-20 max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-stretch" id="stories-section-landing">
         
-        {/* Left Column: Testimonials & Approved Success Stories Carousel (col-md-5) */}
+        {/* Left Column: Community Testimonials (col-md-5) */}
         <div className="md:col-span-5 col-md-5 space-y-6 text-left flex flex-col justify-between">
           <div className="space-y-3">
             <div className="flex items-center space-x-2">
-              <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold-dark">COMMUNITY IMPACT</span>
+              <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold-dark">COMMUNITY VOICES</span>
               <span className="px-2 py-0.5 rounded-full bg-brand-pink-light/30 text-brand-pink text-[10px] font-extrabold uppercase">
-                Verified Fellows
+                WomenPlay Circle
               </span>
             </div>
-            <h2 className="text-2xl md:text-3xl font-display font-extrabold text-slate-900">Success Stories from WomenPlay Fellows</h2>
+            <h2 className="text-2xl md:text-3xl font-display font-extrabold text-slate-900">Joyful Moments & Playful Connections</h2>
             <p className="text-slate-500 text-xs md:text-sm leading-relaxed">
-              Discover how female executives are building modern structures, expanding investment, and landing major board nominations through the WomenPlay network.
+              We aren’t a stuffy networking club. Expect laughter, games, and playful moments that genuinely lift your spirit.
             </p>
           </div>
 
@@ -376,6 +376,7 @@ export default function HomeView({
                             alt={story.userFullName} 
                             loading="lazy"
                             decoding="async"
+                            onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200"; }}
                             className="w-12 h-12 rounded-full border-2 border-brand-gold object-cover shadow-xs"
                           />
                           <div>
@@ -384,7 +385,7 @@ export default function HomeView({
                               <Star className="w-3 h-3 text-brand-gold fill-brand-gold shrink-0" />
                             </div>
                             <span className="text-[10px] uppercase tracking-wider font-extrabold text-brand-gold-dark block">
-                              WomenPlay Executive Fellow
+                              WomenPlay Community
                             </span>
                           </div>
                         </div>
@@ -403,7 +404,7 @@ export default function HomeView({
                           {new Date(story.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}
                         </span>
                         <span className="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full font-bold">
-                          Verified Impact
+                          Community Joy
                         </span>
                       </div>
                     </div>
@@ -413,7 +414,7 @@ export default function HomeView({
             ) : (
               <div className="bg-white p-8 rounded-2xl border border-slate-100 text-center py-16 space-y-2">
                 <Quote className="w-8 h-8 text-slate-300 mx-auto" />
-                <p className="text-slate-500 text-xs font-semibold">No approved success stories available currently.</p>
+                <p className="text-slate-500 text-xs font-semibold">Because life is better when… Women can play too!</p>
               </div>
             )}
           </div>
@@ -463,12 +464,12 @@ export default function HomeView({
           )}
         </div>
 
-        {/* Right Column: Executive Leadership & Luxury Summits Card (col-md-7) */}
-        <div className="md:col-span-7 col-md-7 bg-slate-900 rounded-3xl border border-slate-800 luxury-shadow overflow-hidden flex flex-col justify-between text-left relative group min-h-[440px] h-full" id="executive-mentor-card">
+        {/* Right Column: Signature Gatherings & Socials Card (col-md-7) */}
+        <div className="md:col-span-7 col-md-7 bg-slate-900 rounded-3xl border border-slate-800 luxury-shadow overflow-hidden flex flex-col justify-between text-left relative group min-h-[440px] h-full" id="signature-gatherings-card">
           <div className="relative h-full w-full overflow-hidden flex flex-col justify-end">
             <img 
-              src={mentorImg} 
-              alt="Luxury Summits & Board Workshops" 
+              src="/assets/executive_tea_party_1785235353940-DMMx34TC.jpg"
+              alt="Joyful Gatherings & Play Moments" 
               loading="lazy"
               decoding="async"
               className="w-full h-full object-cover absolute inset-0 transition-transform duration-700 group-hover:scale-105"
@@ -478,19 +479,19 @@ export default function HomeView({
             
             <div className="absolute top-4 left-4 inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-slate-900/80 backdrop-blur-md border border-brand-gold/40 text-brand-gold-light text-[10px] font-bold uppercase tracking-widest shadow">
               <Sparkles className="w-3.5 h-3.5 text-brand-pink" />
-              <span>Luxury Summits & Gatherings</span>
+              <span>Signature Gatherings</span>
             </div>
 
             <div className="relative z-10 p-6 md:p-8 space-y-3 text-white">
-              <h3 className="text-2xl md:text-3xl font-display font-extrabold text-white">Executive Gatherings & Summits</h3>
+              <h3 className="text-2xl md:text-3xl font-display font-extrabold text-white">Curated Play & Social Gatherings</h3>
               <p className="text-xs md:text-sm text-slate-300 leading-relaxed max-w-xl">
-                Empowering female C-suite leaders through luxury summits, curated dinners, pitch sessions, and professional board workshops globally.
+                Private venue experiences where every woman gets her spotlight moment. No judgment — just laughter, singing, and shared joy.
               </p>
               <button
-                onClick={() => onNavigate?.("sponsorship")}
+                onClick={() => onNavigate?.("events" as any)}
                 className="mt-4 inline-flex items-center space-x-2 text-xs md:text-sm font-bold text-brand-pink-light hover:text-white transition group/btn cursor-pointer bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 px-5 py-2.5 rounded-full"
               >
-                <span>Learn More About Fellowship</span>
+                <span>Explore Events & Gatherings</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
               </button>
             </div>
@@ -498,75 +499,11 @@ export default function HomeView({
         </div>
       </section>
 
-      {/* 5. Founder Energy Section */}
-      <section className="py-20 px-6 md:px-12 bg-gradient-to-br from-white via-brand-pink/5 to-brand-gold/5" id="founders">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Founder Photo */}
-            <div className="relative group">
-              <div className="relative rounded-2xl overflow-hidden shadow-lg luxury-shadow h-96 md:h-full min-h-96">
-                <img 
-                  src="/assets/fonders.jpg" 
-                  alt="Uno & Matilda - Co-Founders"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent"></div>
-              </div>
-              <div className="mt-6 text-center md:text-left">
-                <p className="text-slate-600 font-semibold text-sm md:text-base">
-                  Uno & Matilda Â· Co-Founders, WomenPlay.Org
-                </p>
-              </div>
-            </div>
-
-            {/* Founder Copy */}
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold-dark">Founder Energy</span>
-                <h2 className="text-4xl md:text-5xl font-display font-extrabold text-slate-900 leading-tight">
-                  Meet the Women <em className="gold-text-gradient not-italic">Behind WomenPlay.</em>
-                </h2>
-              </div>
-
-              <div className="space-y-4 text-slate-600 leading-relaxed">
-                <p className="text-base md:text-lg">
-                  WomenPlay.Org was created by Uno and Matilda, two women who believe adulthood should still leave room for laughter, friendship, movement, softness, ambition, and joy.
-                </p>
-                <p className="text-base md:text-lg">
-                  WomenPlay is a lifestyle brand where women can reconnect with play and experience life beyond routine.
-                </p>
-              </div>
-
-              <div className="bg-brand-pink/10 border border-brand-pink/20 rounded-xl p-6 my-6">
-                <p className="text-slate-900 font-semibold italic text-lg">
-                  "Building spaces where women can play, connect, and play again."
-                </p>
-              </div>
-
-              <div className="pt-4 space-y-2 border-t border-slate-200">
-                <p className="text-slate-900 font-bold text-lg">Uno & Matilda</p>
-                <p className="text-slate-600 font-medium text-sm">Co-Founders, WomenPlay.Org</p>
-              </div>
-
-              {onNavigate && (
-                <a
-                  href="/profile"
-                  onClick={(e) => { e.preventDefault(); onNavigate("profile"); }}
-                  className="inline-flex items-center gap-2 py-2.5 px-5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition"
-                >
-                  Corporate Profile
-                </a>
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. Blog & Corporate Insights Section */}
+      {/* 5. Blog & Community Stories Section */}
       <section className="py-20 max-w-7xl mx-auto px-6 md:px-12 space-y-12 text-left" id="blog-section-landing">
         <div className="space-y-3">
-          <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold-dark font-display">WOMENPLAY INSIGHTS</span>
-          <h2 className="text-3xl font-display font-extrabold text-slate-900">Latest Leadership & Corporate News</h2>
+          <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold-dark font-display">WOMENPLAY STORIES</span>
+          <h2 className="text-3xl font-display font-extrabold text-slate-900">Inspiration, Play & Community News</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -667,7 +604,7 @@ export default function HomeView({
                   onClick={() => setSelectedBlog(null)}
                   className="bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs py-2.5 px-6 rounded-xl transition cursor-pointer"
                 >
-                  Close Article Reading
+                  Close Article
                 </button>
               </div>
 
@@ -686,7 +623,7 @@ export default function HomeView({
               Coming <em className="gold-text-gradient not-italic">Soon.</em>
             </h2>
             <p className="text-slate-500 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-              Full details will be released closer to launch.
+              Full details will be released closer to launch on Saturday, October 24, 2026.
             </p>
           </div>
 
@@ -694,13 +631,13 @@ export default function HomeView({
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {[
               { title: "Venue Reveal", subtitle: "Surrey, BC" },
-              { title: "Game Line-Up", subtitle: "Teaser first" },
+              { title: "Game Line-Up", subtitle: "6 exciting play stations" },
               { title: "Merch Collection", subtitle: "Limited quantities" },
-              { title: "Vendor List", subtitle: "Food + lifestyle" },
-              { title: "Team Colours", subtitle: "Joy, Rise, Courage, Thrive" },
+              { title: "Vendor Village", subtitle: "Food + lifestyle" },
+              { title: "Official Teams", subtitle: "Classy Queens 👑, Tomboy Tribe 🏀, Simple Souls ✨, Free Spirits 🦋, Fearless 🔥, Wildflowers 🌸" },
               { title: "Founding Membership", subtitle: "Brand community" },
               { title: "Future Events Calendar", subtitle: "Beyond launch" },
-              { title: "Full Vendor + Prize List", subtitle: "Coming closer" }
+              { title: "Full Vendor + Prize List", subtitle: "Coming closer to launch" }
             ].map((item, index) => (
               <div
                 key={index}

@@ -1,36 +1,86 @@
-import React from "react";
+import React, { ErrorInfo, ReactNode } from "react";
+import { AlertTriangle, RefreshCw, Home } from "lucide-react";
 
-export default function ErrorBoundary({ children }: { children: React.ReactNode }) {
-  const [hasError, setHasError] = React.useState(false);
-  const [error, setError] = React.useState<Error | undefined>();
+interface Props {
+  children: ReactNode;
+  fallbackTitle?: string;
+  fallbackMessage?: string;
+  onReset?: () => void;
+}
 
-  React.useEffect(() => {
-    const handler = (event: ErrorEvent) => {
-      setHasError(true);
-      setError(event.error);
-      event.preventDefault();
+interface State {
+  hasError: boolean;
+  error?: Error;
+  errorInfo?: ErrorInfo;
+}
+
+export default class ErrorBoundary extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      hasError: false
     };
-    window.addEventListener("error", handler);
-    return () => window.removeEventListener("error", handler);
-  }, []);
-
-  if (hasError) {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 p-8 text-center">
-        <div className="w-16 h-16 rounded-full bg-rose-50 border border-rose-200 text-rose-500 flex items-center justify-center mb-4">
-          <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
-          </svg>
-        </div>
-        <h2 className="text-xl font-display font-extrabold text-slate-900 mb-2">Something went wrong</h2>
-        <p className="text-sm text-slate-500 mb-6 max-w-md">
-          {error?.message || "An unexpected error occurred."}
-        </p>
-        <button onClick={() => window.location.reload()} className="px-6 py-2.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-xl transition">
-          Refresh Page
-        </button>
-      </div>
-    );
   }
-  return <>{children}</>;
+
+  public static getDerivedStateFromError(error: Error): State {
+    return { hasError: true, error };
+  }
+
+  public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    console.error("ErrorBoundary caught an unhandled React rendering error:", error, errorInfo);
+  }
+
+  private handleReset = () => {
+    this.setState({ hasError: false, error: undefined, errorInfo: undefined });
+    if (this.props.onReset) {
+      this.props.onReset();
+    }
+  };
+
+  public render() {
+    if (this.state.hasError) {
+      return (
+        <div 
+          role="alert" 
+          aria-live="assertive"
+          className="min-h-[320px] w-full flex flex-col items-center justify-center bg-slate-900/90 text-slate-100 p-8 text-center rounded-3xl border border-slate-800 shadow-2xl my-4"
+        >
+          <div className="w-16 h-16 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-400 flex items-center justify-center mb-4 shadow-inner">
+            <AlertTriangle className="w-8 h-8" />
+          </div>
+          
+          <h3 className="text-xl font-display font-bold text-white mb-2">
+            {this.props.fallbackTitle || "Unable to display this section"}
+          </h3>
+          
+          <p className="text-xs text-slate-400 mb-6 max-w-md leading-relaxed">
+            {this.state.error?.message || this.props.fallbackMessage || "An unexpected interface error occurred. You can safely try reloading this component."}
+          </p>
+
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <button
+              type="button"
+              onClick={this.handleReset}
+              className="min-h-[44px] px-5 py-2.5 bg-brand-pink hover:bg-brand-pink-dark text-white text-xs font-bold rounded-xl transition flex items-center gap-2 cursor-pointer shadow-md"
+              aria-label="Try loading this section again"
+            >
+              <RefreshCw className="w-4 h-4" />
+              <span>Try Again</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => { window.location.href = "/"; }}
+              className="min-h-[44px] px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded-xl transition flex items-center gap-2 cursor-pointer"
+              aria-label="Return to WomenPlay home page"
+            >
+              <Home className="w-4 h-4" />
+              <span>Return Home</span>
+            </button>
+          </div>
+        </div>
+      );
+    }
+
+    return this.props.children;
+  }
 }

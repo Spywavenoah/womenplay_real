@@ -438,6 +438,7 @@ export default function AdminBlogs({ blogs, currentUser, onRefresh }: AdminBlogs
                       src={blog.image}
                       alt={blog.title}
                       referrerPolicy="no-referrer"
+                      onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=1200"; }}
                       className="w-full md:w-36 h-28 object-cover rounded-xl border border-slate-100 shrink-0 self-center md:self-start"
                     />
                   )}

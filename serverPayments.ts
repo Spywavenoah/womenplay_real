@@ -147,6 +147,7 @@ export function registerLaunchRoutes(app: express.Express, ctx: LaunchRoutesCont
 
     try {
       const origin = req.headers.origin || "http://localhost:3000";
+      const idempotencyKey = `wp_launch_${email.toLowerCase().replace(/[^a-z0-9]/g, "")}_${ticketType}_${qty}_${Math.floor(Date.now() / 60000)}`;
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],
         line_items: [{
@@ -173,6 +174,8 @@ export function registerLaunchRoutes(app: express.Express, ctx: LaunchRoutesCont
         },
         success_url: `${origin}/api/tickets/success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${origin}/tickets?stripe_cancel=true`,
+      }, {
+        idempotencyKey,
       });
 
       return res.json({ checkoutUrl: session.url });

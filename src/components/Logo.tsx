@@ -57,6 +57,7 @@ export default function Logo({ className = "", height = "h-11", variant = "full"
       <img 
         src={logoSrc} 
         alt="WomenPlay Executive Network Logo" 
+        onError={(e) => { (e.target as HTMLImageElement).src = "/assets/logo-light.svg"; }}
         className={`${height} w-auto object-contain transition-transform duration-300 group-hover:scale-105 filter drop-shadow-sm`}
         referrerPolicy="no-referrer"
       />

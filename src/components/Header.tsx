@@ -72,6 +72,7 @@ export default function Header({
             <img 
               src="/assets/logo.png" 
               alt="WomenPlay Logo" 
+              onError={(e) => { (e.target as HTMLImageElement).src = "/logo.png"; }}
               className="h-10 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               referrerPolicy="no-referrer"
             />
@@ -192,17 +193,17 @@ export default function Header({
           </a>
 
           <a
-            href={VIEW_PATHS.launch}
-            onClick={(e) => { e.preventDefault(); onNavigate("launch"); }}
-            id="nav-link-launch"
+            href={VIEW_PATHS.sponsorship}
+            onClick={(e) => { e.preventDefault(); onNavigate("sponsorship"); }}
+            id="nav-link-sponsorship"
             className={`font-medium text-xs md:text-sm transition-all relative py-1 ${
-              currentView === "launch" 
+              currentView === "sponsorship" 
                 ? "text-brand-pink font-bold" 
                 : "text-slate-600 hover:text-brand-pink"
             }`}
           >
-            Launch
-            {currentView === "launch" && (
+            Sponsorship
+            {currentView === "sponsorship" && (
               <span className="absolute bottom-0 left-0 w-full h-[2px] bg-brand-pink rounded-full" />
             )}
           </a>
@@ -219,38 +220,6 @@ export default function Header({
           >
             Volunteer
             {currentView === "volunteer" && (
-              <span className="absolute bottom-0 left-0 w-full h-[2px] bg-brand-pink rounded-full" />
-            )}
-          </a>
-
-          <a
-            href={VIEW_PATHS.tickets}
-            onClick={(e) => { e.preventDefault(); onNavigate("tickets"); }}
-            id="nav-link-tickets"
-            className={`font-medium text-xs md:text-sm transition-all relative py-1 ${
-              currentView === "tickets" 
-                ? "text-brand-pink font-bold" 
-                : "text-slate-600 hover:text-brand-pink"
-            }`}
-          >
-            Tickets
-            {currentView === "tickets" && (
-              <span className="absolute bottom-0 left-0 w-full h-[2px] bg-brand-pink rounded-full" />
-            )}
-          </a>
-
-          <a
-            href={VIEW_PATHS.sponsorship}
-            onClick={(e) => { e.preventDefault(); onNavigate("sponsorship"); }}
-            id="nav-link-sponsorship"
-            className={`font-medium text-xs md:text-sm transition-all relative py-1 ${
-              currentView === "sponsorship" 
-                ? "text-brand-pink font-bold" 
-                : "text-slate-600 hover:text-brand-pink"
-            }`}
-          >
-            Sponsorship
-            {currentView === "sponsorship" && (
               <span className="absolute bottom-0 left-0 w-full h-[2px] bg-brand-pink rounded-full" />
             )}
           </a>
@@ -292,6 +261,7 @@ export default function Header({
                   <img 
                     src={currentUser.avatarUrl || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200"} 
                     alt={currentUser.fullName} 
+                    onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200"; }}
                     className="w-7 h-7 rounded-full border border-brand-gold object-cover shrink-0"
                   />
                   <div className="leading-tight hidden sm:block max-w-[120px] truncate">
@@ -484,15 +454,15 @@ export default function Header({
           </a>
 
           <a
-            href={VIEW_PATHS.launch}
+            href={VIEW_PATHS.sponsorship}
             onClick={(e) => {
               e.preventDefault();
-              onNavigate("launch");
+              onNavigate("sponsorship");
               setMobileMenuOpen(false);
             }}
-            className={`text-left py-2 text-sm font-semibold ${currentView === "launch" ? "text-brand-pink" : "text-slate-700"}`}
+            className={`text-left py-2 text-sm font-semibold ${currentView === "sponsorship" ? "text-brand-pink" : "text-slate-700"}`}
           >
-            Launch
+            Sponsorship
           </a>
 
           <a
@@ -505,30 +475,6 @@ export default function Header({
             className={`text-left py-2 text-sm font-semibold ${currentView === "volunteer" ? "text-brand-pink" : "text-slate-700"}`}
           >
             Volunteer
-          </a>
-
-          <a
-            href={VIEW_PATHS.tickets}
-            onClick={(e) => {
-              e.preventDefault();
-              onNavigate("tickets");
-              setMobileMenuOpen(false);
-            }}
-            className={`text-left py-2 text-sm font-semibold ${currentView === "tickets" ? "text-brand-pink" : "text-slate-700"}`}
-          >
-            Tickets
-          </a>
-
-          <a
-            href={VIEW_PATHS.sponsorship}
-            onClick={(e) => {
-              e.preventDefault();
-              onNavigate("sponsorship");
-              setMobileMenuOpen(false);
-            }}
-            className={`text-left py-2 text-sm font-semibold ${currentView === "sponsorship" ? "text-brand-pink" : "text-slate-700"}`}
-          >
-            Sponsorship Page
           </a>
 
           <a

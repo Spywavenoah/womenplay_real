@@ -234,6 +234,7 @@ export default function AdminFounders({ onRefreshData }: AdminFoundersProps) {
                 <img
                   src={founder.image || "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=300"}
                   alt={founder.name}
+                  onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=300"; }}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-md border border-slate-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center space-x-1 shadow">

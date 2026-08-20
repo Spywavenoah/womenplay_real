@@ -15,7 +15,7 @@ export default function HeroBanner({
   eyebrow,
   title,
   description,
-  backgroundImage = "/assets/ship.jpg",
+  backgroundImage = "/ship.jpg",
   onNavigateHome,
   children,
   className = "",

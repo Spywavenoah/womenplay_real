@@ -4,6 +4,7 @@ import type { Founder } from "../types";
 import HeroBanner from "./HeroBanner";
 
 interface ProfileViewProps {
+  onNavigate?: (view: "privacy" | "terms" | "sponsorship" | "founders" | "events" | "contact" | "profile") => void;
   onNavigateHome: () => void;
 }
 
@@ -119,38 +120,8 @@ export default function ProfileView({ onNavigateHome }: ProfileViewProps) {
           </div>
         </section>
 
-        {/* Founders / Leadership */}
-        <section className="space-y-8">
-          <div className="text-center space-y-2">
-            <span className="text-xs uppercase tracking-widest font-extrabold text-brand-pink">Our Board & Executive Team</span>
-            <h2 className="text-2xl md:text-3xl font-display font-extrabold text-slate-900">The People Behind WomenPlay</h2>
-            <p className="text-slate-500 text-sm">
-              Distinguished founders, directors, and champions bringing play back to women everywhere.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {(founders.length > 0 ? founders : [
-              { id: "f-1", name: "Eleanor Vance", title: "Executive Director & Founder", bio: "Advocate for gender diversity and founder of WomenPlay, on a mission to make play a priority for women of every background.", image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=300" },
-              { id: "f-2", name: "Clara Montgomery", title: "Head of Community & Events", bio: "Curator of the gatherings, socials, and experiences that bring the WomenPlay community to life.", image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=300" },
-              { id: "f-3", name: "Olivia Chen", title: "Director of Partnerships", bio: "Building the partnerships, venues, and sponsorships that make unforgettable WomenPlay moments possible.", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=300" }
-            ]).map((member) => (
-              <div key={member.id} className="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
-                <div className="h-80 overflow-hidden bg-slate-100">
-                  <img src={member.image} alt={member.name} className="w-full h-full object-cover group-hover:scale-105 transition duration-500" referrerPolicy="no-referrer" />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent flex flex-col justify-end p-6 text-left">
-                  <h4 className="text-white text-lg font-bold">{member.name}</h4>
-                  <span className="text-brand-gold text-xs font-semibold tracking-wider uppercase mb-2">{member.title}</span>
-                  <p className="text-white/80 text-xs line-clamp-2 leading-relaxed">{member.bio}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
         {/* Why We Exist */}
-        <section className="bg-gradient-to-br from-slate-900 via-brand-pink-dark/80 to-slate-900 text-white rounded-3xl p-8 md:p-12 border border-slate-800 luxury-shadow">
+        <section className="py-20 px-6 md:px-12 bg-gradient-to-br from-slate-900 via-brand-pink-dark/80 to-slate-900 text-white rounded-3xl p-8 md:p-12 border border-slate-800 luxury-shadow">
           <div className="max-w-3xl mx-auto text-center space-y-6">
             <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold inline-block">
               WHY WE EXIST
@@ -167,13 +138,13 @@ export default function ProfileView({ onNavigateHome }: ProfileViewProps) {
               <p>From brunches and social gatherings to retreats, travel experiences, themed events, and unforgettable moments, WomenPlay.Org creates opportunities for women to pause, reconnect, and enjoy meaningful experiences alongside other incredible women.</p>
             </div>
             <p className="text-brand-gold text-lg font-bold font-display pt-4">
-              Because life is better… when women can play too!!!
+              Because life is better when… Women can play too!
             </p>
           </div>
         </section>
 
         {/* Travel & Retreats */}
-        <section className="space-y-10" id="travel">
+        <section className="py-20 px-6 md:px-12 bg-gradient-to-br from-white via-brand-pink/5 to-brand-gold/5" id="travel">
           <div className="bg-gradient-to-br from-slate-900 via-brand-pink-dark/80 to-slate-900 text-white rounded-3xl p-8 md:p-12 border border-slate-800 luxury-shadow">
             <div className="space-y-4 text-center max-w-2xl mx-auto">
               <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold inline-block">
@@ -213,12 +184,12 @@ export default function ProfileView({ onNavigateHome }: ProfileViewProps) {
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[
-                  { city: "Santorini", ctry: "Greece", bg: "/assets/santorini.webp" },
-                  { city: "Dubai", ctry: "UAE", bg: "/assets/dubai.webp" },
-                  { city: "Zanzibar", ctry: "Tanzania", bg: "/assets/sanziba.webp" },
-                  { city: "Tulum", ctry: "Mexico", bg: "/assets/tulum.webp" },
-                  { city: "Cape Town", ctry: "South Africa", bg: "/assets/captown.webp" },
-                  { city: "Bali", ctry: "Indonesia", bg: "/assets/bali.webp" }
+                  { city: "Santorini", ctry: "Greece", bg: "/santorini.webp" },
+                  { city: "Dubai", ctry: "UAE", bg: "/dubai.webp" },
+                  { city: "Zanzibar", ctry: "Tanzania", bg: "/sanziba.webp" },
+                  { city: "Tulum", ctry: "Mexico", bg: "/tulum.webp" },
+                  { city: "Cape Town", ctry: "South Africa", bg: "/captown.webp" },
+                  { city: "Bali", ctry: "Indonesia", bg: "/bali.webp" }
                 ].map((dest, idx) => (
                   <div key={idx} className="group relative rounded-2xl overflow-hidden aspect-[4/3] luxury-shadow">
                     <div

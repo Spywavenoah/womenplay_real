@@ -172,6 +172,7 @@ export default function AuthModal({ isOpen, onClose, onLoginSuccess }: AuthModal
           <img 
             src="/assets/logo.png" 
             alt="WomenPlay Logo" 
+            onError={(e) => { (e.target as HTMLImageElement).src = "/assets/logo-light.svg"; }}
             className="h-14 w-auto object-contain"
             referrerPolicy="no-referrer"
           />

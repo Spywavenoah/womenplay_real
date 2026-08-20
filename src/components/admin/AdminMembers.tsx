@@ -102,7 +102,7 @@ export default function AdminMembers({
               .map((m) => (
               <tr key={m.id} className="border-b border-slate-50 hover:bg-slate-50/50" id={`member-row-${m.id}`}>
                 <td className="py-4 px-6 flex items-center space-x-3">
-                  <img src={m.avatarUrl || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200"} alt={m.fullName} loading="lazy" className="w-9 h-9 rounded-full object-cover border border-brand-gold" />
+                  <img src={m.avatarUrl || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200"} alt={m.fullName} loading="lazy" onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200"; }} className="w-9 h-9 rounded-full object-cover border border-brand-gold" />
                   <div>
                     <p className="font-bold text-slate-800">{m.fullName}</p>
                     <span className="text-[10px] text-slate-400">{m.email}</span>
