@@ -2,83 +2,190 @@
   "users": [
     {
       "id": "admin-1",
-      "email": "admin@womenplay.org",
-      "fullName": "Eleanor Vance",
+      "bio": "Advocate for gender diversity, executive coach, and founder of Aura Network with 20+ years of leadership experience.",
       "role": "ADMIN",
-      "membershipStatus": "ACTIVE",
-      "membershipTier": "ELITE",
+      "email": "admin@womenplay.org",
       "title": "Executive Director",
       "company": "Aura Global",
-      "bio": "Advocate for gender diversity, executive coach, and founder of Aura Network with 20+ years of leadership experience.",
-      "avatarUrl": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200",
-      "emailVerified": true,
-      "passwordHash": "$2b$10$dy.bKR6oNMZHRkRuAkqCfeY/bp7SHog22ulZM29PvRqTKUPAqYdqy",
-      "createdAt": "2025-01-01T00:00:00.000Z"
-    },
-    {
-      "id": "admin-2",
-      "email": "sarah.jenkins@womenplay.org",
-      "fullName": "Sarah Jenkins",
-      "role": "ADMIN",
-      "membershipStatus": "ACTIVE",
+      "fullName": "John Doe",
+      "avatarUrl": "/assets/images/avatar_admin-1_admin-1.jpg",
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "passwordHash": "$2b$10$S5jVL7sND1x.AkVc9T7wze25ABRWcZ0.CvHO/vbjoR1AUyv.I2346",
       "membershipTier": "ELITE",
-      "title": "Co-Director & VP of Governance",
-      "company": "WomenPlay Global",
-      "bio": "Overseeing executive partnerships, regional chapters, and leadership accelerator initiatives.",
-      "avatarUrl": "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200",
-      "emailVerified": true,
-      "passwordHash": "$2b$10$dy.bKR6oNMZHRkRuAkqCfeY/bp7SHog22ulZM29PvRqTKUPAqYdqy",
-      "createdAt": "2025-02-15T00:00:00.000Z"
+      "twoFactorMethod": "authenticator",
+      "twoFactorSecret": "JGAXXDVIY5GCTISOFQM7YD7PCA4XMXT4",
+      "membershipStatus": "ACTIVE",
+      "twoFactorEnabled": true,
+      "verificationToken": "vtoken_admin_1790580197521_epsufpoq"
     },
     {
       "id": "member-1",
+      "bio": "Passionate about creating modern digital products, design systems, and fostering female leadership in technology.",
+      "role": "ADMIN",
       "email": "spywavenoah@gmail.com",
-      "fullName": "Noah Sterling",
-      "role": "MEMBER",
-      "membershipStatus": "ACTIVE",
-      "membershipTier": "PREMIUM",
       "title": "Senior Product Manager",
       "company": "TechVanguard",
-      "bio": "Passionate about creating modern digital products, design systems, and fostering female leadership in technology.",
+      "fullName": "Noah Sterling",
       "avatarUrl": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
-      "emailVerified": true,
       "createdAt": "2026-06-15T00:00:00.000Z",
-      "passwordHash": "$2b$10$MlUGAXitbh16mrzeUhgIVe.GVdscPY1F8lRIa3k7mcj4efkmZIAyK"
+      "passwordHash": "$2b$10$C90FiTZqyaEJ9bGbT4rDGuPFSTPjHD6/cHhL/OiDWUf/K.WRlxSiu",
+      "membershipTier": "PREMIUM",
+      "membershipStatus": "ACTIVE"
     },
     {
       "id": "member-2",
-      "email": "clara.m@nexus.io",
-      "fullName": "Clara Montgomery",
+      "bio": "Focusing on early-stage investments. Eager to connect with fellow pioneers and women leaders in fintech.",
       "role": "MEMBER",
-      "membershipStatus": "PENDING",
-      "membershipTier": "BASIC",
+      "email": "clara.m@nexus.io",
       "title": "Investment Associate",
       "company": "Nexus Venture Capital",
-      "bio": "Focusing on early-stage investments. Eager to connect with fellow pioneers and women leaders in fintech.",
+      "fullName": "Clara Montgomery",
       "avatarUrl": "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200",
-      "emailVerified": true,
       "createdAt": "2026-07-10T00:00:00.000Z",
-      "passwordHash": "$2b$10$MlUGAXitbh16mrzeUhgIVe.GVdscPY1F8lRIa3k7mcj4efkmZIAyK"
+      "passwordHash": "$2b$10$C90FiTZqyaEJ9bGbT4rDGuPFSTPjHD6/cHhL/OiDWUf/K.WRlxSiu",
+      "membershipTier": "BASIC",
+      "membershipStatus": "ACTIVE"
+    },
+    {
+      "id": "user-ift23om66",
+      "role": "MEMBER",
+      "email": "mike.hrny@2localdid.com",
+      "title": "mr",
+      "company": "+2348069374222",
+      "fullName": "Immigration United States",
+      "createdAt": "2026-07-31T11:00:21.670Z",
+      "passwordHash": "$2b$10$/5H8BXoR2KxJNzNISvpebuBzJrHF9mdJDVwueVbxbU/omEZ1YVW6C",
+      "emailVerified": false,
+      "membershipTier": "BASIC",
+      "membershipStatus": "ACTIVE",
+      "verificationToken": "vtoken_1785495621670_nmlban8"
+    },
+    {
+      "id": "user-5igutljnw",
+      "role": "MEMBER",
+      "email": "noah.linus@eatlng.com",
+      "title": "Mr.",
+      "company": "9765",
+      "fullName": "Noah",
+      "createdAt": "2026-07-31T12:49:24.539Z",
+      "passwordHash": "$2b$10$WG44bcSQF5m.NpQU97E6GO.n7ViElbyagIbxxGEw9vRnZ1HslS3Qe",
+      "emailVerified": false,
+      "membershipTier": "BASIC",
+      "membershipStatus": "ACTIVE",
+      "verificationToken": "vtoken_1785502164539_4a6j5ff"
+    },
+    {
+      "id": "user-508pjromm",
+      "role": "ADMIN",
+      "email": "noah_linus@yahoo.com",
+      "title": "Executive Administrator",
+      "company": "WomenPlay Executive Network",
+      "fullName": "Noah Linus",
+      "avatarUrl": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200",
+      "createdAt": "2026-08-06T12:08:13.663Z",
+      "passwordHash": "$2b$10$l7cD97tSfOQNruIdZUbliuL42jSR/YdjhOP9D52nOoy3BKNsidXOC",
+      "emailVerified": false,
+      "membershipTier": "BASIC",
+      "membershipStatus": "ACTIVE",
+      "verificationToken": "vtoken_1786018093663_8ou84m3"
+    },
+    {
+      "id": "user-lndo9p6kx",
+      "role": "MEMBER",
+      "email": "qa-smoke-test-delete-me-1786025961@womenplay.org",
+      "title": "",
+      "company": "",
+      "fullName": "QA Smoke Test",
+      "createdAt": "2026-08-06T14:19:21.682Z",
+      "passwordHash": "$2b$10$yfQh3PBjawEF.PUFlm3qF.T2FCDXJKSVt2c30A851Tagr9d3hWTb.",
+      "emailVerified": true,
+      "membershipTier": "BASIC",
+      "membershipStatus": "ACTIVE"
+    },
+    {
+      "id": "user-mpbtlteqy",
+      "role": "MEMBER",
+      "email": "afahayangha@yahoo.com",
+      "fullName": "Afahayangha Ekpo",
+      "createdAt": "2026-08-07T08:47:58.159Z",
+      "passwordHash": "$2b$10$l7cD97tSfOQNruIdZUbliuL42jSR/YdjhOP9D52nOoy3BKNsidXOC",
+      "emailVerified": false,
+      "membershipTier": "BASIC",
+      "membershipStatus": "ACTIVE",
+      "verificationToken": "vtoken_1786092478159_l7lkdcq"
+    },
+    {
+      "id": "user-qtowlfqpd",
+      "role": "MEMBER",
+      "email": "afahanghae@gmail.com",
+      "fullName": "afa Ekpo",
+      "createdAt": "2026-08-07T08:54:12.580Z",
+      "passwordHash": "$2b$10$l7cD97tSfOQNruIdZUbliuL42jSR/YdjhOP9D52nOoy3BKNsidXOC",
+      "emailVerified": false,
+      "membershipTier": "BASIC",
+      "membershipStatus": "ACTIVE",
+      "verificationToken": "vtoken_1786092852580_iiyaemf"
+    },
+    {
+      "id": "user-pbvkdma1q",
+      "role": "MEMBER",
+      "email": "support@womenplay.org",
+      "fullName": "Women Play",
+      "createdAt": "2026-08-07T13:11:55.170Z",
+      "passwordHash": "$2b$10$75UzpPevrcRds9MJgW.qDeOfjUv.UF1xIEgJ5zfN2ZejOOSY7kdQW",
+      "emailVerified": true,
+      "membershipTier": "BASIC",
+      "twoFactorMethod": "email",
+      "membershipStatus": "ACTIVE",
+      "twoFactorEnabled": true
+    },
+    {
+      "id": "admin-c9z2zm93i",
+      "role": "ADMIN",
+      "email": "newadmin.test1790539950653@womenplay.org",
+      "title": "Director of Global Operations",
+      "company": "WomenPlay International",
+      "fullName": "Dr. Evelyn Wright",
+      "avatarUrl": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200",
+      "createdAt": "2026-09-27T20:12:30.660Z",
+      "passwordHash": "$2b$10$gKpeIaT0OraFhcwVCR9iJ.A0Bze.sf6oZGfeCht.hBo977Aowyfm6",
+      "emailVerified": true,
+      "membershipTier": "ELITE",
+      "membershipStatus": "ACTIVE",
+      "twoFactorEnabled": false
+    },
+    {
+      "id": "admin-h2fafgnwv",
+      "role": "ADMIN",
+      "email": "test.admin.provision@womenplay.org",
+      "title": "Honorary Director",
+      "company": "WomenPlay Network",
+      "fullName": "Lady Margaret Thatcher",
+      "avatarUrl": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200",
+      "createdAt": "2026-09-27T20:38:48.473Z",
+      "emailVerified": false,
+      "membershipTier": "ELITE",
+      "membershipStatus": "ACTIVE",
+      "twoFactorEnabled": false,
+      "verificationToken": "vtoken_admin_1790541528473_paf94qnj"
     }
   ],
   "events": [
     {
       "id": "event-1",
-      "title": "Aura Annual Women in Leadership Summit 2026",
-      "description": "Join over 500 trailblazing women leaders for an inspiring day of keynotes, panel discussions, and structured networking. This year we focus on sustainable innovation, inclusive boardrooms, and navigating modern venture capital landscapes.",
-      "date": "2026-09-15",
+      "date": "2026-09-19",
       "time": "09:00 AM - 05:00 PM",
-      "location": "Grand Ballroom, The Plaza Hotel & Virtual",
-      "image": "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=1200",
-      "category": "Conference",
-      "capacity": 250,
-      "registeredCount": 42,
+      "image": "/assets/images/event_event-1_event-1.jpg",
+      "title": "WomenPlay Launch Experience",
       "status": "upcoming",
+      "capacity": 250,
+      "category": "Social",
+      "location": "Grand Ballroom, The Plaza Hotel & Virtual",
       "packages": [
         {
           "id": "pkg-1-1",
+          "fee": 100,
           "name": "Standard Badge",
-          "fee": 150,
           "benefits": [
             "Access to all panel discussions",
             "Catered networking lunch",
@@ -89,8 +196,8 @@
         },
         {
           "id": "pkg-1-2",
+          "fee": 150,
           "name": "VIP Gold Badge",
-          "fee": 350,
           "benefits": [
             "Front-row premium seating",
             "Exclusive VIP Speaker luncheon",
@@ -99,102 +206,91 @@
           ],
           "description": "Tailored for senior directors and leaders looking for deep engagement and high-profile networking."
         }
-      ]
-    },
-    {
-      "id": "event-2",
-      "title": "Sunset Networking Cocktail & Social Gala",
-      "description": "An elegant evening of curated connections, live classical performances, and premium wine tasting. Mingle with partners, board members, and potential collaborators under the golden sky.",
-      "date": "2026-08-05",
-      "time": "06:30 PM - 10:00 PM",
-      "location": "The Gold Terrace Gardens, San Francisco",
-      "image": "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=1200",
-      "category": "Networking",
-      "capacity": 100,
-      "registeredCount": 88,
-      "status": "upcoming",
-      "packages": [
-        {
-          "id": "pkg-2-1",
-          "name": "Gala Ticket",
-          "fee": 90,
-          "benefits": [
-            "Premium cocktail selection",
-            "Deluxe culinary bites",
-            "Networking directory database access"
-          ],
-          "description": "All-inclusive ticket to the outdoor networking gala."
-        }
-      ]
-    },
-    {
-      "id": "event-3",
-      "title": "Interactive Workshop: Executive Presence and Pitching",
-      "description": "A highly interactive, practical workshop focused on refining public speaking, voice coaching, boardroom confidence, and crafting high-impact investment pitches that secure venture funding.",
-      "date": "2026-06-20",
-      "time": "02:00 PM - 05:00 PM",
-      "location": "Aura Creative Hub, Downtown Center",
-      "image": "https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&q=80&w=1200",
-      "category": "Workshop",
-      "capacity": 40,
-      "registeredCount": 40,
-      "status": "past",
-      "packages": [
-        {
-          "id": "pkg-3-1",
-          "name": "Interactive Access",
-          "fee": 50,
-          "benefits": [
-            "Personalized pitch review",
-            "Worksheet templates",
-            "Networking breakout session"
-          ],
-          "description": "Full workshop participation."
-        }
-      ]
+      ],
+      "description": "Join over 500 trailblazing women leaders for an inspiring day of keynotes, panel discussions, and structured networking. This year we focus on sustainable innovation, inclusive boardrooms, and navigating modern venture capital landscapes.",
+      "registeredCount": 42
     }
   ],
   "registrations": [
     {
       "id": "reg-1",
-      "eventId": "event-1",
       "userId": "member-1",
-      "packageId": "pkg-1-2",
-      "packageName": "VIP Gold Badge",
-      "amountPaid": 350,
-      "paymentId": "pay-1",
+      "eventId": "event-1",
+      "attended": true,
       "badgeCode": "AURA-E1-VIP-84920",
-      "registeredAt": "2026-07-05T00:00:00.000Z",
-      "attended": false
+      "packageId": "pkg-1-2",
+      "paymentId": "pay-1",
+      "amountPaid": 350,
+      "packageName": "VIP Gold Badge",
+      "registeredAt": "2026-07-05T00:00:00.000Z"
     }
   ],
   "payments": [
     {
+      "id": "PAY-SPON-MSIWDTH6",
+      "type": "Sponsorship",
+      "last4": "8210",
+      "amount": 25000,
+      "status": "Completed",
+      "userId": "anon-1786104299130",
+      "currency": "USD",
+      "userName": "sfdfddf",
+      "createdAt": "2026-08-07T12:04:59.130Z",
+      "userEmail": "noah_linus@yahoo.com",
+      "description": "Executive Chapter Sponsor ($25,000) for Runnotic Companies"
+    },
+    {
+      "id": "PAY-SPON-MSHGW9DF",
+      "type": "Sponsorship",
+      "last4": "8210",
+      "amount": 25000,
+      "status": "Completed",
+      "userId": "anon-1786017819507",
+      "currency": "USD",
+      "userName": "henry",
+      "createdAt": "2026-08-06T12:03:39.507Z",
+      "userEmail": "admin@womenplay.org",
+      "description": "Executive Chapter Sponsor ($25,000) for Runnotic Companies"
+    },
+    {
       "id": "pay-1",
-      "userId": "member-1",
       "amount": 350,
-      "purpose": "Event Registration",
       "itemId": "event-1",
-      "status": "completed",
       "method": "Credit Card",
-      "transactionId": "TXN-AURA-9481023",
+      "status": "completed",
+      "userId": "member-1",
+      "purpose": "Event Registration",
       "createdAt": "2026-07-05T00:00:00.000Z",
-      "receiptNumber": "RCPT-2026-94820"
+      "receiptNumber": "RCPT-2026-94820",
+      "transactionId": "TXN-AURA-9481023"
     }
   ],
   "posts": [
     {
-      "id": "post-1",
+      "id": "post-4cmnc4ghw",
+      "likes": [],
       "userId": "admin-1",
-      "userFullName": "Eleanor Vance",
-      "userTitle": "Executive Director, Aura Network",
+      "content": "hgjhgjhjhg",
+      "approved": true,
+      "createdAt": "2026-08-06T10:20:12.047Z",
+      "userTitle": "Executive Director",
       "userAvatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200",
-      "content": "Incredible session yesterday with our local fellowship mentors! Remember, leadership isn't about being in charge. It's about taking care of those in our charge. Let us continue uplifting each other.",
+      "userFullName": "Eleanor Vance",
+      "commentsCount": 0
+    },
+    {
+      "id": "post-1",
       "likes": [
         "member-1"
       ],
-      "commentsCount": 1,
-      "createdAt": "2026-07-19T10:00:00.000Z"
+      "userId": "admin-1",
+      "content": "Incredible session yesterday with our local fellowship mentors! Remember, leadership isn't about being in charge. It's about taking care of those in our charge. Let us continue uplifting each other.",
+      "approved": true,
+      "createdAt": "2026-07-19T10:00:00.000Z",
+      "userTitle": "Executive Director, Aura Network",
+      "userAvatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200",
+      "userFullName": "Eleanor Vance",
+      "commentsCount": 1
     }
   ],
   "comments": [
@@ -202,34 +298,33 @@
       "id": "comment-1",
       "postId": "post-1",
       "userId": "member-1",
-      "userFullName": "Noah Sterling",
-      "userAvatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
       "content": "Thank you Eleanor, that was extremely insightful! Our team is implementing these guidelines next week.",
-      "createdAt": "2026-07-19T11:15:00.000Z"
+      "createdAt": "2026-07-19T11:15:00.000Z",
+      "userAvatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
+      "userFullName": "Noah Sterling"
     }
   ],
   "successStories": [
     {
       "id": "story-1",
-      "userId": "member-1",
-      "userFullName": "Noah Sterling",
-      "userAvatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
       "title": "Fostering Diversity at TechVanguard",
+      "userId": "member-1",
       "content": "With the networking and backing of Aura Network, I successfully launched a regional Women-in-Tech mentorship program at TechVanguard. Within six months, we recruited 12 board-level mentors and saw a 35% increase in promotion rates for our female engineers!",
       "approved": true,
-      "createdAt": "2026-07-02T00:00:00.000Z"
+      "createdAt": "2026-07-02T00:00:00.000Z",
+      "userAvatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
+      "userFullName": "Noah Sterling"
     }
   ],
   "supportTickets": [
     {
       "id": "ticket-1",
-      "userId": "member-1",
-      "userFullName": "Noah Sterling",
       "email": "spywavenoah@gmail.com",
-      "subject": "Access Pass Download Query",
-      "message": "I registered for the Leadership Summit but wanted to verify if my digital pass will sync automatically to Apple Wallet or if I should keep the PDF on my phone.",
-      "category": "Event",
       "status": "in_progress",
+      "userId": "member-1",
+      "message": "I registered for the Leadership Summit but wanted to verify if my digital pass will sync automatically to Apple Wallet or if I should keep the PDF on my phone.",
+      "subject": "Access Pass Download Query",
+      "category": "Event",
       "createdAt": "2026-07-19T14:30:00.000Z",
       "responses": [
         {
@@ -237,165 +332,867 @@
           "message": "Hi Noah! Yes, you can download the elegant digital badge directly from your portal dashboard, which comes with a standard QR code suitable for print or phone display. We are currently rolling out Wallet integrations. Let us know if you need any additional assistance!",
           "createdAt": "2026-07-19T16:00:00.000Z"
         }
-      ]
+      ],
+      "userFullName": "Noah Sterling"
     }
   ],
   "blogs": [
     {
       "id": "blog-1",
+      "image": "/assets/images/blog_blog-1_blog-1.jpg",
       "title": "Unlocking Boards: Strategic Audits for Female Leaders",
+      "author": "Eleanor Vance",
+      "status": "published",
       "content": "Entering the boardroom is not just about tenure; it is about building a distinct executive brand. Discover the three pillars of boardroom readiness: strategic financial oversight, dynamic network sponsorship, and clear personal value proposition.",
       "category": "Leadership",
-      "author": "Eleanor Vance",
-      "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800",
-      "createdAt": "2026-07-12T00:00:00.000Z",
-      "status": "published"
+      "createdAt": "2026-07-12T00:00:00.000Z"
     },
     {
       "id": "blog-2",
+      "image": "/assets/images/blog_blog-2_blog-2.jpg",
       "title": "Fostering Genuine Connections in a Virtual Business Landscape",
+      "author": "Olivia Chen",
+      "status": "published",
       "content": "With remote and hybrid operations remaining standard, virtual engagement needs more than quick handshakes or standard emails. We explore active virtual sponsorships, digital coffee chats that work, and creating lasting impressions beyond camera lenses.",
       "category": "Networking",
-      "author": "Olivia Chen",
-      "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800",
-      "createdAt": "2026-07-18T00:00:00.000Z",
-      "status": "published"
+      "createdAt": "2026-07-18T00:00:00.000Z"
     }
   ],
   "announcements": [
     {
-      "id": "announce-4",
-      "title": "Member Spotlight: Executive Presence Council Town Hall Announced",
-      "content": "Join fellow executives for an interactive town hall exploring boardroom presence, storytelling, and leadership visibility.",
-      "priority": "low",
-      "createdAt": "2026-08-03T09:47:43.568Z",
-      "active": true
-    },
-    {
-      "id": "announce-3",
-      "title": "New Board Nomination Mentorship Cohort: Applications Close August 30",
-      "content": "Secure a seat in our signature mentorship track pairing you with veteran board directors and nomination committee chairs.",
-      "priority": "medium",
-      "createdAt": "2026-08-04T09:47:43.568Z",
-      "active": true
-    },
-    {
-      "id": "announce-2",
-      "title": "WomenPlay Global Leadership Summit — Early Bird Registration Now Live",
-      "content": "Early bird passes for the 2026 Global Leadership Summit are now open to members. Limited executive suites available.",
-      "priority": "high",
-      "createdAt": "2026-08-05T09:47:43.568Z",
-      "active": true
-    },
-    {
       "id": "announce-1",
-      "title": "Applications open for the Executive Fellowship Program 2026!",
-      "content": "Apply today to receive executive sponsorship, personal leadership training, and board appointment prep. Deadline: August 25, 2026.",
+      "title": "New WomenPlay experiences are coming soon. Watch this space →",
+      "active": true,
+      "content": "New WomenPlay experiences, games, and gatherings are coming soon. Watch this space for upcoming dates and invitations.",
       "priority": "high",
-      "createdAt": "2026-08-06T09:47:43.568Z",
-      "active": true
+      "createdAt": "2026-07-22T07:27:03.597Z"
     }
   ],
   "auditLogs": [
     {
-      "id": "log-1",
+      "id": "log-qudkt90yt",
+      "action": "ADMIN_DELETED",
+      "adminId": "system",
+      "details": "Permanently deleted Administrator account Dr. Sarah Connor (exec.admin.test1790580208275@example.com)",
+      "adminName": "Administrator",
+      "timestamp": "2026-09-28T07:23:32.781Z"
+    },
+    {
+      "id": "log-5laxi9rit",
+      "action": "ADMIN_PROVISIONED",
+      "adminId": "system",
+      "details": "Provisioned new Administrator account for Dr. Sarah Connor (exec.admin.test1790580208275@example.com) with welcome & confirmation emails dispatched",
+      "adminName": "Administrator",
+      "timestamp": "2026-09-28T07:23:28.297Z"
+    },
+    {
+      "id": "log-pqvur2mpr",
+      "action": "ADMIN_PROVISIONED",
       "adminId": "admin-1",
+      "details": "Provisioned new Administrator account for Lady Margaret Thatcher (test.admin.provision@womenplay.org) with welcome & confirmation emails dispatched",
+      "adminName": "System Admin",
+      "timestamp": "2026-09-27T20:38:48.473Z"
+    },
+    {
+      "id": "log-1n60bbydm",
+      "action": "PROMOTED_TO_ADMIN",
+      "adminId": "admin-1",
+      "details": "Promoted existing member Noah Linus (noah_linus@yahoo.com) to Administrator",
+      "adminName": "John Doe",
+      "timestamp": "2026-09-27T20:23:15.563Z"
+    },
+    {
+      "id": "log-fobpnc32a",
+      "action": "ADMIN_PROVISIONED",
+      "adminId": "system",
+      "details": "Provisioned new Administrator account for Dr. Evelyn Wright (newadmin.test1790539950653@womenplay.org) with confirmation email dispatched",
+      "adminName": "Administrator",
+      "timestamp": "2026-09-27T20:12:30.661Z"
+    },
+    {
+      "id": "log-2ascnyu7y",
+      "action": "MEMBERSHIP_STATUS_CHANGED",
+      "adminId": "admin-1",
+      "details": "Changed membership status of Clara Montgomery to ACTIVE",
+      "adminName": "John Doe",
+      "timestamp": "2026-09-27T19:46:48.516Z"
+    },
+    {
+      "id": "log-lgl0fcfby",
+      "action": "MEMBERSHIP_STATUS_CHANGED",
+      "adminId": "admin-1",
+      "details": "Changed membership status of Clara Montgomery to SUSPENDED",
+      "adminName": "John Doe",
+      "timestamp": "2026-09-27T19:46:45.121Z"
+    },
+    {
+      "id": "log-ulxdlihtp",
+      "action": "MEMBERSHIP_STATUS_CHANGED",
+      "adminId": "admin-1",
+      "details": "Changed membership status of Clara Montgomery to SUSPENDED",
+      "adminName": "John Doe",
+      "timestamp": "2026-09-27T19:46:44.377Z"
+    },
+    {
+      "id": "log-wy7flzs0o",
+      "action": "MEMBERSHIP_STATUS_CHANGED",
+      "adminId": "admin-1",
+      "details": "Changed membership status of Clara Montgomery to SUSPENDED",
+      "adminName": "John Doe",
+      "timestamp": "2026-09-27T19:46:42.783Z"
+    },
+    {
+      "id": "log-qqx60883u",
+      "action": "VOLUNTEER_DELETED",
+      "adminId": "admin-1",
+      "details": "Volunteer application deleted for id vol-aoaace9mz",
+      "adminName": "John Doe",
+      "timestamp": "2026-09-17T18:05:23.347Z"
+    },
+    {
+      "id": "log-ufiw6af1s",
+      "action": "PASSWORD_RESET",
+      "adminId": "admin-1",
+      "details": "Password reset for user John Doe",
+      "adminName": "John Doe",
+      "timestamp": "2026-09-17T17:01:50.631Z"
+    },
+    {
+      "id": "alert-qk04m3gmq",
+      "action": "NEW_CONTACT_NOTIFICATION",
+      "adminId": "SYSTEM",
+      "details": "New Founding Volunteer Application - Uno Nwankwo - Phone: 6043540930\nAvailability: Full day\nRoles: Guest Experience\n\nn/a",
+      "adminName": "Executive System Alert",
+      "timestamp": "2026-09-16T08:04:24.384Z"
+    },
+    {
+      "id": "log-1p3xz48tg",
+      "action": "VOLUNTEER_APPLICATION",
+      "adminId": "system",
+      "details": "New founding volunteer application: Uno Nwankwo (uno.nwankwo@gmail.com)",
+      "adminName": "Volunteer Application",
+      "timestamp": "2026-09-16T08:04:24.382Z"
+    },
+    {
+      "id": "alert-u7gik6jkw",
+      "action": "NEW_CONTACT_NOTIFICATION",
+      "adminId": "SYSTEM",
+      "details": "Uno - General question - Area of Interest: General question\nBusiness/Organization: WomenPlay.Org\nPhone: 16043540930\n\nMessage/Proposal:\ntesting",
+      "adminName": "Executive System Alert",
+      "timestamp": "2026-09-16T07:56:17.608Z"
+    },
+    {
+      "id": "alert-zo7mpjuam",
+      "action": "NEW_CONTACT_NOTIFICATION",
+      "adminId": "SYSTEM",
+      "details": "Sponsorship Inquiry: WomenPlay.Org - Contact: Uno Nwankwo (uno.nwankwo@gmail.com)\nInterest: Event Sponsorship\nOpportunity: Games & Social Gatherings\nProposal: testing",
+      "adminName": "Executive System Alert",
+      "timestamp": "2026-09-16T07:48:28.786Z"
+    },
+    {
+      "id": "alert-lkrgz8pt4",
+      "action": "NEW_CONTACT_NOTIFICATION",
+      "adminId": "SYSTEM",
+      "details": "Uno - General question - Area of Interest: General question\nBusiness/Organization: WomenPlay.Org\nPhone: 16043540930\n\nMessage/Proposal:\nhello",
+      "adminName": "Executive System Alert",
+      "timestamp": "2026-09-14T17:59:41.573Z"
+    },
+    {
+      "id": "alert-px2brgv90",
+      "action": "NEW_CONTACT_NOTIFICATION",
+      "adminId": "SYSTEM",
+      "details": "Sponsorship Inquiry: Lululemon Athletics - Contact: Sarah Jenkins (partnerships@lululemon.com)\nInterest: Product Activations\nOpportunity: All WomenPlay Experiences\nProposal: We would love to provide branded athletic sets and sponsor the active sessions.",
+      "adminName": "Executive System Alert",
+      "timestamp": "2026-08-22T09:55:36.694Z"
+    },
+    {
+      "id": "alert-0auyq5dbw",
+      "action": "NEW_CONTACT_NOTIFICATION",
+      "adminId": "SYSTEM",
+      "details": "New Founding Volunteer Application - Uno nwankwo - Phone: 6043540930\nAvailability: Full day\nRoles: Guest Experience, Registration, Community Engagement\n\nI want to",
+      "adminName": "Executive System Alert",
+      "timestamp": "2026-08-21T14:40:17.802Z"
+    },
+    {
+      "id": "log-8fip5yokl",
+      "action": "VOLUNTEER_APPLICATION",
+      "adminId": "system",
+      "details": "New founding volunteer application: Uno nwankwo (uno.nwankwo@gmail.com)",
+      "adminName": "Volunteer Application",
+      "timestamp": "2026-08-21T14:40:17.757Z"
+    },
+    {
+      "id": "log-f9kghxt52",
+      "action": "EVENT_UPDATED",
+      "adminId": "admin-1",
+      "details": "Updated event: WomenPlay Launch Experience",
+      "adminName": "Administrator",
+      "timestamp": "2026-08-18T09:42:09.474Z"
+    },
+    {
+      "id": "log-6wjvo3ya8",
+      "action": "USER_2FA_ENABLED",
+      "adminId": "user-pbvkdma1q",
+      "details": "Enabled 2FA (email) for user Women Play",
+      "adminName": "Women Play",
+      "timestamp": "2026-08-07T13:13:37.580Z"
+    },
+    {
+      "id": "log-qamzup7cz",
+      "action": "FOUNDING_CIRCLE_SIGNUP",
+      "adminId": "system",
+      "details": "New founding member signup: Women Play (support@womenplay.org)",
+      "adminName": "Founding Circle Signup",
+      "timestamp": "2026-08-07T13:11:55.170Z"
+    },
+    {
+      "id": "audit-1786104299130",
+      "ip": "154.113.212.122",
+      "user": "sfdfddf",
+      "email": "noah_linus@yahoo.com",
+      "action": "Sponsorship Payment Processed",
+      "details": "Runnotic Companies completed payment of $25,000 for Executive Chapter Sponsor ($25,000).",
+      "timestamp": "2026-08-07T12:04:59.130Z"
+    },
+    {
+      "id": "log-bxbzfg5o5",
+      "action": "EVENT_UPDATED",
+      "adminId": "admin-1",
+      "details": "Updated event: WomenPlay Launch Experience",
+      "adminName": "Administrator",
+      "timestamp": "2026-08-07T11:50:58.587Z"
+    },
+    {
+      "id": "log-quce1gybq",
+      "action": "FOUNDING_CIRCLE_SIGNUP",
+      "adminId": "system",
+      "details": "New founding member signup: afa Ekpo (afahanghae@gmail.com)",
+      "adminName": "Founding Circle Signup",
+      "timestamp": "2026-08-07T08:54:12.580Z"
+    },
+    {
+      "id": "log-splpe2b1f",
+      "action": "FOUNDING_CIRCLE_SIGNUP",
+      "adminId": "system",
+      "details": "New founding member signup: Afahayangha Ekpo (afahayangha@yahoo.com)",
+      "adminName": "Founding Circle Signup",
+      "timestamp": "2026-08-07T08:47:58.159Z"
+    },
+    {
+      "id": "log-623c8vchf",
+      "action": "FOUNDING_CIRCLE_SIGNUP",
+      "adminId": "system",
+      "details": "New founding member signup: Noah Linus (noah_linus@yahoo.com)",
+      "adminName": "Founding Circle Signup",
+      "timestamp": "2026-08-06T12:08:13.663Z"
+    },
+    {
+      "id": "log-bytrtuqqn",
+      "action": "FOUNDING_CIRCLE_SIGNUP",
+      "adminId": "system",
+      "details": "New founding member signup: Noah Mendie (noah.linus@eatlng.com)",
+      "adminName": "Founding Circle Signup",
+      "timestamp": "2026-08-06T12:05:21.262Z"
+    },
+    {
+      "id": "audit-1786017819507",
+      "ip": "154.113.212.122",
+      "user": "henry",
+      "email": "admin@womenplay.org",
+      "action": "Sponsorship Payment Processed",
+      "details": "Runnotic Companies completed payment of $25,000 for Executive Chapter Sponsor ($25,000).",
+      "timestamp": "2026-08-06T12:03:39.507Z"
+    },
+    {
+      "id": "log-22u2f1vk4",
+      "action": "EVENT_UPDATED",
+      "adminId": "admin-1",
+      "details": "Updated event: WomenPlay Launch Experience",
+      "adminName": "Administrator",
+      "timestamp": "2026-08-06T10:40:10.689Z"
+    },
+    {
+      "id": "log-7dnn9ii7h",
+      "action": "EVENT_DELETED",
+      "adminId": "admin-1",
+      "details": "Deleted event: Sunset Networking Cocktail & Social Gala",
+      "adminName": "Administrator",
+      "timestamp": "2026-08-06T10:38:47.132Z"
+    },
+    {
+      "id": "log-knwfr6d8k",
+      "action": "EVENT_DELETED",
+      "adminId": "admin-1",
+      "details": "Deleted event: Interactive Workshop: Executive Presence and Pitching",
+      "adminName": "Administrator",
+      "timestamp": "2026-08-06T10:38:41.268Z"
+    },
+    {
+      "id": "alert-9o6iebu8w",
+      "action": "NEW_CONTACT_NOTIFICATION",
+      "adminId": "SYSTEM",
+      "details": "New Founding Volunteer Application - Immigration United States - Phone: 08069374222\nAvailability: Setup shift\nRoles: Guest Experience, Brand Content\n\nhgjghjh",
+      "adminName": "Executive System Alert",
+      "timestamp": "2026-08-06T10:21:57.427Z"
+    },
+    {
+      "id": "log-a74o97ibv",
+      "action": "VOLUNTEER_APPLICATION",
+      "adminId": "system",
+      "details": "New founding volunteer application: Immigration United States (spywavenoah@gmail.com)",
+      "adminName": "Volunteer Application",
+      "timestamp": "2026-08-06T10:21:57.418Z"
+    },
+    {
+      "id": "alert-miq8wu7l4",
+      "action": "NEW_CONTACT_NOTIFICATION",
+      "adminId": "SYSTEM",
+      "details": "Charles Mkpamayak Charles - Demo - Phone: N/A\n\nInquiry Message:\nkjhgvccvnm",
+      "adminName": "Executive System Alert",
+      "timestamp": "2026-08-06T10:21:17.525Z"
+    },
+    {
+      "id": "log-p9u3tiaqu",
+      "action": "USER_2FA_ENABLED",
+      "adminId": "admin-1",
+      "details": "Enabled 2FA (authenticator) for user Eleanor Vance",
       "adminName": "Eleanor Vance",
+      "timestamp": "2026-08-06T10:11:53.679Z"
+    },
+    {
+      "id": "log-or4cp6kbn",
+      "action": "PASSWORD_RESET",
+      "adminId": "admin-1",
+      "details": "Password reset for user Eleanor Vance",
+      "adminName": "Eleanor Vance",
+      "timestamp": "2026-07-31T10:35:40.152Z"
+    },
+    {
+      "id": "log-x0t6o1vq8",
+      "action": "PASSWORD_RESET",
+      "adminId": "admin-1",
+      "details": "Password reset for user Eleanor Vance",
+      "adminName": "Eleanor Vance",
+      "timestamp": "2026-07-31T10:35:21.469Z"
+    },
+    {
+      "id": "log-1",
       "action": "MEMBERSHIP_APPROVED",
+      "adminId": "admin-1",
       "details": "Approved membership for member 'Noah Sterling'",
+      "adminName": "Eleanor Vance",
       "timestamp": "2026-06-16T00:00:00.000Z"
     }
   ],
-  "contactMessages": [],
-  "foundingMembers": [],
+  "contactMessages": [
+    {
+      "id": "contact-qubbnqbyc",
+      "email": "uno.nwankwo@gmail.com",
+      "phone": "16043540930",
+      "status": "read",
+      "message": "testing",
+      "replies": [],
+      "subject": "Inquiry: General question",
+      "fullName": "Uno",
+      "interest": "General question",
+      "createdAt": "2026-09-16T07:56:17.602Z",
+      "firstName": "Uno",
+      "organization": "WomenPlay.Org"
+    },
+    {
+      "id": "contact-557do9c",
+      "email": "uno.nwankwo@gmail.com",
+      "phone": "6043540930",
+      "status": "new",
+      "message": "[Sponsorship Inquiry]\nCompany: WomenPlay.Org\nContact: Uno Nwankwo\nInterest: Event Sponsorship\nOpportunity: Games & Social Gatherings\nPreferred Contact: Email\nWebsite/Social: WomenPlay.Org\n\nPartnership Proposal / Idea:\ntesting",
+      "replies": [],
+      "subject": "Partnership Inquiry: WomenPlay.Org - Event Sponsorship",
+      "fullName": "Uno Nwankwo (WomenPlay.Org)",
+      "interest": "Sponsorship & Partnerships - Event Sponsorship",
+      "createdAt": "2026-09-16T07:48:28.784Z",
+      "firstName": "Uno Nwankwo",
+      "organization": "WomenPlay.Org"
+    },
+    {
+      "id": "contact-g1ihd8all",
+      "email": "numerounonwankwo@gmail.com",
+      "phone": "16043540930",
+      "status": "new",
+      "message": "hello",
+      "replies": [],
+      "subject": "Inquiry: General question",
+      "fullName": "Uno",
+      "interest": "General question",
+      "createdAt": "2026-09-14T17:59:41.572Z",
+      "firstName": "Uno",
+      "organization": "WomenPlay.Org"
+    },
+    {
+      "id": "contact-i1ebxo1",
+      "email": "partnerships@lululemon.com",
+      "phone": "604-555-0199",
+      "status": "new",
+      "message": "[Sponsorship Inquiry]\nCompany: Lululemon Athletics\nContact: Sarah Jenkins\nInterest: Product Activations\nOpportunity: All WomenPlay Experiences\nPreferred Contact: Email\nWebsite/Social: https://lululemon.com\n\nPartnership Proposal / Idea:\nWe would love to provide branded athletic sets and sponsor the active sessions.",
+      "replies": [],
+      "subject": "Partnership Inquiry: Lululemon Athletics - Product Activations",
+      "fullName": "Sarah Jenkins (Lululemon Athletics)",
+      "interest": "Sponsorship & Partnerships - Product Activations",
+      "createdAt": "2026-08-22T09:55:36.604Z",
+      "firstName": "Sarah Jenkins",
+      "organization": "Lululemon Athletics"
+    },
+    {
+      "id": "contact-ov5w0o104",
+      "email": "charles@beildebestfinance.com",
+      "status": "new",
+      "message": "kjhgvccvnm",
+      "replies": [],
+      "subject": "Demo",
+      "fullName": "Charles Mkpamayak Charles",
+      "createdAt": "2026-08-06T10:21:17.516Z"
+    }
+  ],
+  "foundingMembers": [
+    {
+      "id": "fc-97t0z1viq",
+      "city": "Canada",
+      "email": "support@womenplay.org",
+      "phone": "+1 (604) 354-0930",
+      "source": "founding-circle",
+      "status": "approved",
+      "ageRange": "30-39",
+      "lastName": "Play",
+      "createdAt": "2026-08-07T13:11:55.170Z",
+      "firstName": "Women",
+      "interests": [
+        "Wellness Events",
+        "Tea Parties",
+        "International Retreats",
+        "Luxury Experiences"
+      ]
+    },
+    {
+      "id": "fc-2x69lzjjn",
+      "city": "Albeta",
+      "email": "afahanghae@gmail.com",
+      "phone": "2348081783559",
+      "source": "founding-circle",
+      "status": "pending",
+      "ageRange": "30-39",
+      "lastName": "Ekpo",
+      "createdAt": "2026-08-07T08:54:12.580Z",
+      "firstName": "afa",
+      "interests": [
+        "Luxury Experiences"
+      ]
+    },
+    {
+      "id": "fc-30n9ew3vv",
+      "city": "Vancouver",
+      "email": "afahayangha@yahoo.com",
+      "phone": "2348038722493",
+      "source": "founding-circle",
+      "status": "pending",
+      "ageRange": "40-49",
+      "lastName": "Ekpo",
+      "createdAt": "2026-08-07T08:47:58.159Z",
+      "firstName": "Afahayangha",
+      "interests": [
+        "Karaoke",
+        "Luxury Experiences",
+        "Brunches"
+      ]
+    },
+    {
+      "id": "fc-e512b4m3b",
+      "city": "San Francisco",
+      "email": "noah_linus@yahoo.com",
+      "phone": "45676890809",
+      "source": "founding-circle",
+      "status": "pending",
+      "ageRange": "50-59",
+      "lastName": "Linus",
+      "createdAt": "2026-08-06T12:08:13.663Z",
+      "firstName": "Noah",
+      "interests": [
+        "Brunches",
+        "Wellness Events"
+      ]
+    },
+    {
+      "id": "fc-kt0rmp5wv",
+      "city": "Uyo",
+      "email": "noah.linus@eatlng.com",
+      "phone": "+2348069374222",
+      "source": "founding-circle",
+      "status": "pending",
+      "ageRange": "30-39",
+      "lastName": "Mendie",
+      "createdAt": "2026-08-06T12:05:21.262Z",
+      "firstName": "Noah",
+      "interests": [
+        "Brunches",
+        "Wellness Events",
+        "Games Nights"
+      ]
+    }
+  ],
   "settings": {
+    "stripeMode": "test",
+    "smtpSettings": {
+      "host": "mail.womenplay.org",
+      "pass": "b+]_ZxrJo)V1aeCW",
+      "port": 465,
+      "user": "noreply@womenplay.org",
+      "secure": true,
+      "fromName": "WomenPlay Notification",
+      "fromEmail": "noreply@womenplay.org",
+      "enableAlerts": true,
+      "alertOnEventBooking": true,
+      "alertOnRegistration": true,
+      "alertOnSupportTicket": true,
+      "alertOnContactInquiry": true
+    },
+    "emailTemplates": [
+      {
+        "id": "registration-confirmation",
+        "name": "Registration Confirmation",
+        "subject": "Welcome to WomenPlay Executive Network, {{userName}}!",
+        "bodyHtml": "<div style=\"font-family: Arial, sans-serif; max-width: 600px; padding: 24px; border: 1px solid #e2e8f0; border-radius: 12px; background: #ffffff;\">\n  <div style=\"text-align: center; margin-bottom: 24px;\">\n    <h1 style=\"color: #9d174d; margin: 0; font-size: 24px; font-weight: 800;\">WomenPlay Executive Secretariat</h1>\n    <p style=\"color: #64748b; font-size: 14px; margin-top: 4px;\">Empowering Female Executives & Founders Globally</p>\n  </div>\n  <hr style=\"border: none; border-top: 1px solid #f1f5f9; margin: 20px 0;\" />\n  <p style=\"font-size: 16px; color: #1e293b;\">Dear <strong>{{userName}}</strong>,</p>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">\n    Welcome to the <strong>WomenPlay Executive Network</strong>. Your membership account has been successfully initialized and granted <strong>{{membershipTier}}</strong> status.\n  </p>\n  <div style=\"background: #f8fafc; padding: 16px; border-radius: 8px; border-left: 4px solid #9d174d; margin: 20px 0;\">\n    <p style=\"margin: 0 0 8px 0; font-size: 13px; color: #475569;\"><strong>Account Email:</strong> {{userEmail}}</p>\n    <p style=\"margin: 0 0 8px 0; font-size: 13px; color: #475569;\"><strong>Membership Tier:</strong> {{membershipTier}}</p>\n    <p style=\"margin: 0; font-size: 13px; color: #475569;\"><strong>Tier Benefits:</strong> VIP Executive Salons, Global Directories, & Annual Summit Passes</p>\n  </div>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">\n    You can now sign in to your executive portal to explore exclusive networking circles, register for upcoming summits, and connect with global leaders.\n  </p>\n  <div style=\"text-align: center; margin: 28px 0;\">\n    <a href=\"{{appUrl}}\" style=\"background: #9d174d; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 14px; display: inline-block;\">Access Executive Portal</a>\n  </div>\n  <hr style=\"border: none; border-top: 1px solid #f1f5f9; margin: 24px 0;\" />\n  <p style=\"font-size: 11px; color: #94a3b8; text-align: center;\">WomenPlay Secretariat &bull; Global Executive Network &bull; Automated Transactional Dispatch</p>\n</div>",
+        "category": "Onboarding",
+        "updatedAt": "2026-07-31T10:11:24.525Z",
+        "variables": [
+          "{{userName}}",
+          "{{userEmail}}",
+          "{{membershipTier}}",
+          "{{appUrl}}"
+        ]
+      },
+      {
+        "id": "event-access-pass",
+        "name": "Event Access Pass & Ticket",
+        "subject": "Your Access Pass for {{eventName}} [Badge: {{ticketCode}}]",
+        "bodyHtml": "<div style=\"font-family: Arial, sans-serif; max-width: 600px; padding: 24px; border: 1px solid #e2e8f0; border-radius: 12px; background: #ffffff;\">\n  <div style=\"text-align: center; margin-bottom: 20px;\">\n    <span style=\"background: #fdf2f8; color: #9d174d; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; text-transform: uppercase;\">Official Event Access Pass</span>\n    <h1 style=\"color: #0f172a; margin: 12px 0 4px 0; font-size: 22px;\">{{eventName}}</h1>\n    <p style=\"color: #64748b; font-size: 14px; margin: 0;\">{{eventDate}} &bull; {{eventLocation}}</p>\n  </div>\n  <div style=\"background: #0f172a; color: #ffffff; padding: 20px; border-radius: 10px; text-align: center; margin: 20px 0;\">\n    <p style=\"margin: 0; text-transform: uppercase; font-size: 10px; letter-spacing: 1px; color: #f472b6;\">Unique Executive Badge Code</p>\n    <p style=\"margin: 6px 0 0 0; font-size: 28px; font-family: monospace; font-weight: bold; letter-spacing: 3px; color: #ffffff;\">{{ticketCode}}</p>\n  </div>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">Hello <strong>{{userName}}</strong>,</p>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">\n    Your ticket reservation for <strong>{{eventName}}</strong> has been confirmed. Please present your badge code at the venue reception desk for priority fast-track entry.\n  </p>\n  <div style=\"background: #f8fafc; padding: 16px; border-radius: 8px; border: 1px solid #e2e8f0; margin: 20px 0;\">\n    <p style=\"margin: 0 0 8px 0; font-size: 13px;\"><strong>Package Badge:</strong> {{ticketPackage}}</p>\n    <p style=\"margin: 0 0 8px 0; font-size: 13px;\"><strong>Fee Paid:</strong> ${{ticketPrice}}</p>\n    <p style=\"margin: 0; font-size: 13px;\"><strong>Attendee Account:</strong> {{userEmail}}</p>\n  </div>\n  <div style=\"text-align: center; margin: 24px 0;\">\n    <a href=\"{{appUrl}}\" style=\"background: #9d174d; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 14px; display: inline-block;\">View Ticket in Portal</a>\n  </div>\n  <hr style=\"border: none; border-top: 1px solid #f1f5f9; margin: 20px 0;\" />\n  <p style=\"font-size: 11px; color: #94a3b8; text-align: center;\">WomenPlay Events &bull; Official Digital Ticketing Service</p>\n</div>",
+        "category": "Events",
+        "updatedAt": "2026-07-31T10:11:24.526Z",
+        "variables": [
+          "{{userName}}",
+          "{{userEmail}}",
+          "{{eventName}}",
+          "{{eventDate}}",
+          "{{eventLocation}}",
+          "{{ticketCode}}",
+          "{{ticketPackage}}",
+          "{{ticketPrice}}",
+          "{{appUrl}}"
+        ]
+      },
+      {
+        "id": "contact-acknowledgment",
+        "name": "Contact Form Acknowledgment",
+        "subject": "We received your inquiry, {{userName}} - WomenPlay Secretariat",
+        "bodyHtml": "<div style=\"text-align: center; margin-bottom: 24px;\">\n<center>\n<img src='/assets/logo.png' />\n</center>\n  </div>\n<div style=\"font-family: Arial, sans-serif; max-width: 600px; padding: 24px; border: 1px solid #e2e8f0; border-radius: 12px; background: #ffffff;\">\n  <h2 style=\"color: #9d174d; margin-top: 0;\">Thank You for Reaching Out</h2>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">Dear <strong>{{userName}}</strong>,</p>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">\n    Thank you for contacting the WomenPlay Executive Secretariat. We have received your message regarding \"<strong>{{inquirySubject}}</strong>\".\n  </p>\n  <div style=\"background: #f8fafc; padding: 16px; border-radius: 8px; border-left: 4px solid #9d174d; margin: 20px 0;\">\n    <p style=\"margin: 0 0 6px 0; font-size: 12px; font-weight: bold; color: #64748b;\">Summary of Your Message:</p>\n    <p style=\"margin: 0; font-size: 13px; color: #1e293b; white-space: pre-wrap;\">{{inquiryMessage}}</p>\n  </div>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">An executive representative is reviewing your message and will get back to you shortly.</p>\n  <hr style=\"border: none; border-top: 1px solid #f1f5f9; margin: 20px 0;\" />\n  <p style=\"font-size: 11px; color: #94a3b8; text-align: center;\">WomenPlay Executive Secretariat &bull; Automated Inquiry Receiver</p>\n</div>",
+        "category": "Customer Service",
+        "updatedAt": "2026-08-06T11:38:15.173Z",
+        "variables": [
+          "{{userName}}",
+          "{{userEmail}}",
+          "{{inquirySubject}}",
+          "{{inquiryMessage}}",
+          "{{appUrl}}"
+        ]
+      },
+      {
+        "id": "support-ticket-confirmation",
+        "name": "Support Desk Ticket Receipt",
+        "subject": "[Ticket #{{ticketId}}] Support Ticket Received: {{ticketSubject}}",
+        "bodyHtml": "<div style=\"text-align: center; margin-bottom: 24px;\">\n<center>\n<img src='/assets/logo.png' />\n</center>\n  </div>\n<div style=\"font-family: Arial, sans-serif; max-width: 600px; padding: 24px; border: 1px solid #e2e8f0; border-radius: 12px; background: #ffffff;\">\n  <h2 style=\"color: #0f172a; margin-top: 0;\">Concierge Support Ticket Created</h2>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">Hello <strong>{{userName}}</strong>,</p>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">\n    Your support ticket <strong>#{{ticketId}}</strong> has been logged into our queue under <strong>{{ticketCategory}}</strong>.\n  </p>\n  <div style=\"background: #f8fafc; padding: 16px; border-radius: 8px; border: 1px solid #e2e8f0; margin: 20px 0;\">\n    <p style=\"margin: 0 0 8px 0; font-size: 13px;\"><strong>Ticket Reference:</strong> #{{ticketId}}</p>\n    <p style=\"margin: 0 0 8px 0; font-size: 13px;\"><strong>Category:</strong> {{ticketCategory}}</p>\n    <p style=\"margin: 0 0 8px 0; font-size: 13px;\"><strong>Subject:</strong> {{ticketSubject}}</p>\n    <p style=\"margin: 0; font-size: 13px;\"><strong>Message:</strong> {{ticketDetails}}</p>\n  </div>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">Our support team will post updates directly to your executive dashboard portal.</p>\n  <div style=\"text-align: center; margin: 24px 0;\">\n    <a href=\"{{appUrl}}\" style=\"background: #0f172a; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 13px; display: inline-block;\">View Ticket Status</a>\n  </div>\n  <hr style=\"border: none; border-top: 1px solid #f1f5f9; margin: 20px 0;\" />\n  <p style=\"font-size: 11px; color: #94a3b8; text-align: center;\">WomenPlay Concierge Support Desk</p>\n</div>",
+        "category": "Support Desk",
+        "updatedAt": "2026-08-06T11:38:04.575Z",
+        "variables": [
+          "{{userName}}",
+          "{{userEmail}}",
+          "{{ticketId}}",
+          "{{ticketCategory}}",
+          "{{ticketSubject}}",
+          "{{ticketDetails}}",
+          "{{appUrl}}"
+        ]
+      },
+      {
+        "id": "bulk-announcement",
+        "name": "Bulk Announcement & Official Broadcast",
+        "subject": "[WomenPlay Announcement] {{announcementTitle}}",
+        "bodyHtml": "<div style=\"font-family: Arial, sans-serif; max-width: 600px; padding: 28px; border: 1px solid #e2e8f0; border-radius: 16px; background: #ffffff;\">\n  <div style=\"text-align: center; margin-bottom: 24px;\">\n    <span style=\"background: #fdf2f8; color: #9d174d; padding: 6px 16px; border-radius: 20px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;\">WomenPlay Network Broadcast</span>\n    <h1 style=\"color: #0f172a; margin: 16px 0 8px 0; font-size: 24px; font-weight: 800;\">{{announcementTitle}}</h1>\n    <p style=\"color: #64748b; font-size: 13px; margin: 0;\">Recipient: {{recipientName}} ({{recipientEmail}})</p>\n  </div>\n  <hr style=\"border: none; border-top: 1px solid #f1f5f9; margin: 20px 0;\" />\n  <p style=\"font-size: 15px; color: #1e293b; line-height: 1.6;\">Dear <strong>{{recipientName}}</strong>,</p>\n  <div style=\"font-size: 14px; color: #334155; line-height: 1.7; margin: 20px 0; background: #fafafa; padding: 20px; border-radius: 12px; border-left: 4px solid #9d174d;\">\n    {{messageContent}}\n  </div>\n  <div style=\"text-align: center; margin: 28px 0;\">\n    <a href=\"{{appUrl}}\" style=\"background: #9d174d; color: #ffffff; padding: 12px 28px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 14px; display: inline-block;\">Open WomenPlay Portal</a>\n  </div>\n  <hr style=\"border: none; border-top: 1px solid #f1f5f9; margin: 24px 0;\" />\n  <p style=\"font-size: 11px; color: #94a3b8; text-align: center;\">You are receiving this official broadcast because you are a registered member or partner of the WomenPlay Executive Network.</p>\n</div>",
+        "category": "Broadcasting & Announcements",
+        "updatedAt": "2026-08-06T11:58:38.457Z",
+        "variables": [
+          "{{recipientName}}",
+          "{{recipientEmail}}",
+          "{{announcementTitle}}",
+          "{{messageContent}}",
+          "{{appUrl}}"
+        ]
+      },
+      {
+        "id": "executive-newsletter",
+        "name": "Executive Community Digest Newsletter",
+        "subject": "WomenPlay Executive Digest: {{newsletterTitle}}",
+        "bodyHtml": "<div style=\"font-family: Georgia, serif; max-width: 600px; padding: 30px; border: 1px solid #e2e8f0; border-radius: 16px; background: #ffffff;\">\n  <div style=\"text-align: center; margin-bottom: 24px;\">\n    <h1 style=\"color: #9d174d; margin: 0; font-size: 26px; font-weight: 800;\">WomenPlay Executive Digest</h1>\n    <p style=\"color: #64748b; font-size: 12px; font-family: Arial, sans-serif; margin-top: 6px; text-transform: uppercase; letter-spacing: 1px;\">Curated Leadership Insights & Network Highlights</p>\n  </div>\n  <hr style=\"border: none; border-top: 1px solid #f1f5f9; margin: 20px 0;\" />\n  <p style=\"font-size: 15px; color: #1e293b; font-family: Arial, sans-serif;\">Hello <strong>{{recipientName}}</strong>,</p>\n  <div style=\"font-size: 14px; color: #334155; line-height: 1.7; font-family: Arial, sans-serif; margin: 20px 0;\">\n    {{messageContent}}\n  </div>\n  <div style=\"text-align: center; margin: 28px 0;\">\n    <a href=\"{{appUrl}}\" style=\"background: #0f172a; color: #ffffff; padding: 12px 28px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 14px; font-family: Arial, sans-serif; display: inline-block;\">Explore Executive Network</a>\n  </div>\n  <hr style=\"border: none; border-top: 1px solid #f1f5f9; margin: 24px 0;\" />\n  <p style=\"font-size: 11px; color: #94a3b8; font-family: Arial, sans-serif; text-align: center;\">WomenPlay Secretariat &bull; Global Female Leadership Network</p>\n</div>",
+        "category": "Broadcasting & Announcements",
+        "updatedAt": "2026-08-06T11:58:38.457Z",
+        "variables": [
+          "{{recipientName}}",
+          "{{recipientEmail}}",
+          "{{newsletterTitle}}",
+          "{{messageContent}}",
+          "{{appUrl}}"
+        ]
+      },
+      {
+        "id": "account-activation",
+        "name": "Account Activation & Password Setup",
+        "subject": "Activate Your WomenPlay Account — Ticket & Member Portal Access",
+        "bodyHtml": "<div style=\"font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 28px; border: 1px solid #e2e8f0; border-radius: 16px; background: #ffffff; color: #1e293b;\">\n  <div style=\"text-align: center; margin-bottom: 24px;\">\n    <div style=\"display: inline-block; background: #fdf2f8; color: #9d174d; padding: 5px 16px; border-radius: 20px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;\">Account Setup</div>\n    <h1 style=\"color: #0f172a; margin: 0 0 6px 0; font-size: 24px; font-weight: 800;\">Welcome to WomenPlay</h1>\n    <p style=\"color: #64748b; font-size: 13px; margin: 0;\">Activate Your Member Portal Account</p>\n  </div>\n  <hr style=\"border: none; border-top: 1px solid #f1f5f9; margin: 20px 0;\" />\n  <p style=\"font-size: 15px; color: #1e293b; line-height: 1.6;\">Dear <strong>{{userName}}</strong>,</p>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">\n    Thank you for securing your ticket to <strong>{{eventName}}</strong>! We have established an executive member account for your email (<strong>{{userEmail}}</strong>).\n  </p>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">\n    Please activate your account and create a secure password to access your digital entry badge, review your billing transactions, and connect with fellow executives:\n  </p>\n  <div style=\"text-align: center; margin: 28px 0;\">\n    <a href=\"{{activationUrl}}\" style=\"background: #9d174d; color: #ffffff; padding: 14px 32px; text-decoration: none; border-radius: 10px; font-weight: bold; font-size: 15px; display: inline-block; box-shadow: 0 4px 14px rgba(157, 23, 77, 0.3);\">Activate Account & Set Password</a>\n  </div>\n  <div style=\"background: #f8fafc; padding: 16px; border-radius: 10px; border: 1px solid #e2e8f0; margin: 20px 0;\">\n    <p style=\"margin: 0 0 6px 0; font-size: 12px; font-weight: bold; color: #475569;\">If the button above does not work, copy and paste this link into your browser:</p>\n    <a href=\"{{activationUrl}}\" style=\"color: #9d174d; font-size: 12px; word-break: break-all; text-decoration: underline;\">{{activationUrl}}</a>\n  </div>\n  <div style=\"background: #fdf2f8; padding: 16px; border-radius: 10px; border-left: 4px solid #9d174d; margin: 20px 0;\">\n    <p style=\"margin: 0 0 6px 0; font-size: 12px; font-weight: bold; color: #9d174d;\">Your Account Benefits:</p>\n    <ul style=\"margin: 0; padding-left: 18px; font-size: 12px; color: #475569; line-height: 1.6;\">\n      <li>Instant access to your digital QR check-in badge anytime</li>\n      <li>Itemized transaction receipts in your personal billing ledger</li>\n      <li>Networking directory & updates for {{eventName}}</li>\n    </ul>\n  </div>\n  <hr style=\"border: none; border-top: 1px solid #f1f5f9; margin: 24px 0;\" />\n  <p style=\"font-size: 11px; color: #94a3b8; text-align: center; margin: 0;\">WomenPlay Secretariat &bull; Automated Account Onboarding Dispatch</p>\n</div>",
+        "category": "Onboarding",
+        "updatedAt": "2026-09-27T20:38:43.054Z",
+        "variables": [
+          "{{userName}}",
+          "{{userEmail}}",
+          "{{eventName}}",
+          "{{activationUrl}}",
+          "{{appUrl}}"
+        ]
+      },
+      {
+        "id": "admin-confirmation",
+        "name": "Administrator Email Confirmation & Security Onboarding",
+        "subject": "Action Required: Confirm Your WomenPlay Administrator Account, {{userName}}",
+        "bodyHtml": "<div style=\"font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 28px; border: 1px solid #e2e8f0; border-radius: 16px; background: #ffffff; color: #1e293b;\">\n  <div style=\"text-align: center; margin-bottom: 24px;\">\n    <div style=\"display: inline-block; background: #fdf2f8; color: #9d174d; padding: 5px 16px; border-radius: 20px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;\">Executive Administration</div>\n    <h1 style=\"color: #0f172a; margin: 0 0 6px 0; font-size: 24px; font-weight: 800;\">Administrator Email Confirmation</h1>\n    <p style=\"color: #64748b; font-size: 13px; margin: 0;\">Official Administrator Provisioning Notice</p>\n  </div>\n  <hr style=\"border: none; border-top: 1px solid #f1f5f9; margin: 20px 0;\" />\n  <p style=\"font-size: 15px; color: #1e293b; line-height: 1.6;\">Dear <strong>{{userName}}</strong>,</p>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">\n    You have been provisioned as an <strong>Executive Administrator</strong> for the WomenPlay Network with the role of <strong>{{title}}</strong> ({{company}}).\n  </p>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">\n    To activate your administrative privileges and access the executive portal, please confirm your email address by clicking the link below:\n  </p>\n  <div style=\"text-align: center; margin: 28px 0;\">\n    <a href=\"{{confirmationUrl}}\" style=\"background: #9d174d; color: #ffffff; padding: 14px 32px; text-decoration: none; border-radius: 10px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 14px rgba(157, 23, 77, 0.3);\">Confirm Email & Activate Administrator Account</a>\n  </div>\n  <div style=\"background: #f8fafc; padding: 16px; border-radius: 10px; border: 1px solid #e2e8f0; margin: 20px 0;\">\n    <p style=\"margin: 0 0 6px 0; font-size: 12px; font-weight: bold; color: #475569;\">If the button above does not work, copy and paste this confirmation URL into your browser:</p>\n    <a href=\"{{confirmationUrl}}\" style=\"color: #9d174d; font-size: 12px; word-break: break-all; text-decoration: underline;\">{{confirmationUrl}}</a>\n  </div>\n  <div style=\"background: #fdf2f8; padding: 18px; border-radius: 12px; border-left: 4px solid #9d174d; margin: 20px 0;\">\n    <p style=\"margin: 0 0 8px 0; font-size: 12px; font-weight: bold; color: #9d174d;\">Security Onboarding Sequence:</p>\n    <ol style=\"margin: 0; padding-left: 18px; font-size: 12px; color: #475569; line-height: 1.7;\">\n      <li><strong>Confirm Email:</strong> Click the confirmation link above to verify your account email (<strong>{{userEmail}}</strong>).</li>\n      <li><strong>Configure Password:</strong> After confirmation or on first login, you will create your secure administrative password.</li>\n      <li><strong>Mandatory 2FA Setup:</strong> You will configure Two-Factor Authentication (authenticator app or email OTP) upon your first login to ensure maximum portal security.</li>\n    </ol>\n  </div>\n  <hr style=\"border: none; border-top: 1px solid #f1f5f9; margin: 24px 0;\" />\n  <p style=\"font-size: 11px; color: #94a3b8; text-align: center; margin: 0;\">WomenPlay Secretariat &bull; Global Executive Administration &bull; Automated Provisioning Dispatch</p>\n</div>",
+        "category": "Administration",
+        "updatedAt": "2026-09-27T20:38:43.054Z",
+        "variables": [
+          "{{userName}}",
+          "{{userEmail}}",
+          "{{title}}",
+          "{{company}}",
+          "{{confirmationUrl}}",
+          "{{appUrl}}"
+        ]
+      },
+      {
+        "id": "admin-welcome",
+        "name": "Administrator Welcome & Executive Portal Access",
+        "subject": "Welcome to WomenPlay Executive Secretariat, {{userName}}!",
+        "bodyHtml": "<div style=\"font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 28px; border: 1px solid #e2e8f0; border-radius: 16px; background: #ffffff; color: #1e293b;\">\n  <div style=\"text-align: center; margin-bottom: 24px;\">\n    <div style=\"display: inline-block; background: #fdf2f8; color: #9d174d; padding: 5px 16px; border-radius: 20px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;\">Executive Leadership</div>\n    <h1 style=\"color: #0f172a; margin: 0 0 6px 0; font-size: 24px; font-weight: 800;\">Welcome to the Executive Secretariat</h1>\n    <p style=\"color: #64748b; font-size: 13px; margin: 0;\">Official WomenPlay Administrator Appointment</p>\n  </div>\n  <hr style=\"border: none; border-top: 1px solid #f1f5f9; margin: 20px 0;\" />\n  <p style=\"font-size: 15px; color: #1e293b; line-height: 1.6;\">Dear <strong>{{userName}}</strong>,</p>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">\n    It is our distinct privilege to officially welcome you as an <strong>Executive Administrator</strong> of the <strong>WomenPlay Global Network</strong>. Your administrative profile has been designated as <strong>{{title}}</strong> ({{company}}).\n  </p>\n  <div style=\"background: #f8fafc; padding: 18px; border-radius: 12px; border-left: 4px solid #9d174d; margin: 20px 0;\">\n    <p style=\"margin: 0 0 8px 0; font-size: 13px; color: #334155;\"><strong>Executive Account Profile:</strong></p>\n    <p style=\"margin: 0 0 6px 0; font-size: 13px; color: #475569;\">&bull; <strong>Name:</strong> {{userName}}</p>\n    <p style=\"margin: 0 0 6px 0; font-size: 13px; color: #475569;\">&bull; <strong>Official Email:</strong> {{userEmail}}</p>\n    <p style=\"margin: 0 0 6px 0; font-size: 13px; color: #475569;\">&bull; <strong>Executive Role:</strong> {{title}}</p>\n    <p style=\"margin: 0; font-size: 13px; color: #475569;\">&bull; <strong>Chapter / Entity:</strong> {{company}}</p>\n  </div>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">\n    As an administrator, you hold elevated governance capabilities across our event registries, member directories, ticket pass management, and operational communications.\n  </p>\n  <div style=\"text-align: center; margin: 28px 0;\">\n    <a href=\"{{portalUrl}}\" style=\"background: #0f172a; color: #ffffff; padding: 14px 32px; text-decoration: none; border-radius: 10px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 14px rgba(15, 23, 42, 0.25);\">Launch Administrator Dashboard</a>\n  </div>\n  <div style=\"background: #fdf2f8; padding: 16px; border-radius: 10px; border: 1px solid #fce7f3; margin: 20px 0;\">\n    <p style=\"margin: 0 0 6px 0; font-size: 12px; font-weight: bold; color: #9d174d;\">Administrative Security Notice:</p>\n    <p style=\"margin: 0; font-size: 12px; color: #475569; line-height: 1.5;\">\n      All executive access requires two-factor authentication (2FA). Never share your credentials or 2FA codes. All administrative transactions are logged in the immutable audit ledger.\n    </p>\n  </div>\n  <hr style=\"border: none; border-top: 1px solid #f1f5f9; margin: 24px 0;\" />\n  <p style=\"font-size: 11px; color: #94a3b8; text-align: center; margin: 0;\">WomenPlay Secretariat &bull; Global Executive Governance &bull; Confidential Executive Dispatch</p>\n</div>",
+        "category": "Administration",
+        "updatedAt": "2026-09-27T20:38:43.054Z",
+        "variables": [
+          "{{userName}}",
+          "{{userEmail}}",
+          "{{title}}",
+          "{{company}}",
+          "{{portalUrl}}",
+          "{{appUrl}}"
+        ]
+      }
+    ],
     "stripePublicKey": "",
     "stripeSecretKey": "",
+    "stripeLivePublicKey": "",
+    "stripeLiveSecretKey": "",
+    "stripeTestPublicKey": "",
+    "stripeTestSecretKey": "",
+    "stripeWebhookSecret": "",
     "isSubscriptionRequired": false
   },
+  "sponsors": [
+    {
+      "id": "spon-3r7smh1",
+      "name": "Runnotic Companies",
+      "tier": "Executive Chapter Sponsor ($25,000)",
+      "email": "noah_linus@yahoo.com",
+      "amount": 25000,
+      "paidAt": "2026-08-07T12:04:59.130Z",
+      "status": "Active",
+      "logoUrl": "",
+      "website": "",
+      "paymentId": "PAY-SPON-MSIWDTH6",
+      "contactName": "sfdfddf",
+      "description": "dsfdfd"
+    },
+    {
+      "id": "spon-42pwltm",
+      "name": "Runnotic Companies",
+      "tier": "Executive Chapter Sponsor ($25,000)",
+      "email": "admin@womenplay.org",
+      "amount": 25000,
+      "paidAt": "2026-08-06T12:03:39.507Z",
+      "status": "Active",
+      "logoUrl": "",
+      "website": "",
+      "paymentId": "PAY-SPON-MSHGW9DF",
+      "contactName": "henry",
+      "description": "jkjlkjlk"
+    },
+    {
+      "id": "spon-1",
+      "name": "Goldman Sachs Leadership Alliance",
+      "tier": "Title Sponsor",
+      "logoUrl": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&q=80&w=300",
+      "website": "https://goldmansachs.com",
+      "createdAt": "2026-01-10T00:00:00.000Z",
+      "description": "Supporting executive pipeline training and fellowship grants for female board candidates."
+    },
+    {
+      "id": "spon-2",
+      "name": "McKinsey & Company",
+      "tier": "Platinum Sponsor",
+      "logoUrl": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=300",
+      "website": "https://mckinsey.com",
+      "createdAt": "2026-02-15T00:00:00.000Z",
+      "description": "Global management consulting partner providing research and executive mentorship."
+    },
+    {
+      "id": "spon-3",
+      "name": "Grand Venture Alliance",
+      "tier": "Gold Sponsor",
+      "logoUrl": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=300",
+      "website": "https://grandventure.org",
+      "createdAt": "2026-03-01T00:00:00.000Z",
+      "description": "Venture capital syndicate powering women-led startup seed funding."
+    }
+  ],
   "carouselSlides": [
     {
       "id": "slide-1",
-      "image": "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=1600",
-      "title": "Empower Your Executive Network",
-      "description": "Connect with FTSE 100 directors, venture partners, and corporate pioneers in a curated ecosystem built for high-impact female leaders."
+      "image": "/assets/images/carousel_1789828112598_x28cyb.png",
+      "title": "Remember the girl\nwho loved to play?",
+      "suffix": "Come out and play.",
+      "eyebrow": "BECAUSE LIFE IS BETTER\nWHEN WOMEN CAN PLAY TOO!",
+      "highlight": "She's still in there.",
+      "hasDivider": true,
+      "description": "WomenPlay creates intentional spaces for women to reconnect with carefree joy through games, laughter, movement and shared experiences.",
+      "overlayColor": "rgba(0,0,0,0.4)"
     },
     {
       "id": "slide-2",
-      "image": "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=1600",
-      "title": "Elevate Your Boardroom Influence",
-      "description": "Access exclusive masterclasses, corporate board directories, and annual summits designed to amplify your professional footprint."
+      "image": "/assets/images/carousel_1789828182531_sc7b78.jpg",
+      "title": "Play . Connect . Play Again.",
+      "suffix": "",
+      "eyebrow": "MEANINGFUL CONNECTIONS",
+      "highlight": "Keep the heels, keep the dreams, keep the fun too.",
+      "hasDivider": true,
+      "description": "Because life is better when women can play too. \n\nWomenPlay is a judgment-free space to let your guard down, connect authentically and simply have fun.",
+      "overlayColor": "rgba(0,0,0,0.4)"
     },
     {
       "id": "slide-3",
-      "image": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=1600",
-      "title": "Intentional High-Society Alliances",
-      "description": "Engage in private roundtables and sunset cocktail galas with leading mentors, investors, and policymakers driving systemic change."
+      "image": "/assets/images/carousel_1789749345165_569u88.jpg",
+      "title": "Who said we had\nto outgrow play?",
+      "suffix": "",
+      "eyebrow": "EXPERIENCES BEYOND THE EVERYDAY",
+      "highlight": "Growing up doesn't mean\nwe have to stop playing.",
+      "hasDivider": true,
+      "description": "At WomenPlay, we create joyful experiences that help women reconnect, explore and play again.",
+      "overlayColor": "rgba(0,0,0,0.4)"
     }
   ],
   "galleryItems": [
     {
       "id": "gallery-1",
+      "image": "/assets/images/gallery_gallery-1_gallery-1.jpg",
       "title": "Sunset Networking Cocktail",
       "caption": "Private mixers where women executives connect, share ideas, and build meaningful relationships.",
       "category": "Networking",
-      "image": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=1200",
-      "featured": true,
+      "featured": false,
       "createdAt": "2026-06-10T00:00:00.000Z"
     },
     {
       "id": "gallery-2",
+      "image": "/assets/images/gallery_gallery-2_gallery-2.jpg",
       "title": "Boardroom Masterclasses",
       "caption": "Interactive sessions preparing women for non-executive director nominations and board leadership.",
       "category": "Summits",
-      "image": "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=1200",
-      "featured": true,
+      "featured": false,
       "createdAt": "2026-06-12T00:00:00.000Z"
     },
     {
       "id": "gallery-3",
+      "image": "/assets/images/gallery_gallery-3_gallery-3.jpg",
       "title": "Brunch & Bloom Socials",
       "caption": "Elegant dining experiences with beautiful tablescapes, conversation, and laughter.",
       "category": "Socials",
-      "image": "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=1200",
       "featured": false,
       "createdAt": "2026-06-15T00:00:00.000Z"
     },
     {
       "id": "gallery-4",
+      "image": "/assets/images/gallery_gallery-4_gallery-4.jpg",
       "title": "Founding Circle Launch",
       "caption": "Celebrating the distinguished women who founded and championed the WomenPlay network.",
       "category": "Milestones",
-      "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1200",
-      "featured": true,
+      "featured": false,
       "createdAt": "2026-06-20T00:00:00.000Z"
     },
     {
       "id": "gallery-5",
+      "image": "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=1200",
       "title": "Games Evenings",
       "caption": "Laughter-filled nights designed for fun, ease, and genuine connection.",
       "category": "Socials",
-      "image": "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=1200",
       "featured": false,
       "createdAt": "2026-06-25T00:00:00.000Z"
     },
     {
       "id": "gallery-6",
+      "image": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=1200",
       "title": "Annual WomenPlay Summit",
       "caption": "Our flagship luxury summit gathering female C-suite leaders from around the world.",
       "category": "Summits",
-      "image": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=1200",
       "featured": true,
       "createdAt": "2026-06-28T00:00:00.000Z"
     }
   ],
+  "founders": [
+    {
+      "id": "founder-1",
+      "bio": "Advocate for gender diversity, private wealth coach, and founder of WomenPlay with 20+ years of NASDAQ boardroom experience.",
+      "name": "Eleanor Vance",
+      "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=300",
+      "order": 1,
+      "title": "Executive Director & Founder"
+    },
+    {
+      "id": "founder-2",
+      "bio": "Venture capitalist and capital advisory specialist focusing on seed investment pipelines and scale sponsorships.",
+      "name": "Clara Montgomery",
+      "image": "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=300",
+      "order": 2,
+      "title": "Head of Capital Alliances"
+    },
+    {
+      "id": "founder-3",
+      "bio": "Social network strategist and curator of high-profile summit venues, dinners, and international chapters.",
+      "name": "Olivia Chen",
+      "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=300",
+      "order": 3,
+      "title": "Director of Global Engagements"
+    }
+  ],
+  "newsletterSubscribers": [
+    "uno.nwankwo@gmail.com"
+  ],
+  "volunteers": [],
+  "attendance": [],
   "subscriptions": [],
+  "processedWebhookEvents": [],
   "membershipBadges": [
     {
       "id": "badge-basic",
-      "tier": "BASIC",
-      "name": "Basic Access Badge",
       "cost": 0,
+      "name": "Basic Access Badge",
+      "tier": "BASIC",
       "benefits": [
         "Access to community feed",
         "Digital contact exchange",
@@ -404,9 +1201,9 @@
     },
     {
       "id": "badge-premium",
-      "tier": "PREMIUM",
-      "name": "Premium Leadership Badge",
       "cost": 100,
+      "name": "Premium Leadership Badge",
+      "tier": "PREMIUM",
       "benefits": [
         "All Basic benefits",
         "Access to Sunset Networking Cocktail",
@@ -416,9 +1213,9 @@
     },
     {
       "id": "badge-elite",
-      "tier": "ELITE",
-      "name": "Elite Boardroom Sponsor Badge",
       "cost": 250,
+      "name": "Elite Boardroom Sponsor Badge",
+      "tier": "ELITE",
       "benefits": [
         "All Premium benefits",
         "Front-row premium VIP gold badge",
@@ -427,8 +1224,155 @@
       ]
     }
   ],
-  "founders": [],
-  "volunteers": [],
-  "attendance": [],
-  "launchTickets": []
+  "sentEmails": [
+    {
+      "id": "mail-1790580211334-gwedj",
+      "to": "exec.admin.test1790580208275@example.com",
+      "sentAt": "2026-09-28T07:23:31.334Z",
+      "status": "sent_via_smtp",
+      "subject": "Welcome to WomenPlay Executive Secretariat, Dr. Sarah Connor!",
+      "htmlContent": "<div style=\"font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 28px; border: 1px solid #e2e8f0; border-radius: 16px; background: #ffffff; color: #1e293b;\">\n  <div style=\"text-align: center; margin-bottom: 24px;\">\n    <div style=\"display: inline-block; background: #fdf2f8; color: #9d174d; padding: 5px 16px; border-radius: 20px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;\">Executive Leadership</div>\n    <h1 style=\"color: #0f172a; margin: 0 0 6px 0; font-size: 24px; font-weight: 800;\">Welcome to the Executive Secretariat</h1>\n    <p style=\"color: #64748b; font-size: 13px; margin: 0;\">Official WomenPlay Administrator Appointment</p>\n  </div>\n  <hr style=\"border: none; border-top: 1px solid #f1f5f9; margin: 20px 0;\" />\n  <p style=\"font-size: 15px; color: #1e293b; line-height: 1.6;\">Dear <strong>Dr. Sarah Connor</strong>,</p>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">\n    It is our distinct privilege to officially welcome you as an <strong>Executive Administrator</strong> of the <strong>WomenPlay Global Network</strong>. Your administrative profile has been designated as <strong>Director of Strategic Alliances</strong> (WomenPlay International).\n  </p>\n  <div style=\"background: #f8fafc; padding: 18px; border-radius: 12px; border-left: 4px solid #9d174d; margin: 20px 0;\">\n    <p style=\"margin: 0 0 8px 0; font-size: 13px; color: #334155;\"><strong>Executive Account Profile:</strong></p>\n    <p style=\"margin: 0 0 6px 0; font-size: 13px; color: #475569;\">&bull; <strong>Name:</strong> Dr. Sarah Connor</p>\n    <p style=\"margin: 0 0 6px 0; font-size: 13px; color: #475569;\">&bull; <strong>Official Email:</strong> exec.admin.test1790580208275@example.com</p>\n    <p style=\"margin: 0 0 6px 0; font-size: 13px; color: #475569;\">&bull; <strong>Executive Role:</strong> Director of Strategic Alliances</p>\n    <p style=\"margin: 0; font-size: 13px; color: #475569;\">&bull; <strong>Chapter / Entity:</strong> WomenPlay International</p>\n  </div>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">\n    As an administrator, you hold elevated governance capabilities across our event registries, member directories, ticket pass management, and operational communications.\n  </p>\n  <div style=\"text-align: center; margin: 28px 0;\">\n    <a href=\"http://localhost:3000/?tab=admin\" style=\"background: #0f172a; color: #ffffff; padding: 14px 32px; text-decoration: none; border-radius: 10px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 14px rgba(15, 23, 42, 0.25);\">Launch Administrator Dashboard</a>\n  </div>\n  <div style=\"background: #fdf2f8; padding: 16px; border-radius: 10px; border: 1px solid #fce7f3; margin: 20px 0;\">\n    <p style=\"margin: 0 0 6px 0; font-size: 12px; font-weight: bold; color: #9d174d;\">Administrative Security Notice:</p>\n    <p style=\"margin: 0; font-size: 12px; color: #475569; line-height: 1.5;\">\n      All executive access requires two-factor authentication (2FA). Never share your credentials or 2FA codes. All administrative transactions are logged in the immutable audit ledger.\n    </p>\n  </div>\n  <hr style=\"border: none; border-top: 1px solid #f1f5f9; margin: 24px 0;\" />\n  <p style=\"font-size: 11px; color: #94a3b8; text-align: center; margin: 0;\">WomenPlay Secretariat &bull; Global Executive Governance &bull; Confidential Executive Dispatch</p>\n</div>"
+    },
+    {
+      "id": "mail-1790580208301-i3gs6",
+      "to": "exec.admin.test1790580208275@example.com",
+      "sentAt": "2026-09-28T07:23:28.301Z",
+      "status": "sent_via_smtp",
+      "subject": "Action Required: Confirm Your WomenPlay Administrator Account, Dr. Sarah Connor",
+      "htmlContent": "<div style=\"font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 28px; border: 1px solid #e2e8f0; border-radius: 16px; background: #ffffff; color: #1e293b;\">\n  <div style=\"text-align: center; margin-bottom: 24px;\">\n    <div style=\"display: inline-block; background: #fdf2f8; color: #9d174d; padding: 5px 16px; border-radius: 20px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;\">Executive Administration</div>\n    <h1 style=\"color: #0f172a; margin: 0 0 6px 0; font-size: 24px; font-weight: 800;\">Administrator Email Confirmation</h1>\n    <p style=\"color: #64748b; font-size: 13px; margin: 0;\">Official Administrator Provisioning Notice</p>\n  </div>\n  <hr style=\"border: none; border-top: 1px solid #f1f5f9; margin: 20px 0;\" />\n  <p style=\"font-size: 15px; color: #1e293b; line-height: 1.6;\">Dear <strong>Dr. Sarah Connor</strong>,</p>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">\n    You have been provisioned as an <strong>Executive Administrator</strong> for the WomenPlay Network with the role of <strong>Director of Strategic Alliances</strong> (WomenPlay International).\n  </p>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">\n    To activate your administrative privileges and access the executive portal, please confirm your email address by clicking the link below:\n  </p>\n  <div style=\"text-align: center; margin: 28px 0;\">\n    <a href=\"http://localhost:3000/activate?token=vtoken_admin_1790580208297_adtg4kx3\" style=\"background: #9d174d; color: #ffffff; padding: 14px 32px; text-decoration: none; border-radius: 10px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 14px rgba(157, 23, 77, 0.3);\">Confirm Email & Activate Administrator Account</a>\n  </div>\n  <div style=\"background: #f8fafc; padding: 16px; border-radius: 10px; border: 1px solid #e2e8f0; margin: 20px 0;\">\n    <p style=\"margin: 0 0 6px 0; font-size: 12px; font-weight: bold; color: #475569;\">If the button above does not work, copy and paste this confirmation URL into your browser:</p>\n    <a href=\"http://localhost:3000/activate?token=vtoken_admin_1790580208297_adtg4kx3\" style=\"color: #9d174d; font-size: 12px; word-break: break-all; text-decoration: underline;\">http://localhost:3000/activate?token=vtoken_admin_1790580208297_adtg4kx3</a>\n  </div>\n  <div style=\"background: #fdf2f8; padding: 18px; border-radius: 12px; border-left: 4px solid #9d174d; margin: 20px 0;\">\n    <p style=\"margin: 0 0 8px 0; font-size: 12px; font-weight: bold; color: #9d174d;\">Security Onboarding Sequence:</p>\n    <ol style=\"margin: 0; padding-left: 18px; font-size: 12px; color: #475569; line-height: 1.7;\">\n      <li><strong>Confirm Email:</strong> Click the confirmation link above to verify your account email (<strong>exec.admin.test1790580208275@example.com</strong>).</li>\n      <li><strong>Configure Password:</strong> After confirmation or on first login, you will create your secure administrative password.</li>\n      <li><strong>Mandatory 2FA Setup:</strong> You will configure Two-Factor Authentication (authenticator app or email OTP) upon your first login to ensure maximum portal security.</li>\n    </ol>\n  </div>\n  <hr style=\"border: none; border-top: 1px solid #f1f5f9; margin: 24px 0;\" />\n  <p style=\"font-size: 11px; color: #94a3b8; text-align: center; margin: 0;\">WomenPlay Secretariat &bull; Global Executive Administration &bull; Automated Provisioning Dispatch</p>\n</div>"
+    },
+    {
+      "id": "mail-1790541529756-tkoq1",
+      "to": "test.admin.provision@womenplay.org",
+      "error": "Can't send mail - all recipients were rejected: 550 No Such User Here",
+      "sentAt": "2026-09-27T20:38:49.756Z",
+      "status": "failed_smtp",
+      "subject": "Welcome to WomenPlay Executive Secretariat, Lady Margaret Thatcher!",
+      "htmlContent": "<div style=\"font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 28px; border: 1px solid #e2e8f0; border-radius: 16px; background: #ffffff; color: #1e293b;\">\n  <div style=\"text-align: center; margin-bottom: 24px;\">\n    <div style=\"display: inline-block; background: #fdf2f8; color: #9d174d; padding: 5px 16px; border-radius: 20px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;\">Executive Leadership</div>\n    <h1 style=\"color: #0f172a; margin: 0 0 6px 0; font-size: 24px; font-weight: 800;\">Welcome to the Executive Secretariat</h1>\n    <p style=\"color: #64748b; font-size: 13px; margin: 0;\">Official WomenPlay Administrator Appointment</p>\n  </div>\n  <hr style=\"border: none; border-top: 1px solid #f1f5f9; margin: 20px 0;\" />\n  <p style=\"font-size: 15px; color: #1e293b; line-height: 1.6;\">Dear <strong>Lady Margaret Thatcher</strong>,</p>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">\n    It is our distinct privilege to officially welcome you as an <strong>Executive Administrator</strong> of the <strong>WomenPlay Global Network</strong>. Your administrative profile has been designated as <strong>Honorary Director</strong> (WomenPlay Network).\n  </p>\n  <div style=\"background: #f8fafc; padding: 18px; border-radius: 12px; border-left: 4px solid #9d174d; margin: 20px 0;\">\n    <p style=\"margin: 0 0 8px 0; font-size: 13px; color: #334155;\"><strong>Executive Account Profile:</strong></p>\n    <p style=\"margin: 0 0 6px 0; font-size: 13px; color: #475569;\">&bull; <strong>Name:</strong> Lady Margaret Thatcher</p>\n    <p style=\"margin: 0 0 6px 0; font-size: 13px; color: #475569;\">&bull; <strong>Official Email:</strong> test.admin.provision@womenplay.org</p>\n    <p style=\"margin: 0 0 6px 0; font-size: 13px; color: #475569;\">&bull; <strong>Executive Role:</strong> Honorary Director</p>\n    <p style=\"margin: 0; font-size: 13px; color: #475569;\">&bull; <strong>Chapter / Entity:</strong> WomenPlay Network</p>\n  </div>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">\n    As an administrator, you hold elevated governance capabilities across our event registries, member directories, ticket pass management, and operational communications.\n  </p>\n  <div style=\"text-align: center; margin: 28px 0;\">\n    <a href=\"http://localhost:3000/?tab=admin\" style=\"background: #0f172a; color: #ffffff; padding: 14px 32px; text-decoration: none; border-radius: 10px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 14px rgba(15, 23, 42, 0.25);\">Launch Administrator Dashboard</a>\n  </div>\n  <div style=\"background: #fdf2f8; padding: 16px; border-radius: 10px; border: 1px solid #fce7f3; margin: 20px 0;\">\n    <p style=\"margin: 0 0 6px 0; font-size: 12px; font-weight: bold; color: #9d174d;\">Administrative Security Notice:</p>\n    <p style=\"margin: 0; font-size: 12px; color: #475569; line-height: 1.5;\">\n      All executive access requires two-factor authentication (2FA). Never share your credentials or 2FA codes. All administrative transactions are logged in the immutable audit ledger.\n    </p>\n  </div>\n  <hr style=\"border: none; border-top: 1px solid #f1f5f9; margin: 24px 0;\" />\n  <p style=\"font-size: 11px; color: #94a3b8; text-align: center; margin: 0;\">WomenPlay Secretariat &bull; Global Executive Governance &bull; Confidential Executive Dispatch</p>\n</div>"
+    },
+    {
+      "id": "mail-1790541528477-ud0oi",
+      "to": "test.admin.provision@womenplay.org",
+      "error": "Can't send mail - all recipients were rejected: 550 No Such User Here",
+      "sentAt": "2026-09-27T20:38:48.477Z",
+      "status": "failed_smtp",
+      "subject": "Action Required: Confirm Your WomenPlay Administrator Account, Lady Margaret Thatcher",
+      "htmlContent": "<div style=\"font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 28px; border: 1px solid #e2e8f0; border-radius: 16px; background: #ffffff; color: #1e293b;\">\n  <div style=\"text-align: center; margin-bottom: 24px;\">\n    <div style=\"display: inline-block; background: #fdf2f8; color: #9d174d; padding: 5px 16px; border-radius: 20px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;\">Executive Administration</div>\n    <h1 style=\"color: #0f172a; margin: 0 0 6px 0; font-size: 24px; font-weight: 800;\">Administrator Email Confirmation</h1>\n    <p style=\"color: #64748b; font-size: 13px; margin: 0;\">Official Administrator Provisioning Notice</p>\n  </div>\n  <hr style=\"border: none; border-top: 1px solid #f1f5f9; margin: 20px 0;\" />\n  <p style=\"font-size: 15px; color: #1e293b; line-height: 1.6;\">Dear <strong>Lady Margaret Thatcher</strong>,</p>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">\n    You have been provisioned as an <strong>Executive Administrator</strong> for the WomenPlay Network with the role of <strong>Honorary Director</strong> (WomenPlay Network).\n  </p>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">\n    To activate your administrative privileges and access the executive portal, please confirm your email address by clicking the link below:\n  </p>\n  <div style=\"text-align: center; margin: 28px 0;\">\n    <a href=\"http://localhost:3000/activate?token=vtoken_admin_1790541528473_paf94qnj\" style=\"background: #9d174d; color: #ffffff; padding: 14px 32px; text-decoration: none; border-radius: 10px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 14px rgba(157, 23, 77, 0.3);\">Confirm Email & Activate Administrator Account</a>\n  </div>\n  <div style=\"background: #f8fafc; padding: 16px; border-radius: 10px; border: 1px solid #e2e8f0; margin: 20px 0;\">\n    <p style=\"margin: 0 0 6px 0; font-size: 12px; font-weight: bold; color: #475569;\">If the button above does not work, copy and paste this confirmation URL into your browser:</p>\n    <a href=\"http://localhost:3000/activate?token=vtoken_admin_1790541528473_paf94qnj\" style=\"color: #9d174d; font-size: 12px; word-break: break-all; text-decoration: underline;\">http://localhost:3000/activate?token=vtoken_admin_1790541528473_paf94qnj</a>\n  </div>\n  <div style=\"background: #fdf2f8; padding: 18px; border-radius: 12px; border-left: 4px solid #9d174d; margin: 20px 0;\">\n    <p style=\"margin: 0 0 8px 0; font-size: 12px; font-weight: bold; color: #9d174d;\">Security Onboarding Sequence:</p>\n    <ol style=\"margin: 0; padding-left: 18px; font-size: 12px; color: #475569; line-height: 1.7;\">\n      <li><strong>Confirm Email:</strong> Click the confirmation link above to verify your account email (<strong>test.admin.provision@womenplay.org</strong>).</li>\n      <li><strong>Configure Password:</strong> After confirmation or on first login, you will create your secure administrative password.</li>\n      <li><strong>Mandatory 2FA Setup:</strong> You will configure Two-Factor Authentication (authenticator app or email OTP) upon your first login to ensure maximum portal security.</li>\n    </ol>\n  </div>\n  <hr style=\"border: none; border-top: 1px solid #f1f5f9; margin: 24px 0;\" />\n  <p style=\"font-size: 11px; color: #94a3b8; text-align: center; margin: 0;\">WomenPlay Secretariat &bull; Global Executive Administration &bull; Automated Provisioning Dispatch</p>\n</div>"
+    },
+    {
+      "id": "mail-1790540595567-q2y4v",
+      "to": "noah_linus@yahoo.com",
+      "sentAt": "2026-09-27T20:23:15.567Z",
+      "status": "sent_via_smtp",
+      "subject": "Welcome to WomenPlay Secretariat — Confirm Your Administrator Account, Noah Linus",
+      "htmlContent": "<div style=\"font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 28px; border: 1px solid #e2e8f0; border-radius: 16px; background: #ffffff; color: #1e293b;\">\n  <div style=\"text-align: center; margin-bottom: 24px;\">\n    <div style=\"display: inline-block; background: #fdf2f8; color: #9d174d; padding: 5px 16px; border-radius: 20px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;\">Executive Administration</div>\n    <h1 style=\"color: #0f172a; margin: 0 0 6px 0; font-size: 24px; font-weight: 800;\">Welcome to WomenPlay Secretariat</h1>\n    <p style=\"color: #64748b; font-size: 13px; margin: 0;\">Official Administrator Provisioning Notice</p>\n  </div>\n  <hr style=\"border: none; border-top: 1px solid #f1f5f9; margin: 20px 0;\" />\n  <p style=\"font-size: 15px; color: #1e293b; line-height: 1.6;\">Dear <strong>Noah Linus</strong>,</p>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">\n    You have been provisioned as an <strong>Executive Administrator</strong> for the WomenPlay Network with the role of <strong>Executive Administrator</strong> (WomenPlay Executive Network).\n  </p>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">\n    To activate your administrative privileges and access the executive portal, please confirm your email address by clicking the link below:\n  </p>\n  <div style=\"text-align: center; margin: 28px 0;\">\n    <a href=\"https://womenpla.ai.studio/activate?token=vtoken_1786018093663_8ou84m3\" style=\"background: #9d174d; color: #ffffff; padding: 14px 32px; text-decoration: none; border-radius: 10px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 14px rgba(157, 23, 77, 0.3);\">Confirm Email & Activate Administrator Account</a>\n  </div>\n  <div style=\"background: #f8fafc; padding: 16px; border-radius: 10px; border: 1px solid #e2e8f0; margin: 20px 0;\">\n    <p style=\"margin: 0 0 6px 0; font-size: 12px; font-weight: bold; color: #475569;\">If the button above does not work, copy and paste this confirmation URL into your browser:</p>\n    <a href=\"https://womenpla.ai.studio/activate?token=vtoken_1786018093663_8ou84m3\" style=\"color: #9d174d; font-size: 12px; word-break: break-all; text-decoration: underline;\">https://womenpla.ai.studio/activate?token=vtoken_1786018093663_8ou84m3</a>\n  </div>\n  <div style=\"background: #fdf2f8; padding: 18px; border-radius: 12px; border-left: 4px solid #9d174d; margin: 20px 0;\">\n    <p style=\"margin: 0 0 8px 0; font-size: 12px; font-weight: bold; color: #9d174d;\">Security Onboarding Sequence:</p>\n    <ol style=\"margin: 0; padding-left: 18px; font-size: 12px; color: #475569; line-height: 1.7;\">\n      <li><strong>Confirm Email:</strong> Click the confirmation link above to verify your account email (<strong>noah_linus@yahoo.com</strong>).</li>\n      <li><strong>Configure Password:</strong> After confirmation or on first login, you will create your secure administrative password.</li>\n      <li><strong>Mandatory 2FA Setup:</strong> You will configure Two-Factor Authentication (authenticator app or email OTP) upon your first login to ensure maximum portal security.</li>\n    </ol>\n  </div>\n  <hr style=\"border: none; border-top: 1px solid #f1f5f9; margin: 24px 0;\" />\n  <p style=\"font-size: 11px; color: #94a3b8; text-align: center; margin: 0;\">WomenPlay Secretariat &bull; Global Executive Administration &bull; Automated Provisioning Dispatch</p>\n</div>"
+    },
+    {
+      "id": "mail-1790539950664-1dphw",
+      "to": "newadmin.test1790539950653@womenplay.org",
+      "error": "Can't send mail - all recipients were rejected: 550 No Such User Here",
+      "sentAt": "2026-09-27T20:12:30.664Z",
+      "status": "failed_smtp",
+      "subject": "Welcome to WomenPlay Secretariat — Confirm Your Administrator Account, Dr. Evelyn Wright",
+      "htmlContent": "<div style=\"font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 28px; border: 1px solid #e2e8f0; border-radius: 16px; background: #ffffff; color: #1e293b;\">\n  <div style=\"text-align: center; margin-bottom: 24px;\">\n    <div style=\"display: inline-block; background: #fdf2f8; color: #9d174d; padding: 5px 16px; border-radius: 20px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;\">Executive Administration</div>\n    <h1 style=\"color: #0f172a; margin: 0 0 6px 0; font-size: 24px; font-weight: 800;\">Welcome to WomenPlay Secretariat</h1>\n    <p style=\"color: #64748b; font-size: 13px; margin: 0;\">Official Administrator Provisioning Notice</p>\n  </div>\n  <hr style=\"border: none; border-top: 1px solid #f1f5f9; margin: 20px 0;\" />\n  <p style=\"font-size: 15px; color: #1e293b; line-height: 1.6;\">Dear <strong>Dr. Evelyn Wright</strong>,</p>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">\n    You have been provisioned as an <strong>Executive Administrator</strong> for the WomenPlay Network with the role of <strong>Director of Global Operations</strong> (WomenPlay International).\n  </p>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">\n    To activate your administrative privileges and access the executive portal, please confirm your email address by clicking the link below:\n  </p>\n  <div style=\"text-align: center; margin: 28px 0;\">\n    <a href=\"http://localhost:3000/activate?token=vtoken_admin_1790539950660_y24vraem\" style=\"background: #9d174d; color: #ffffff; padding: 14px 32px; text-decoration: none; border-radius: 10px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 14px rgba(157, 23, 77, 0.3);\">Confirm Email & Activate Administrator Account</a>\n  </div>\n  <div style=\"background: #f8fafc; padding: 16px; border-radius: 10px; border: 1px solid #e2e8f0; margin: 20px 0;\">\n    <p style=\"margin: 0 0 6px 0; font-size: 12px; font-weight: bold; color: #475569;\">If the button above does not work, copy and paste this confirmation URL into your browser:</p>\n    <a href=\"http://localhost:3000/activate?token=vtoken_admin_1790539950660_y24vraem\" style=\"color: #9d174d; font-size: 12px; word-break: break-all; text-decoration: underline;\">http://localhost:3000/activate?token=vtoken_admin_1790539950660_y24vraem</a>\n  </div>\n  <div style=\"background: #fdf2f8; padding: 18px; border-radius: 12px; border-left: 4px solid #9d174d; margin: 20px 0;\">\n    <p style=\"margin: 0 0 8px 0; font-size: 12px; font-weight: bold; color: #9d174d;\">Security Onboarding Sequence:</p>\n    <ol style=\"margin: 0; padding-left: 18px; font-size: 12px; color: #475569; line-height: 1.7;\">\n      <li><strong>Confirm Email:</strong> Click the confirmation link above to verify your account email (<strong>newadmin.test1790539950653@womenplay.org</strong>).</li>\n      <li><strong>Configure Password:</strong> After confirmation or on first login, you will create your secure administrative password.</li>\n      <li><strong>Mandatory 2FA Setup:</strong> You will configure Two-Factor Authentication (authenticator app or email OTP) upon your first login to ensure maximum portal security.</li>\n    </ol>\n  </div>\n  <hr style=\"border: none; border-top: 1px solid #f1f5f9; margin: 24px 0;\" />\n  <p style=\"font-size: 11px; color: #94a3b8; text-align: center; margin: 0;\">WomenPlay Secretariat &bull; Global Executive Administration &bull; Automated Provisioning Dispatch</p>\n</div>"
+    },
+    {
+      "id": "mail-1789664415434-iqy0k",
+      "to": "admin@womenplay.org",
+      "sentAt": "2026-09-17T17:00:15.434Z",
+      "status": "sent_via_smtp",
+      "subject": "Reset Your WomenPlay Password",
+      "htmlContent": "\n    <div style=\"font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #f1f5f9; border-radius: 20px; background-color: #ffffff;\">\n      <div style=\"text-align: center; margin-bottom: 24px;\">\n        <h2 style=\"color: #0f172a; font-size: 20px; margin-bottom: 4px;\">Reset Your Password</h2>\n        <p style=\"color: #db2777; font-size: 12px; font-weight: bold; text-transform: uppercase;\">WomenPlay Network</p>\n      </div>\n      <p style=\"color: #334155; font-size: 14px; line-height: 1.6;\">Hello <strong>John Doe</strong>,</p>\n      <p style=\"color: #334155; font-size: 14px; line-height: 1.6;\">We received a request to reset the password for your WomenPlay account. This link is valid for <strong>1 hour</strong>. If you didn't request this, you can safely ignore this email.</p>\n      <div style=\"margin: 28px 0; text-align: center;\">\n        <a href=\"https://womenpla.ai.studio/reset-password?token=prt_1789664415432_5frtja6a93a3kv\" target=\"_blank\" style=\"background-color: #db2777; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 14px; display: inline-block;\">Reset Password</a>\n      </div>\n      <p style=\"color: #64748b; font-size: 12px; line-height: 1.5;\">If the button above does not work, copy and paste this URL into your web browser:<br/><a href=\"https://womenpla.ai.studio/reset-password?token=prt_1789664415432_5frtja6a93a3kv\" style=\"color: #db2777; word-break: break-all;\">https://womenpla.ai.studio/reset-password?token=prt_1789664415432_5frtja6a93a3kv</a></p>\n      <hr style=\"border: none; border-top: 1px solid #f1f5f9; margin: 24px 0;\" />\n      <p style=\"color: #94a3b8; font-size: 11px; text-align: center;\">If you did not request this, you can safely ignore this message.</p>\n    </div>\n  "
+    },
+    {
+      "id": "mail-1789545864444-5buj6",
+      "to": "uno.nwankwo@gmail.com",
+      "sentAt": "2026-09-16T08:04:24.444Z",
+      "status": "sent_via_smtp",
+      "subject": "Thank You - WomenPlay Volunteer Application Received",
+      "htmlContent": "\n        <div style=\"font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #f1f5f9; border-radius: 20px; background-color: #ffffff;\">\n          <div style=\"text-align: center; margin-bottom: 24px;\">\n            <h2 style=\"color: #0f172a; font-size: 20px; margin-bottom: 4px;\">Application Received!</h2>\n            <p style=\"color: #db2777; font-size: 12px; font-weight: bold; text-transform: uppercase;\">WomenPlay Founding Volunteer Program</p>\n          </div>\n          <p style=\"color: #334155; font-size: 14px; line-height: 1.6;\">Hello <strong>Uno Nwankwo</strong>,</p>\n          <p style=\"color: #334155; font-size: 14px; line-height: 1.6;\">\n            Thank you for applying to join the WomenPlay founding volunteer team for the <strong>Class of 2026</strong> launch experience. Your application has been received and will be reviewed by our team.\n          </p>\n          <div style=\"background: #fdf2f8; padding: 16px; border-radius: 8px; border-left: 4px solid #db2777; margin: 20px 0;\">\n            <p style=\"margin: 0 0 8px 0; font-size: 13px; color: #475569;\"><strong>Your Application:</strong></p>\n            <p style=\"margin: 0 0 4px 0; font-size: 13px; color: #475569;\">Uno Nwankwo</p>\n            <p style=\"margin: 0 0 4px 0; font-size: 13px; color: #475569;\">uno.nwankwo@gmail.com</p>\n            <p style=\"margin: 0 0 4px 0; font-size: 13px; color: #475569;\">Availability: Full day</p>\n            <p style=\"margin: 0; font-size: 13px; color: #475569;\">Roles of Interest: Guest Experience</p>\n          </div>\n          <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">\n            If your application is approved, you will receive an email with instructions to activate your volunteer portal account, set your password and secure two-factor authentication, and review your assigned role and orientation details.\n          </p>\n          <hr style=\"border: none; border-top: 1px solid #f1f5f9; margin: 24px 0;\" />\n          <p style=\"font-size: 11px; color: #94a3b8; text-align: center;\">WomenPlay &bull; Founding Volunteer Program &bull; Automated Confirmation</p>\n        </div>\n      "
+    },
+    {
+      "id": "mail-1789545864438-a8s41",
+      "to": "noreply@womenplay.org",
+      "sentAt": "2026-09-16T08:04:24.438Z",
+      "status": "sent_via_smtp",
+      "subject": "New Contact Inquiry: New Founding Volunteer Application - Uno Nwankwo",
+      "htmlContent": "\n    <!DOCTYPE html>\n    <html>\n    <head>\n      <meta charset=\"utf-8\">\n      <style>\n        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8fafc; color: #1e293b; margin: 0; padding: 24px; }\n        .card { max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 20px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); }\n        .header { background: #020617; padding: 32px 28px; text-align: center; color: #ffffff; border-bottom: 3px solid #db2777; }\n        .badge { display: inline-block; background: #db2777; color: #ffffff; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; padding: 4px 12px; border-radius: 999px; margin-bottom: 12px; }\n        .title { font-size: 22px; font-weight: 800; margin: 0; color: #ffffff; }\n        .body { padding: 32px 28px; }\n        .meta-table { width: 100%; border-collapse: collapse; margin: 20px 0; background: #f8fafc; border-radius: 12px; overflow: hidden; border: 1px solid #e2e8f0; }\n        .meta-table td { padding: 12px 16px; font-size: 13px; border-bottom: 1px solid #e2e8f0; }\n        .meta-table td:first-child { font-weight: 700; color: #64748b; width: 35%; }\n        .meta-table td:last-child { color: #0f172a; font-weight: 600; }\n        .summary-box { background: #fff5f8; border-left: 4px solid #db2777; padding: 16px; border-radius: 8px; font-size: 13px; color: #334155; line-height: 1.6; margin-top: 16px; white-space: pre-wrap; }\n        .btn-container { text-align: center; margin-top: 32px; }\n        .btn { display: inline-block; background: #0f172a; color: #ffffff !important; font-size: 13px; font-weight: 700; text-decoration: none; padding: 14px 28px; border-radius: 12px; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 12px rgba(15,23,42,0.15); }\n        .footer { background: #f1f5f9; padding: 20px 28px; text-align: center; font-size: 11px; color: #94a3b8; border-top: 1px solid #e2e8f0; }\n      </style>\n    </head>\n    <body>\n      <div class=\"card\">\n        <div class=\"header\">\n          <div class=\"badge\">Immediate Executive Alert</div>\n          <h1 class=\"title\">Contact Inquiry Notification</h1>\n        </div>\n        <div class=\"body\">\n          <p style=\"font-size: 14px; margin-top: 0; color: #475569;\">\n            A new <strong>contact inquiry</strong> activity was registered on the WomenPlay Secretariat portal:\n          </p>\n\n          <table class=\"meta-table\">\n            <tr>\n              <td>Title / Item</td>\n              <td>New Founding Volunteer Application - Uno Nwankwo</td>\n            </tr>\n            <tr><td>Submitted By</td><td>Uno Nwankwo</td></tr>\n            <tr><td>Email Address</td><td><a href=\"mailto:uno.nwankwo@gmail.com\" style=\"color: #db2777;\">uno.nwankwo@gmail.com</a></td></tr>\n            \n            <tr>\n              <td>Timestamp</td>\n              <td>9/16/2026, 8:04:24 AM</td>\n            </tr>\n          </table>\n\n          <div class=\"summary-box\">\n            <strong>Details / Message:</strong><br/>\n            Phone: 6043540930\nAvailability: Full day\nRoles: Guest Experience\n\nn/a\n          </div>\n\n          <div class=\"btn-container\">\n            <a href=\"https://womenplay-143754772461.europe-west3.run.app/admin\" class=\"btn\">View Details in Admin Dashboard &rarr;</a>\n          </div>\n        </div>\n        <div class=\"footer\">\n          WomenPlay Global Secretariat • Executive Automated Alert System<br/>\n          This is an automated notification sent to system administrators via SMTP.\n        </div>\n      </div>\n    </body>\n    </html>\n  "
+    },
+    {
+      "id": "mail-1789545377614-7enry",
+      "to": "uno.nwankwo@gmail.com",
+      "sentAt": "2026-09-16T07:56:17.614Z",
+      "status": "sent_via_smtp",
+      "subject": "We received your inquiry, Uno - WomenPlay Secretariat",
+      "htmlContent": "<div style=\"text-align: center; margin-bottom: 24px;\">\n<center>\n<img src='/assets/logo.png' />\n</center>\n  </div>\n<div style=\"font-family: Arial, sans-serif; max-width: 600px; padding: 24px; border: 1px solid #e2e8f0; border-radius: 12px; background: #ffffff;\">\n  <h2 style=\"color: #9d174d; margin-top: 0;\">Thank You for Reaching Out</h2>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">Dear <strong>Uno</strong>,</p>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">\n    Thank you for contacting the WomenPlay Executive Secretariat. We have received your message regarding \"<strong>Inquiry: General question</strong>\".\n  </p>\n  <div style=\"background: #f8fafc; padding: 16px; border-radius: 8px; border-left: 4px solid #9d174d; margin: 20px 0;\">\n    <p style=\"margin: 0 0 6px 0; font-size: 12px; font-weight: bold; color: #64748b;\">Summary of Your Message:</p>\n    <p style=\"margin: 0; font-size: 13px; color: #1e293b; white-space: pre-wrap;\">testing</p>\n  </div>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">An executive representative is reviewing your message and will get back to you shortly.</p>\n  <hr style=\"border: none; border-top: 1px solid #f1f5f9; margin: 20px 0;\" />\n  <p style=\"font-size: 11px; color: #94a3b8; text-align: center;\">WomenPlay Executive Secretariat &bull; Automated Inquiry Receiver</p>\n</div>"
+    },
+    {
+      "id": "mail-1789545377610-89pzg",
+      "to": "noreply@womenplay.org",
+      "sentAt": "2026-09-16T07:56:17.610Z",
+      "status": "sent_via_smtp",
+      "subject": "New Contact Inquiry: Uno - General question",
+      "htmlContent": "\n    <!DOCTYPE html>\n    <html>\n    <head>\n      <meta charset=\"utf-8\">\n      <style>\n        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8fafc; color: #1e293b; margin: 0; padding: 24px; }\n        .card { max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 20px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); }\n        .header { background: #020617; padding: 32px 28px; text-align: center; color: #ffffff; border-bottom: 3px solid #db2777; }\n        .badge { display: inline-block; background: #db2777; color: #ffffff; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; padding: 4px 12px; border-radius: 999px; margin-bottom: 12px; }\n        .title { font-size: 22px; font-weight: 800; margin: 0; color: #ffffff; }\n        .body { padding: 32px 28px; }\n        .meta-table { width: 100%; border-collapse: collapse; margin: 20px 0; background: #f8fafc; border-radius: 12px; overflow: hidden; border: 1px solid #e2e8f0; }\n        .meta-table td { padding: 12px 16px; font-size: 13px; border-bottom: 1px solid #e2e8f0; }\n        .meta-table td:first-child { font-weight: 700; color: #64748b; width: 35%; }\n        .meta-table td:last-child { color: #0f172a; font-weight: 600; }\n        .summary-box { background: #fff5f8; border-left: 4px solid #db2777; padding: 16px; border-radius: 8px; font-size: 13px; color: #334155; line-height: 1.6; margin-top: 16px; white-space: pre-wrap; }\n        .btn-container { text-align: center; margin-top: 32px; }\n        .btn { display: inline-block; background: #0f172a; color: #ffffff !important; font-size: 13px; font-weight: 700; text-decoration: none; padding: 14px 28px; border-radius: 12px; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 12px rgba(15,23,42,0.15); }\n        .footer { background: #f1f5f9; padding: 20px 28px; text-align: center; font-size: 11px; color: #94a3b8; border-top: 1px solid #e2e8f0; }\n      </style>\n    </head>\n    <body>\n      <div class=\"card\">\n        <div class=\"header\">\n          <div class=\"badge\">Immediate Executive Alert</div>\n          <h1 class=\"title\">Contact Inquiry Notification</h1>\n        </div>\n        <div class=\"body\">\n          <p style=\"font-size: 14px; margin-top: 0; color: #475569;\">\n            A new <strong>contact inquiry</strong> activity was registered on the WomenPlay Secretariat portal:\n          </p>\n\n          <table class=\"meta-table\">\n            <tr>\n              <td>Title / Item</td>\n              <td>Uno - General question</td>\n            </tr>\n            <tr><td>Submitted By</td><td>Uno</td></tr>\n            <tr><td>Email Address</td><td><a href=\"mailto:uno.nwankwo@gmail.com\" style=\"color: #db2777;\">uno.nwankwo@gmail.com</a></td></tr>\n            \n            <tr>\n              <td>Timestamp</td>\n              <td>9/16/2026, 7:56:17 AM</td>\n            </tr>\n          </table>\n\n          <div class=\"summary-box\">\n            <strong>Details / Message:</strong><br/>\n            Area of Interest: General question\nBusiness/Organization: WomenPlay.Org\nPhone: 16043540930\n\nMessage/Proposal:\ntesting\n          </div>\n\n          <div class=\"btn-container\">\n            <a href=\"https://womenplay-143754772461.europe-west3.run.app/?tab=contacts\" class=\"btn\">View Details in Admin Dashboard &rarr;</a>\n          </div>\n        </div>\n        <div class=\"footer\">\n          WomenPlay Global Secretariat • Executive Automated Alert System<br/>\n          This is an automated notification sent to system administrators via SMTP.\n        </div>\n      </div>\n    </body>\n    </html>\n  "
+    },
+    {
+      "id": "mail-1789544908870-cuhxu",
+      "to": "uno.nwankwo@gmail.com",
+      "sentAt": "2026-09-16T07:48:28.870Z",
+      "status": "sent_via_smtp",
+      "subject": "Thank You for Connecting with WomenPlay.Org — WomenPlay.Org",
+      "htmlContent": "<div style=\"font-family: Arial, sans-serif; max-width: 600px; padding: 28px; border: 1px solid #e2e8f0; border-radius: 16px; background: #ffffff;\">\n      <div style=\"text-align: center; margin-bottom: 24px;\">\n        <h1 style=\"color: #b04a68; margin: 0; font-size: 24px; font-weight: bold; letter-spacing: 1px;\">WOMENPLAY.ORG</h1>\n        <p style=\"color: #a67744; margin: 4px 0 0 0; font-size: 11px; text-transform: uppercase; letter-spacing: 2px;\">Play. Connect. Play Again!</p>\n      </div>\n      <h2 style=\"color: #261f22; font-size: 18px; margin-top: 0;\">Sponsorship & Partnership Inquiry Received</h2>\n      <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">Dear <strong>Uno Nwankwo</strong>,</p>\n      <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">\n        Thank you for reaching out to explore a partnership between <strong>WomenPlay.Org</strong> and <strong>WomenPlay.Org</strong>!\n      </p>\n      <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">\n        We love collaborations that go beyond logos and create playful, memorable brand moments for our growing community of women.\n      </p>\n      <div style=\"background: #fdfbf7; padding: 18px; border-radius: 12px; border: 1px solid #f1e9dd; margin: 20px 0;\">\n        <p style=\"margin: 0 0 6px 0; font-size: 13px; color: #475569;\"><strong>Company / Organization:</strong> WomenPlay.Org</p>\n        <p style=\"margin: 0 0 6px 0; font-size: 13px; color: #475569;\"><strong>Partnership Interest:</strong> Event Sponsorship</p>\n        <p style=\"margin: 0 0 6px 0; font-size: 13px; color: #475569;\"><strong>Opportunity Area:</strong> Games & Social Gatherings</p>\n        <p style=\"margin: 0; font-size: 13px; color: #475569;\"><strong>Preferred Contact:</strong> Email</p>\n      </div>\n      <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">\n        Our partnerships team is reviewing your inquiry and will reach out via Email soon to discuss how we can create something amazing together.\n      </p>\n      <hr style=\"border: none; border-top: 1px solid #f1f5f9; margin: 24px 0;\" />\n      <p style=\"font-size: 12px; color: #94a3b8; text-align: center; margin: 0;\">\n        WomenPlay.Org Secretariat • <a href=\"mailto:womenplay.org@gmail.com\" style=\"color: #b04a68; text-decoration: none;\">womenplay.org@gmail.com</a>\n      </p>\n    </div>"
+    },
+    {
+      "id": "mail-1789544908861-oj3qj",
+      "to": "noreply@womenplay.org",
+      "sentAt": "2026-09-16T07:48:28.861Z",
+      "status": "sent_via_smtp",
+      "subject": "New Contact Inquiry: Sponsorship Inquiry: WomenPlay.Org",
+      "htmlContent": "\n    <!DOCTYPE html>\n    <html>\n    <head>\n      <meta charset=\"utf-8\">\n      <style>\n        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8fafc; color: #1e293b; margin: 0; padding: 24px; }\n        .card { max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 20px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); }\n        .header { background: #020617; padding: 32px 28px; text-align: center; color: #ffffff; border-bottom: 3px solid #db2777; }\n        .badge { display: inline-block; background: #db2777; color: #ffffff; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; padding: 4px 12px; border-radius: 999px; margin-bottom: 12px; }\n        .title { font-size: 22px; font-weight: 800; margin: 0; color: #ffffff; }\n        .body { padding: 32px 28px; }\n        .meta-table { width: 100%; border-collapse: collapse; margin: 20px 0; background: #f8fafc; border-radius: 12px; overflow: hidden; border: 1px solid #e2e8f0; }\n        .meta-table td { padding: 12px 16px; font-size: 13px; border-bottom: 1px solid #e2e8f0; }\n        .meta-table td:first-child { font-weight: 700; color: #64748b; width: 35%; }\n        .meta-table td:last-child { color: #0f172a; font-weight: 600; }\n        .summary-box { background: #fff5f8; border-left: 4px solid #db2777; padding: 16px; border-radius: 8px; font-size: 13px; color: #334155; line-height: 1.6; margin-top: 16px; white-space: pre-wrap; }\n        .btn-container { text-align: center; margin-top: 32px; }\n        .btn { display: inline-block; background: #0f172a; color: #ffffff !important; font-size: 13px; font-weight: 700; text-decoration: none; padding: 14px 28px; border-radius: 12px; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 12px rgba(15,23,42,0.15); }\n        .footer { background: #f1f5f9; padding: 20px 28px; text-align: center; font-size: 11px; color: #94a3b8; border-top: 1px solid #e2e8f0; }\n      </style>\n    </head>\n    <body>\n      <div class=\"card\">\n        <div class=\"header\">\n          <div class=\"badge\">Immediate Executive Alert</div>\n          <h1 class=\"title\">Contact Inquiry Notification</h1>\n        </div>\n        <div class=\"body\">\n          <p style=\"font-size: 14px; margin-top: 0; color: #475569;\">\n            A new <strong>contact inquiry</strong> activity was registered on the WomenPlay Secretariat portal:\n          </p>\n\n          <table class=\"meta-table\">\n            <tr>\n              <td>Title / Item</td>\n              <td>Sponsorship Inquiry: WomenPlay.Org</td>\n            </tr>\n            <tr><td>Submitted By</td><td>Uno Nwankwo</td></tr>\n            <tr><td>Email Address</td><td><a href=\"mailto:uno.nwankwo@gmail.com\" style=\"color: #db2777;\">uno.nwankwo@gmail.com</a></td></tr>\n            \n            <tr>\n              <td>Timestamp</td>\n              <td>9/16/2026, 7:48:28 AM</td>\n            </tr>\n          </table>\n\n          <div class=\"summary-box\">\n            <strong>Details / Message:</strong><br/>\n            Contact: Uno Nwankwo (uno.nwankwo@gmail.com)\nInterest: Event Sponsorship\nOpportunity: Games & Social Gatherings\nProposal: testing\n          </div>\n\n          <div class=\"btn-container\">\n            <a href=\"https://womenplay-143754772461.europe-west3.run.app/?tab=contacts\" class=\"btn\">View Details in Admin Dashboard &rarr;</a>\n          </div>\n        </div>\n        <div class=\"footer\">\n          WomenPlay Global Secretariat • Executive Automated Alert System<br/>\n          This is an automated notification sent to system administrators via SMTP.\n        </div>\n      </div>\n    </body>\n    </html>\n  "
+    },
+    {
+      "id": "mail-1789408781621-wzh9t",
+      "to": "numerounonwankwo@gmail.com",
+      "sentAt": "2026-09-14T17:59:41.621Z",
+      "status": "sent_via_smtp",
+      "subject": "We received your inquiry, Uno - WomenPlay Secretariat",
+      "htmlContent": "<div style=\"text-align: center; margin-bottom: 24px;\">\n<center>\n<img src='/assets/logo.png' />\n</center>\n  </div>\n<div style=\"font-family: Arial, sans-serif; max-width: 600px; padding: 24px; border: 1px solid #e2e8f0; border-radius: 12px; background: #ffffff;\">\n  <h2 style=\"color: #9d174d; margin-top: 0;\">Thank You for Reaching Out</h2>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">Dear <strong>Uno</strong>,</p>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">\n    Thank you for contacting the WomenPlay Executive Secretariat. We have received your message regarding \"<strong>Inquiry: General question</strong>\".\n  </p>\n  <div style=\"background: #f8fafc; padding: 16px; border-radius: 8px; border-left: 4px solid #9d174d; margin: 20px 0;\">\n    <p style=\"margin: 0 0 6px 0; font-size: 12px; font-weight: bold; color: #64748b;\">Summary of Your Message:</p>\n    <p style=\"margin: 0; font-size: 13px; color: #1e293b; white-space: pre-wrap;\">hello</p>\n  </div>\n  <p style=\"font-size: 14px; color: #334155; line-height: 1.6;\">An executive representative is reviewing your message and will get back to you shortly.</p>\n  <hr style=\"border: none; border-top: 1px solid #f1f5f9; margin: 20px 0;\" />\n  <p style=\"font-size: 11px; color: #94a3b8; text-align: center;\">WomenPlay Executive Secretariat &bull; Automated Inquiry Receiver</p>\n</div>"
+    },
+    {
+      "id": "mail-1789408781615-aoicz",
+      "to": "noreply@womenplay.org",
+      "sentAt": "2026-09-14T17:59:41.615Z",
+      "status": "sent_via_smtp",
+      "subject": "New Contact Inquiry: Uno - General question",
+      "htmlContent": "\n    <!DOCTYPE html>\n    <html>\n    <head>\n      <meta charset=\"utf-8\">\n      <style>\n        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8fafc; color: #1e293b; margin: 0; padding: 24px; }\n        .card { max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 20px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); }\n        .header { background: #020617; padding: 32px 28px; text-align: center; color: #ffffff; border-bottom: 3px solid #db2777; }\n        .badge { display: inline-block; background: #db2777; color: #ffffff; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; padding: 4px 12px; border-radius: 999px; margin-bottom: 12px; }\n        .title { font-size: 22px; font-weight: 800; margin: 0; color: #ffffff; }\n        .body { padding: 32px 28px; }\n        .meta-table { width: 100%; border-collapse: collapse; margin: 20px 0; background: #f8fafc; border-radius: 12px; overflow: hidden; border: 1px solid #e2e8f0; }\n        .meta-table td { padding: 12px 16px; font-size: 13px; border-bottom: 1px solid #e2e8f0; }\n        .meta-table td:first-child { font-weight: 700; color: #64748b; width: 35%; }\n        .meta-table td:last-child { color: #0f172a; font-weight: 600; }\n        .summary-box { background: #fff5f8; border-left: 4px solid #db2777; padding: 16px; border-radius: 8px; font-size: 13px; color: #334155; line-height: 1.6; margin-top: 16px; white-space: pre-wrap; }\n        .btn-container { text-align: center; margin-top: 32px; }\n        .btn { display: inline-block; background: #0f172a; color: #ffffff !important; font-size: 13px; font-weight: 700; text-decoration: none; padding: 14px 28px; border-radius: 12px; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 12px rgba(15,23,42,0.15); }\n        .footer { background: #f1f5f9; padding: 20px 28px; text-align: center; font-size: 11px; color: #94a3b8; border-top: 1px solid #e2e8f0; }\n      </style>\n    </head>\n    <body>\n      <div class=\"card\">\n        <div class=\"header\">\n          <div class=\"badge\">Immediate Executive Alert</div>\n          <h1 class=\"title\">Contact Inquiry Notification</h1>\n        </div>\n        <div class=\"body\">\n          <p style=\"font-size: 14px; margin-top: 0; color: #475569;\">\n            A new <strong>contact inquiry</strong> activity was registered on the WomenPlay Secretariat portal:\n          </p>\n\n          <table class=\"meta-table\">\n            <tr>\n              <td>Title / Item</td>\n              <td>Uno - General question</td>\n            </tr>\n            <tr><td>Submitted By</td><td>Uno</td></tr>\n            <tr><td>Email Address</td><td><a href=\"mailto:numerounonwankwo@gmail.com\" style=\"color: #db2777;\">numerounonwankwo@gmail.com</a></td></tr>\n            \n            <tr>\n              <td>Timestamp</td>\n              <td>9/14/2026, 5:59:41 PM</td>\n            </tr>\n          </table>\n\n          <div class=\"summary-box\">\n            <strong>Details / Message:</strong><br/>\n            Area of Interest: General question\nBusiness/Organization: WomenPlay.Org\nPhone: 16043540930\n\nMessage/Proposal:\nhello\n          </div>\n\n          <div class=\"btn-container\">\n            <a href=\"https://womenplay-143754772461.europe-west3.run.app/?tab=contacts\" class=\"btn\">View Details in Admin Dashboard &rarr;</a>\n          </div>\n        </div>\n        <div class=\"footer\">\n          WomenPlay Global Secretariat • Executive Automated Alert System<br/>\n          This is an automated notification sent to system administrators via SMTP.\n        </div>\n      </div>\n    </body>\n    </html>\n  "
+    },
+    {
+      "id": "mail-1789406963393-se95j",
+      "to": "support@womenplay.org",
+      "sentAt": "2026-09-14T17:29:23.393Z",
+      "status": "sent_via_smtp",
+      "subject": "Your WomenPlay 2FA Login Code",
+      "htmlContent": "\n        <div style=\"font-family: sans-serif; padding: 24px; color: #1e293b; background: #f8fafc;\">\n          <div style=\"max-width: 500px; margin: 0 auto; background: #ffffff; padding: 32px; border-radius: 16px; border: 1px solid #e2e8f0; text-align: center;\">\n            <h2 style=\"color: #db2777; margin-top: 0;\">2FA Login Verification</h2>\n            <p>Your 6-digit login verification code is:</p>\n            <div style=\"font-size: 32px; font-weight: 800; letter-spacing: 6px; color: #0f172a; background: #f1f5f9; padding: 16px; border-radius: 12px; margin: 20px 0;\">981176</div>\n            <p style=\"font-size: 12px; color: #64748b;\">This code expires in 10 minutes. Do not share it with anyone.</p>\n          </div>\n        </div>\n      "
+    }
+  ],
+  "sponsorshipInquiries": [
+    {
+      "id": "inq-spon-fcuod3m",
+      "idea": "testing",
+      "email": "uno.nwankwo@gmail.com",
+      "phone": "6043540930",
+      "status": "new",
+      "consent": true,
+      "website": "WomenPlay.Org",
+      "createdAt": "2026-09-16T07:48:28.784Z",
+      "companyName": "WomenPlay.Org",
+      "contactName": "Uno Nwankwo",
+      "preferredContact": "Email",
+      "opportunityInterest": "Games & Social Gatherings",
+      "partnershipInterest": "Event Sponsorship"
+    }
+  ],
+  "tasks": []
 }

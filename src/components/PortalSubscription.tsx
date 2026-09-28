@@ -116,7 +116,7 @@ export default function PortalSubscription({ currentUser, onRefreshData }: Porta
 
       {/* Active Subscription Overview Card */}
       {(currentUser.membershipTier === "PREMIUM" || currentUser.membershipTier === "ELITE") && (
-        <div className="bg-gradient-to-r from-slate-900 via-slate-850 to-brand-gold-dark/20 text-white rounded-2xl p-6 border border-slate-800 luxury-shadow relative overflow-hidden text-left flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+        <div className="bg-slate-900 text-white rounded-2xl p-6 border-2 border-brand-pink/30 luxury-shadow relative overflow-hidden text-left flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
           <div className="space-y-2">
             <span className="text-[9px] uppercase tracking-wider font-extrabold bg-brand-gold text-slate-900 px-3 py-1 rounded-full">
               Active VIP Subscription
@@ -304,7 +304,7 @@ export default function PortalSubscription({ currentUser, onRefreshData }: Porta
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
           {/* Premium Tier */}
-          <div className="border border-brand-pink-mid/30 rounded-2xl p-6 flex flex-col justify-between space-y-6 relative overflow-hidden bg-gradient-to-b from-brand-pink-light/20 to-white hover:border-brand-pink transition duration-350 shadow-sm">
+          <div className="border-2 border-brand-pink/30 rounded-2xl p-6 flex flex-col justify-between space-y-6 relative overflow-hidden bg-white hover:border-brand-pink transition duration-350 shadow-sm">
             <div className="space-y-4">
               <span className="text-[9px] uppercase tracking-widest font-extrabold bg-brand-pink text-white px-2.5 py-0.5 rounded-full">PREMIUM TIER</span>
               <h3 className="text-xl font-bold text-slate-900">$100 <span className="text-xs text-slate-400 font-normal">/ Annually</span></h3>
@@ -333,7 +333,7 @@ export default function PortalSubscription({ currentUser, onRefreshData }: Porta
           </div>
 
           {/* Elite Tier */}
-          <div className="border border-brand-gold rounded-2xl p-6 flex flex-col justify-between space-y-6 relative overflow-hidden bg-gradient-to-b from-brand-gold-light/40 to-white hover:border-brand-gold-dark transition duration-350 shadow-md">
+          <div className="border-2 border-brand-gold rounded-2xl p-6 flex flex-col justify-between space-y-6 relative overflow-hidden bg-white hover:border-brand-gold-dark transition duration-350 shadow-md">
             <div className="absolute top-0 right-0 bg-brand-gold-dark text-white text-[9px] font-bold px-3 py-1 uppercase rounded-bl-xl tracking-wider">RECOMMENDED</div>
             <div className="space-y-4">
               <span className="text-[9px] uppercase tracking-widest font-extrabold bg-brand-gold-dark text-white px-2.5 py-0.5 rounded-full">ELITE SPONSOR TIER</span>

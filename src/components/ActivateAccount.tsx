@@ -11,9 +11,12 @@ export default function ActivateAccountPage() {
 
   React.useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const t = params.get("token") || "";
+    const pathToken = window.location.pathname.startsWith("/activate/")
+      ? window.location.pathname.replace(/^\/activate\//, "")
+      : "";
+    const t = params.get("token") || pathToken || "";
     setToken(t);
-    if (!t) setError("Missing or invalid activation link. Please request a new one.");
+    if (!t) setError("Missing or invalid activation link. Please check the link from your email.");
   }, []);
 
   const validatePassword = (pass: string) => {
@@ -57,8 +60,12 @@ export default function ActivateAccountPage() {
         if (data.token) localStorage.setItem("wp_token", data.token);
         if (data.user) localStorage.setItem("aura_user", JSON.stringify(data.user));
         setTimeout(() => {
-          window.location.href = "/portal";
-        }, 2500);
+          if (data.user?.role === "ADMIN" || data.user?.role === "admin") {
+            window.location.href = "/?tab=admin";
+          } else {
+            window.location.href = "/portal";
+          }
+        }, 1500);
       } else {
         setError(data.error || "Failed to activate your account.");
       }
@@ -76,20 +83,20 @@ export default function ActivateAccountPage() {
           <img
             src="/assets/logo.png"
             alt="WomenPlay Logo"
-            onError={(e) => { (e.target as HTMLImageElement).src = "/assets/logo-light.svg"; }}
+            onError={(e) => { (e.target as HTMLImageElement).src = "/logo.png"; }}
             className="h-14 w-auto object-contain"
             referrerPolicy="no-referrer"
           />
           <p className="text-slate-500 text-[11px] font-medium uppercase tracking-wider">
-            Verify Your Email & Set Your Password
+            Confirm Email & Configure Password
           </p>
         </div>
 
         <div className="bg-brand-pink/10 border border-brand-pink/20 p-4 rounded-2xl text-center space-y-1 mb-5">
           <MailCheck className="w-6 h-6 text-brand-pink mx-auto" />
-          <p className="text-xs font-bold text-slate-800">Welcome to the WomenPlay Founding Circle</p>
+          <p className="text-xs font-bold text-slate-800">Welcome to the WomenPlay Network</p>
           <p className="text-[11px] text-slate-600 leading-relaxed">
-            Confirm your email address and create a secure password to access your portal.
+            Confirm your email address and configure your password to access your portal. Mandatory 2FA will be configured upon your first login.
           </p>
         </div>
 

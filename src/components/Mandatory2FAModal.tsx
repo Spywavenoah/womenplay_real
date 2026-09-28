@@ -96,7 +96,7 @@ export default function Mandatory2FAModal({ currentUser, onUpdateCurrentUser }: 
     <div className="fixed inset-0 z-[99999] bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4">
       <div className="bg-white w-full max-w-lg rounded-3xl shadow-2xl border border-slate-200 overflow-hidden text-left animate-in fade-in zoom-in-95 duration-200">
         {/* Header */}
-        <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-brand-pink/20 p-6 text-white border-b border-brand-gold/20">
+        <div className="bg-slate-900 p-6 text-white border-b-2 border-brand-pink">
           <div className="flex items-center space-x-3">
             <div className="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center justify-center font-bold shadow-inner">
               <ShieldAlert className="w-6 h-6 animate-pulse" />

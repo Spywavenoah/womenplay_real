@@ -1,0 +1,11 @@
+.git
+node_modules/
+dist/
+build/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+tests/.test-database.json
+tests/.smoke-database.json

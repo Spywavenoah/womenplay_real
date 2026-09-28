@@ -1,6 +1,7 @@
 import React from "react";
 import { X, Check, Loader2, Award, Landmark, Lock, HelpCircle } from "lucide-react";
 import type { EventItem, EventPackage } from "../types";
+import { redirectToCheckout } from "../lib/stripeRedirect";
 
 interface EventCheckoutModalProps {
   isOpen: boolean;
@@ -124,7 +125,7 @@ export default function EventCheckoutModal({
         });
         const stripeData = await stripeRes.json();
         if (stripeRes.ok && stripeData.checkoutUrl) {
-          window.location.href = stripeData.checkoutUrl;
+          redirectToCheckout(stripeData.checkoutUrl);
           return;
         }
       } catch (stripeErr) {
@@ -287,7 +288,7 @@ export default function EventCheckoutModal({
               )}
 
                 {useSavedCard && currentUser?.savedCard ? (
-                  <div className="p-5 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 text-white rounded-2xl shadow-md border border-slate-800 relative overflow-hidden">
+                  <div className="p-5 bg-slate-900 text-white rounded-2xl shadow-md border-2 border-brand-pink/30 relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-24 h-24 bg-brand-pink/10 rounded-full blur-2xl -mr-6 -mt-6"></div>
                     <div className="flex justify-between items-start mb-6">
                       <span className="text-[10px] font-mono tracking-widest text-slate-400 font-bold">SECURE VAULT CARD</span>

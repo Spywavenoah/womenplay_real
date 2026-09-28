@@ -10,3 +10,4 @@ coverage/
 # Isolated test databases
 tests/.test-database.json
 tests/.smoke-database.json
+database.json.bak

@@ -42,21 +42,34 @@ export default function Header({
     return () => document.removeEventListener("click", handleOutsideClick);
   }, []);
 
+  const DEFAULT_ANNOUNCEMENT = "New WomenPlay experiences are coming soon. Watch this space →";
+  const cleanedAnnouncements = (announcements && announcements.length > 0)
+    ? announcements.map(t => (t && (t.includes("Executive Fellowship") || t.includes("Fellowship Program"))) ? DEFAULT_ANNOUNCEMENT : t)
+    : [DEFAULT_ANNOUNCEMENT];
+
+  const marqueeList = cleanedAnnouncements.length === 1
+    ? [cleanedAnnouncements[0], cleanedAnnouncements[0], cleanedAnnouncements[0], cleanedAnnouncements[0], cleanedAnnouncements[0]]
+    : [...cleanedAnnouncements, ...cleanedAnnouncements, ...cleanedAnnouncements];
+
   return (
     <header className="sticky top-0 z-40 w-full" id="aura-header">
       {/* Top Announcement Marquee */}
-      {announcements && announcements.length > 0 && (
-        <div className="bg-gradient-to-r from-brand-pink via-brand-gold-dark to-brand-pink text-white text-xs font-medium py-2 relative shadow-inner overflow-hidden marquee-track" id="announcement-marquee">
-          <div className="flex w-max animate-marquee">
-            {[...announcements, ...announcements].map((title, i) => (
-              <span key={i} className="flex items-center space-x-3 px-6 shrink-0">
-                <Radio className="w-3.5 h-3.5 text-brand-gold-light shrink-0" />
-                <span className="truncate">{title}</span>
-              </span>
-            ))}
-          </div>
+      <div className="bg-brand-pink border-b border-brand-gold/40 text-white text-xs font-medium py-2 relative shadow-inner overflow-hidden marquee-track" id="announcement-marquee">
+        <div className="flex w-max animate-marquee">
+          {marqueeList.map((title, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => onNavigate("events")}
+              className="flex items-center space-x-3 px-8 shrink-0 hover:text-brand-gold-light transition-colors cursor-pointer text-left focus:outline-none"
+              title="Explore WomenPlay experiences"
+            >
+              <Radio className="w-3.5 h-3.5 text-brand-gold-light shrink-0" />
+              <span className="font-medium tracking-wide whitespace-nowrap">{title}</span>
+            </button>
+          ))}
         </div>
-      )}
+      </div>
 
       {/* Main Luxury Nav */}
       <nav className="bg-white/80 backdrop-blur-md border-b border-slate-100 py-3.5 px-4 md:px-10 flex justify-between items-center luxury-shadow">
@@ -73,7 +86,7 @@ export default function Header({
               src="/assets/logo.png" 
               alt="WomenPlay Logo" 
               onError={(e) => { (e.target as HTMLImageElement).src = "/logo.png"; }}
-              className="h-10 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              className="h-9 sm:h-10 md:h-11 lg:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105 filter drop-shadow-sm"
               referrerPolicy="no-referrer"
             />
           </a>
@@ -144,7 +157,7 @@ export default function Header({
                   className="w-full text-left px-4 py-2.5 text-xs font-semibold text-slate-700 hover:text-brand-pink hover:bg-slate-50 flex items-center space-x-2.5 transition cursor-pointer"
                 >
                   <ShieldCheck className="w-4 h-4 text-brand-gold" />
-                  <span>Profile</span>
+                  <span>Our Purpose</span>
                 </a>
                 <a
                   href={VIEW_PATHS.gallery}
@@ -198,13 +211,17 @@ export default function Header({
             id="nav-link-sponsorship"
             className={`font-medium text-xs md:text-sm transition-all relative py-1 ${
               currentView === "sponsorship" 
-                ? "text-brand-pink font-bold" 
+                ? "text-brand-pink font-semibold" 
                 : "text-slate-600 hover:text-brand-pink"
             }`}
           >
-            Sponsorship
+            Sponsorship & Partnerships
             {currentView === "sponsorship" && (
-              <span className="absolute bottom-0 left-0 w-full h-[2px] bg-brand-pink rounded-full" />
+              <span className="absolute -bottom-1 left-0 w-full flex items-center justify-center">
+                <span className="w-full h-[1.5px] bg-brand-pink/60 relative flex items-center justify-center">
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-pink absolute" />
+                </span>
+              </span>
             )}
           </a>
 
@@ -368,7 +385,7 @@ export default function Header({
           />
           <aside className="absolute top-0 left-0 h-full w-[85%] max-w-sm bg-white shadow-2xl flex flex-col overflow-y-auto animate-in slide-in-from-left duration-300 text-left">
             <div className="flex items-center justify-between px-6 pt-5 pb-3 border-b border-slate-100">
-              <img src="/assets/logo.png" alt="WomenPlay Logo" className="h-9 w-auto object-contain" referrerPolicy="no-referrer" />
+              <img src="/assets/logo.png" alt="WomenPlay Logo" className="h-9 w-auto object-contain filter drop-shadow-sm" referrerPolicy="no-referrer" onError={(e) => { (e.target as HTMLImageElement).src = "/logo.png"; }} />
               <button
                 onClick={() => setMobileMenuOpen(false)}
                 aria-label="Close menu"
@@ -414,7 +431,7 @@ export default function Header({
                 }}
                 className={`block py-1.5 text-sm font-semibold ${currentView === "profile" ? "text-brand-pink" : "text-slate-700 hover:text-brand-pink"}`}
               >
-                Profile
+                Our Purpose
               </a>
               <a
                 href={VIEW_PATHS.gallery}
@@ -462,7 +479,7 @@ export default function Header({
             }}
             className={`text-left py-2 text-sm font-semibold ${currentView === "sponsorship" ? "text-brand-pink" : "text-slate-700"}`}
           >
-            Sponsorship
+            Sponsorship & Partnerships
           </a>
 
           <a

@@ -266,7 +266,7 @@ export default function BadgeScannerModal({
               </div>
 
               {/* Business Card Preview */}
-              <div className="bg-gradient-to-r from-slate-950 to-slate-900 border border-slate-800 p-5 rounded-2xl text-left max-w-sm mx-auto space-y-4 relative overflow-hidden shadow-xl">
+              <div className="bg-slate-900 border-2 border-brand-pink/30 p-5 rounded-2xl text-left max-w-sm mx-auto space-y-4 relative overflow-hidden shadow-xl">
                 <div className="absolute top-0 right-0 w-24 h-24 bg-brand-pink/5 rounded-full blur-xl pointer-events-none" />
                 
                 <div className="flex items-center gap-3">

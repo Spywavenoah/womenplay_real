@@ -130,10 +130,10 @@ export interface Payment {
   id: string;
   userId: string;
   amount: number;
-  purpose: "Membership" | "Event Registration";
+  purpose: "Membership" | "Event Registration" | "Launch Experience Ticket" | string;
   itemId?: string; // Event ID or Tier Name
   status: "pending" | "completed" | "failed" | "refunded";
-  method: "Credit Card" | "Bank Transfer" | "Local Payment";
+  method: "Credit Card" | "Bank Transfer" | "Local Payment" | "Credit Card (Stripe)" | "Stripe" | string;
   transactionId: string;
   createdAt: string;
   receiptNumber: string;
@@ -295,6 +295,10 @@ export interface CarouselSlide {
   title: string;
   description: string;
   overlayColor?: string;
+  eyebrow?: string;
+  highlight?: string;
+  suffix?: string;
+  hasDivider?: boolean;
 }
 
 export interface GalleryItem {

@@ -200,7 +200,7 @@ export default function AdminVolunteers({ onRefreshData }: AdminVolunteersProps)
         <button
           onClick={fetchVolunteers}
           id="btn-refresh-volunteers"
-          className="flex items-center space-x-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-brand-pink to-brand-gold text-white font-bold text-xs hover:opacity-95 shadow-md shadow-brand-pink/20 transition duration-200 shrink-0 cursor-pointer"
+          className="flex items-center space-x-2 px-5 py-2.5 rounded-full bg-brand-pink hover:bg-brand-pink-dark text-white border border-brand-gold/40 font-bold text-xs shadow-md shadow-brand-pink/20 transition duration-200 shrink-0 cursor-pointer"
         >
           <Loader2 className={`w-4 h-4 ${loading ? "animate-spin" : ""}`} />
           <span>Refresh</span>
@@ -298,7 +298,7 @@ export default function AdminVolunteers({ onRefreshData }: AdminVolunteersProps)
                   <tr key={v.id} className="border-b border-slate-50 hover:bg-slate-50/60 transition" id={`volunteer-row-${v.id}`}>
                     <td className="px-5 py-4">
                       <div className="flex items-center gap-3">
-                        <div className="w-9 h-9 rounded-full bg-gradient-to-br from-brand-pink to-brand-gold text-white flex items-center justify-center font-bold text-xs uppercase shrink-0">
+                        <div className="w-9 h-9 rounded-full bg-brand-pink text-white border border-brand-gold/40 flex items-center justify-center font-bold text-xs uppercase shrink-0">
                           {v.fullName.substring(0, 2)}
                         </div>
                         <div>

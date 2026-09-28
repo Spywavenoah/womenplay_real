@@ -186,7 +186,7 @@ export default function AdminFounders({ onRefreshData }: AdminFoundersProps) {
         <button
           onClick={handleOpenAddModal}
           id="btn-add-founder"
-          className="flex items-center space-x-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-brand-pink to-brand-gold text-white font-bold text-xs hover:opacity-95 shadow-md shadow-brand-pink/20 transition duration-200 shrink-0 cursor-pointer"
+          className="flex items-center space-x-2 px-5 py-2.5 rounded-full bg-brand-pink hover:bg-brand-pink-dark text-white border border-brand-gold/40 font-bold text-xs shadow-md shadow-brand-pink/20 transition duration-200 shrink-0 cursor-pointer"
         >
           <Plus className="w-4 h-4" />
           <span>Add Founder</span>

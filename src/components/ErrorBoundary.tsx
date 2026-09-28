@@ -1,81 +1,69 @@
-import React, { ErrorInfo, ReactNode } from "react";
-import { AlertTriangle, RefreshCw, Home } from "lucide-react";
+import React, { Component, ErrorInfo, ReactNode } from "react";
+import { AlertTriangle, RefreshCw } from "lucide-react";
 
 interface Props {
   children: ReactNode;
-  fallbackTitle?: string;
-  fallbackMessage?: string;
-  onReset?: () => void;
+  fallback?: ReactNode;
 }
 
 interface State {
   hasError: boolean;
-  error?: Error;
-  errorInfo?: ErrorInfo;
+  error: Error | null;
 }
 
-export default class ErrorBoundary extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      hasError: false
-    };
-  }
+export default class ErrorBoundary extends Component<Props, State> {
+  public state: State = {
+    hasError: false,
+    error: null,
+  };
 
   public static getDerivedStateFromError(error: Error): State {
     return { hasError: true, error };
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error("ErrorBoundary caught an unhandled React rendering error:", error, errorInfo);
+    console.error("ErrorBoundary caught an error:", error, errorInfo);
   }
 
+  private handleReload = () => {
+    window.location.reload();
+  };
+
   private handleReset = () => {
-    this.setState({ hasError: false, error: undefined, errorInfo: undefined });
-    if (this.props.onReset) {
-      this.props.onReset();
-    }
+    this.setState({ hasError: false, error: null });
   };
 
   public render() {
     if (this.state.hasError) {
-      return (
-        <div 
-          role="alert" 
-          aria-live="assertive"
-          className="min-h-[320px] w-full flex flex-col items-center justify-center bg-slate-900/90 text-slate-100 p-8 text-center rounded-3xl border border-slate-800 shadow-2xl my-4"
-        >
-          <div className="w-16 h-16 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-400 flex items-center justify-center mb-4 shadow-inner">
-            <AlertTriangle className="w-8 h-8" />
-          </div>
-          
-          <h3 className="text-xl font-display font-bold text-white mb-2">
-            {this.props.fallbackTitle || "Unable to display this section"}
-          </h3>
-          
-          <p className="text-xs text-slate-400 mb-6 max-w-md leading-relaxed">
-            {this.state.error?.message || this.props.fallbackMessage || "An unexpected interface error occurred. You can safely try reloading this component."}
-          </p>
+      if (this.props.fallback) {
+        return this.props.fallback;
+      }
 
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            <button
-              type="button"
-              onClick={this.handleReset}
-              className="min-h-[44px] px-5 py-2.5 bg-brand-pink hover:bg-brand-pink-dark text-white text-xs font-bold rounded-xl transition flex items-center gap-2 cursor-pointer shadow-md"
-              aria-label="Try loading this section again"
-            >
-              <RefreshCw className="w-4 h-4" />
-              <span>Try Again</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => { window.location.href = "/"; }}
-              className="min-h-[44px] px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded-xl transition flex items-center gap-2 cursor-pointer"
-              aria-label="Return to WomenPlay home page"
-            >
-              <Home className="w-4 h-4" />
-              <span>Return Home</span>
-            </button>
+      return (
+        <div className="min-h-[300px] flex items-center justify-center p-6 text-center bg-slate-50 rounded-2xl border border-slate-200/80 m-4">
+          <div className="max-w-md space-y-4">
+            <div className="w-12 h-12 mx-auto rounded-full bg-brand-pink/15 text-brand-pink border border-brand-pink/30 flex items-center justify-center">
+              <AlertTriangle className="w-6 h-6" />
+            </div>
+            <h3 className="text-lg font-bold text-slate-900">Something went wrong loading this view</h3>
+            <p className="text-xs text-slate-600 leading-relaxed">
+              We encountered a temporary issue while loading the requested component. Please try reloading.
+            </p>
+            <div className="flex items-center justify-center gap-3 pt-2">
+              <button
+                onClick={this.handleReset}
+                className="px-4 py-2 text-xs font-semibold text-slate-700 bg-white border border-slate-200 rounded-xl hover:bg-slate-50 transition cursor-pointer"
+              >
+                Try Again
+              </button>
+              <button
+                onClick={this.handleReload}
+                className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-white bg-brand-pink hover:bg-brand-pink-dark rounded-xl transition cursor-pointer shadow-sm shadow-brand-pink/20"
+              >
+                <RefreshCw className="w-3.5 h-3.5" />
+                <span>Reload Page</span>
+              </button>
+            </div>
           </div>
         </div>
       );

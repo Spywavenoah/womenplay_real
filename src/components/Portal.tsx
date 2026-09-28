@@ -12,6 +12,7 @@ import type { User, Post, Comment, SuccessStory, SupportTicket, EventItem, Regis
 import DigitalBadge from "./DigitalBadge";
 import EventCalendar from "./EventCalendar";
 import { showSuccessAlert, showErrorAlert, showConfirmDialog, showInfoAlert } from "../lib/swal";
+import { redirectToCheckout } from "../lib/stripeRedirect";
 
 interface PortalProps {
   currentUser: User;
@@ -424,7 +425,7 @@ export default function Portal({
       if (res.ok) {
         const allPayments = await res.json();
         // Filter payments belonging to current user
-        const myPayments = allPayments.filter((p: any) => p.userId === currentUser.id);
+        const myPayments = allPayments.filter((p: any) => p.userId === currentUser.id || (currentUser.email && p.userId?.toLowerCase() === currentUser.email.toLowerCase()));
         setMemberPayments(myPayments);
       }
     } catch (err) {
@@ -836,7 +837,7 @@ export default function Portal({
       const data = await res.json();
       if (res.ok) {
         if (data.checkoutUrl) {
-          window.location.href = data.checkoutUrl;
+          redirectToCheckout(data.checkoutUrl);
           return;
         }
         setSubscriptionReceipt(data.payment);
@@ -2372,7 +2373,7 @@ export default function Portal({
                     className="bg-white rounded-3xl p-6 md:p-8 border border-slate-100 shadow-2xl w-full max-w-sm text-center relative overflow-hidden space-y-6"
                   >
                     {/* Luxury top accent */}
-                    <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-brand-pink to-brand-gold" />
+                    <div className="absolute top-0 inset-x-0 h-1.5 bg-brand-pink border-b border-brand-gold" />
                     
                     {/* Close button */}
                     <button
@@ -2384,7 +2385,7 @@ export default function Portal({
                     </button>
 
                     <div className="pt-4 flex flex-col items-center space-y-3">
-                      <div className="w-20 h-20 rounded-full p-1 bg-gradient-to-tr from-brand-pink to-brand-gold">
+                      <div className="w-20 h-20 rounded-full p-1 bg-brand-pink border border-brand-gold">
                         <div className="w-full h-full rounded-full bg-white p-0.5">
                           <div className="w-full h-full rounded-full bg-slate-100 flex items-center justify-center text-lg font-bold text-slate-800 overflow-hidden">
                             {selectedContactCard.avatarUrl ? (
@@ -2469,7 +2470,7 @@ export default function Portal({
                     {/* Progress Bar background */}
                     <div className="w-full bg-slate-200 h-3 rounded-full overflow-hidden flex">
                       <div 
-                        className="bg-gradient-to-r from-brand-pink to-brand-gold h-full rounded-full transition-all duration-500" 
+                        className="bg-brand-pink h-full rounded-full transition-all duration-500" 
                         style={{ width: `${progressPercent}%` }}
                       />
                     </div>
@@ -2903,7 +2904,7 @@ export default function Portal({
                       </div>
                       <button
                         onClick={handleCertifyAssessment}
-                        className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-brand-pink to-brand-gold hover:opacity-90 text-white font-bold rounded-xl text-xs uppercase tracking-wider shadow-md transition flex items-center justify-center space-x-2"
+                        className="w-full sm:w-auto px-6 py-3 bg-brand-pink hover:bg-brand-pink-dark text-white border border-brand-gold/40 font-bold rounded-xl text-xs uppercase tracking-wider shadow-md transition flex items-center justify-center space-x-2"
                       >
                         <Award className="w-4 h-4" />
                         <span>Certify Competencies & Sync Roadmap</span>
@@ -3134,7 +3135,7 @@ export default function Portal({
                     <button
                       type="button"
                       onClick={handleApplyMobileOptimization}
-                      className="w-full py-3 bg-gradient-to-r from-brand-pink to-brand-gold hover:opacity-95 text-white font-bold rounded-xl text-xs uppercase tracking-wider shadow-md transition flex items-center justify-center space-x-2"
+                      className="w-full py-3 bg-brand-pink hover:bg-brand-pink-dark text-white border border-brand-gold/40 font-bold rounded-xl text-xs uppercase tracking-wider shadow-md transition flex items-center justify-center space-x-2"
                     >
                       <Smartphone className="w-4 h-4" />
                       <span>Verify & Apply Optimizations</span>

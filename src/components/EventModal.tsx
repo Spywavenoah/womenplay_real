@@ -45,11 +45,12 @@ export default function EventModal({
             <img
               src={event.image}
               alt={event.title}
-              onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=1200"; }}
+              referrerPolicy="no-referrer"
+              onError={(e) => { (e.target as HTMLImageElement).src = "/assets/women_tug_war.jpg"; }}
               className="w-full h-full object-cover opacity-85"
             />
           ) : (
-            <div className="w-full h-full bg-gradient-to-br from-slate-900 via-brand-pink-dark to-slate-800 flex items-center justify-center">
+            <div className="w-full h-full bg-slate-900 flex items-center justify-center">
               <Ticket className="w-16 h-16 text-white/20" />
             </div>
           )}

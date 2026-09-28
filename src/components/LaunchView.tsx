@@ -1,41 +1,26 @@
-import React from "react";
-import { MapPin, Calendar, Clock, Ticket, ChevronRight } from "lucide-react";
+import React, { useState } from "react";
+import { MapPin, Calendar, Clock, Sparkles, CheckCircle2, ArrowRight, ChevronRight, Mail } from "lucide-react";
 import HeroBanner from "./HeroBanner";
 
-export default function LaunchView({ onNavigateHome, onNavigateTickets }: { onNavigateHome: () => void; onNavigateTickets: () => void }) {
-  const [countdown, setCountdown] = React.useState({
-    days: 47,
-    hours: 3,
-    minutes: 27,
-    seconds: 57
-  });
+export default function LaunchView({ onNavigateHome, onNavigateTickets }: { onNavigateHome: () => void; onNavigateTickets?: () => void }) {
+  const [updateEmail, setUpdateEmail] = useState("");
+  const [submitted, setSubmitted] = useState(false);
 
-  // Countdown Timer Logic
-  React.useEffect(() => {
-    const launchDate = new Date("2026-10-24T13:00:00").getTime();
-    
-    const updateCountdown = () => {
-      const now = new Date().getTime();
-      const distance = launchDate - now;
-
-      if (distance > 0) {
-        setCountdown({
-          days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-          minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-          seconds: Math.floor((distance % (1000 * 60)) / 1000)
-        });
-      }
-    };
-
-    const interval = setInterval(updateCountdown, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const formatTime = (num: number) => String(num).padStart(2, "0");
+  const handleUpdateSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!updateEmail.trim()) return;
+    try {
+      fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: updateEmail, source: "launch-experience-page" })
+      }).catch(() => {});
+    } catch {}
+    setSubmitted(true);
+  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-brand-pink/5 to-brand-gold/5">
+    <div className="min-h-screen bg-slate-50">
       {/* Hero Banner */}
       <HeroBanner
         eyebrow="WomenPlay.Org Presents"
@@ -52,7 +37,7 @@ export default function LaunchView({ onNavigateHome, onNavigateTickets }: { onNa
       <section className="py-12 md:py-20 px-6 md:px-12 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Content */}
-          <div className="space-y-8 order-2 lg:order-1">
+          <div className="space-y-8 order-2 lg:order-1 text-left">
             {/* Header */}
             <div className="space-y-4">
               <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold-dark block">
@@ -71,21 +56,21 @@ export default function LaunchView({ onNavigateHome, onNavigateTickets }: { onNa
                   <Calendar className="w-5 h-5 text-brand-pink flex-shrink-0 mt-1" />
                   <div>
                     <p className="text-xs uppercase tracking-wider font-bold text-slate-500">Date</p>
-                    <p className="text-slate-900 font-semibold">Saturday, October 24, 2026</p>
+                    <p className="text-slate-900 font-semibold">Launch details coming soon</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <Clock className="w-5 h-5 text-brand-pink flex-shrink-0 mt-1" />
                   <div>
                     <p className="text-xs uppercase tracking-wider font-bold text-slate-500">Schedule</p>
-                    <p className="text-slate-900 font-semibold">Afternoon Experience (Official Hours Announced Soon)</p>
+                    <p className="text-slate-900 font-semibold">Launch details coming soon</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-brand-pink flex-shrink-0 mt-1" />
                   <div>
                     <p className="text-xs uppercase tracking-wider font-bold text-slate-500">Location</p>
-                    <p className="text-slate-900 font-semibold">Surrey, BC</p>
+                    <p className="text-slate-900 font-semibold">Launch details coming soon</p>
                   </div>
                 </div>
               </div>
@@ -97,92 +82,106 @@ export default function LaunchView({ onNavigateHome, onNavigateTickets }: { onNa
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <button
-                onClick={onNavigateTickets}
-                className="inline-flex items-center justify-center gap-2 bg-brand-pink hover:bg-brand-pink-dark text-white font-bold px-8 py-4 rounded-full shadow-lg shadow-brand-pink/25 transition-all hover:-translate-y-1 text-base font-display"
+            <div className="flex flex-col sm:flex-row gap-4 pt-2">
+              <a
+                href="#launch-updates"
+                className="inline-flex items-center justify-center gap-2 bg-brand-pink hover:bg-brand-pink-dark text-white font-bold px-8 py-4 rounded-full shadow-lg shadow-brand-pink/25 transition-all hover:-translate-y-1 text-base font-display cursor-pointer"
               >
-                <Ticket className="w-5 h-5" />
-                <span>Register Now</span>
-              </button>
+                <Sparkles className="w-5 h-5" />
+                <span>Keep Me in the Play</span>
+              </a>
               <button
                 onClick={() => {
                   const el = document.getElementById("event-details");
                   if (el) el.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="inline-flex items-center justify-center gap-2 border-2 border-slate-300 hover:border-brand-pink text-slate-900 hover:text-brand-pink font-bold px-8 py-3 rounded-full transition-all text-base font-display"
+                className="inline-flex items-center justify-center gap-2 border-2 border-slate-300 hover:border-brand-pink text-slate-900 hover:text-brand-pink font-bold px-8 py-3 rounded-full transition-all text-base font-display cursor-pointer"
               >
-                <span>View Details</span>
+                <span>What to Expect</span>
                 <ChevronRight className="w-5 h-5" />
               </button>
             </div>
 
             {/* Note */}
-            <p className="text-sm text-slate-500 italic pt-2">
+            <p className="text-sm text-slate-500 italic pt-1">
               The launch is a featured WomenPlay experience &mdash; not the full story of the brand.
             </p>
           </div>
 
           {/* Right Visual */}
           <div className="order-1 lg:order-2 relative h-96 md:h-[500px] rounded-2xl overflow-hidden group luxury-shadow">
-            <div className="absolute inset-0 bg-gradient-to-br from-brand-pink/20 via-brand-gold/10 to-transparent z-10"></div>
+            <div className="absolute inset-0 bg-brand-pink/10 z-10"></div>
             <img
-              src="/assets/jessy.jpeg"
+              src="/assets/images/events_launch_hero.jpg"
               alt="WomenPlay Launch Jersey Style Event"
-              onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=800"; }}
+              referrerPolicy="no-referrer"
+              onError={(e) => { (e.target as HTMLImageElement).src = "/assets/images/events_jersey_launch_1787392928539.jpg"; }}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent z-20 flex items-end p-6 md:p-8">
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/20 to-transparent z-20 flex items-end p-6 md:p-8">
               <div className="text-white text-left">
+                <span className="inline-block px-3 py-1 rounded-full bg-brand-pink text-white text-xs uppercase tracking-wider font-bold mb-2">
+                  Launch details coming soon
+                </span>
                 <p className="text-3xl md:text-4xl font-display font-bold">Jersey Style</p>
-                <p className="text-sm text-white/80 mt-2">October 24, 2026 &middot; Surrey, BC</p>
+                <p className="text-sm text-white/80 mt-1">Surrey, BC Venue & Date Announcement Soon</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Countdown Section */}
+      {/* Priority Update List Section (Replaces countdown) */}
       <section
-        className="py-20 px-6 md:px-12 max-w-7xl mx-auto"
-        id="countdown"
+        className="py-16 px-6 md:px-12 max-w-7xl mx-auto"
+        id="launch-updates"
       >
-        <div className="bg-gradient-to-br from-brand-pink/10 via-white to-brand-gold/10 border border-brand-pink/20 rounded-3xl p-8 md:p-12 text-center space-y-8 luxury-shadow">
+        <div className="bg-white border-2 border-brand-pink/20 rounded-3xl p-8 md:p-12 text-center space-y-8 luxury-shadow max-w-4xl mx-auto">
           {/* Header */}
           <div className="space-y-3 max-w-2xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-display font-extrabold text-slate-900">
-              Countdown to Launch Day
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-pink/10 text-brand-pink text-xs font-bold uppercase tracking-wider">
+              <Sparkles className="w-3.5 h-3.5" />
+              Priority Launch Updates
+            </span>
+            <h2 className="text-3xl md:text-4xl font-display font-extrabold text-slate-900">
+              Be the First to Receive Launch Details
             </h2>
-            <p className="text-slate-600 text-lg md:text-xl">
-              Saturday, October 24, 2026 | Surrey, BC
+            <p className="text-slate-600 text-base md:text-lg">
+              We’re putting the final details together for our first WomenPlay Launch Experience — Jersey Style. Join the list to get the confirmed date, venue, and registration opening before anyone else.
             </p>
           </div>
 
-          {/* Countdown Timer */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            {[
-              { value: countdown.days, label: "Days" },
-              { value: countdown.hours, label: "Hours" },
-              { value: countdown.minutes, label: "Minutes" },
-              { value: countdown.seconds, label: "Seconds" }
-            ].map((item, idx) => (
-              <div
-                key={idx}
-                className="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 text-center space-y-3 hover:border-brand-pink hover:shadow-lg transition-all duration-300"
+          {/* Form */}
+          {submitted ? (
+            <div className="p-6 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 space-y-2 max-w-md mx-auto">
+              <CheckCircle2 className="w-8 h-8 text-emerald-600 mx-auto" />
+              <h4 className="font-display font-bold text-lg">You're In The Play!</h4>
+              <p className="text-xs text-emerald-700">
+                We'll notify you as soon as the launch date, venue, and registration details go live.
+              </p>
+            </div>
+          ) : (
+            <form onSubmit={handleUpdateSubmit} className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto">
+              <input
+                type="email"
+                required
+                placeholder="Enter your email address"
+                value={updateEmail}
+                onChange={(e) => setUpdateEmail(e.target.value)}
+                className="flex-1 px-5 py-3.5 rounded-full border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-brand-pink focus:ring-1 focus:ring-brand-pink"
+              />
+              <button
+                type="submit"
+                className="bg-brand-pink hover:bg-brand-pink-dark text-white font-bold px-8 py-3.5 rounded-full shadow-md shadow-brand-pink/20 transition text-sm cursor-pointer whitespace-nowrap"
               >
-                <div className="text-4xl md:text-5xl font-display font-extrabold text-brand-pink">
-                  {formatTime(item.value)}
-                </div>
-                <p className="text-xs uppercase tracking-wider font-bold text-slate-500">
-                  {item.label}
-                </p>
-              </div>
-            ))}
-          </div>
+                KEEP ME IN THE PLAY
+              </button>
+            </form>
+          )}
 
           {/* Subtext */}
-          <p className="text-slate-700 text-base md:text-lg font-medium pt-4">
-            The first WomenPlay experience is almost here.
+          <p className="text-slate-500 text-xs md:text-sm pt-2">
+            Strictly 100 spots available for this inaugural launch experience.
           </p>
         </div>
       </section>
@@ -243,25 +242,25 @@ export default function LaunchView({ onNavigateHome, onNavigateTickets }: { onNa
       </section>
 
       {/* CTA Footer Section */}
-      <section className="py-16 px-6 md:px-12 bg-gradient-to-r from-brand-pink/10 to-brand-gold/10 border-t border-slate-100">
+      <section className="py-16 px-6 md:px-12 bg-slate-50 border-t border-slate-200/80">
         <div className="max-w-4xl mx-auto text-center space-y-6">
           <h2 className="text-3xl md:text-4xl font-display font-extrabold text-slate-900">
             Ready to Play?
           </h2>
           <p className="text-slate-600 text-lg">
-            Limited spots available for the WomenPlay Launch Experience. Secure your place now.
+            Limited spots available for the WomenPlay Launch Experience. Join our list to receive registration access first.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-<button
-                onClick={onNavigateTickets}
-                className="inline-flex items-center justify-center gap-2 bg-brand-pink hover:bg-brand-pink-dark text-white font-bold px-10 py-4 rounded-full shadow-lg shadow-brand-pink/25 transition-all hover:-translate-y-1 text-base font-display"
-              >
-                <Ticket className="w-5 h-5" />
-                <span>Get Your Ticket</span>
-              </button>
-              <button
-                onClick={onNavigateHome}
-              className="inline-flex items-center justify-center gap-2 border-2 border-slate-300 hover:border-brand-pink text-slate-900 hover:text-brand-pink font-bold px-10 py-3 rounded-full transition-all text-base font-display"
+            <a
+              href="#launch-updates"
+              className="inline-flex items-center justify-center gap-2 bg-brand-pink hover:bg-brand-pink-dark text-white font-bold px-10 py-4 rounded-full shadow-lg shadow-brand-pink/25 transition-all hover:-translate-y-1 text-base font-display cursor-pointer"
+            >
+              <Mail className="w-5 h-5" />
+              <span>KEEP ME IN THE PLAY</span>
+            </a>
+            <button
+              onClick={onNavigateHome}
+              className="inline-flex items-center justify-center gap-2 border-2 border-slate-300 hover:border-brand-pink text-slate-900 hover:text-brand-pink font-bold px-10 py-3 rounded-full transition-all text-base font-display cursor-pointer"
             >
               <span>Learn More About WomenPlay</span>
               <ChevronRight className="w-5 h-5" />
@@ -274,7 +273,7 @@ export default function LaunchView({ onNavigateHome, onNavigateTickets }: { onNa
       <section className="py-20 px-6 md:px-12 max-w-7xl mx-auto" id="event">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center bg-white border border-slate-100 rounded-3xl p-8 md:p-12 luxury-shadow">
           {/* Copy */}
-          <div className="space-y-6 order-2 lg:order-1">
+          <div className="space-y-6 order-2 lg:order-1 text-left">
             <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold-dark">
               Event Snapshot
             </span>
@@ -294,9 +293,9 @@ export default function LaunchView({ onNavigateHome, onNavigateTickets }: { onNa
             <div className="grid grid-cols-1 gap-4 pt-2">
               {[
                 { label: "Event Name", val: "WomenPlay Experience — Jersey Style" },
-                { label: "Date", val: "Saturday, October 24, 2026" },
-                { label: "Schedule", val: "Afternoon Experience (Exact hours announced closer to launch)" },
-                { label: "Venue", val: "Surrey, BC — indoor venue to be confirmed" },
+                { label: "Date", val: "Launch details coming soon" },
+                { label: "Schedule", val: "Launch details coming soon" },
+                { label: "Venue", val: "Launch details coming soon" },
                 { label: "Attendance Cap", val: "100 women" },
                 { label: "Dress Code", val: "Jersey Style — sports jerseys, biker shorts/leggings, sneakers, team colours" },
                 { label: "Format", val: "Field-day-style social with games, music, vendors, prizes, and connection moments" },
@@ -325,7 +324,7 @@ export default function LaunchView({ onNavigateHome, onNavigateTickets }: { onNa
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/30 to-slate-950/40" />
             <span className="relative inline-flex items-center rounded-full bg-brand-pink text-white text-xs uppercase tracking-widest font-bold px-4 py-2 shadow-lg shadow-brand-pink/25">
-              Venue Reveal + Details Coming Soon
+              Launch details coming soon
             </span>
             <p className="relative text-3xl md:text-4xl font-display font-bold text-white">
               “Play. Connect. Play Again.”
@@ -335,7 +334,7 @@ export default function LaunchView({ onNavigateHome, onNavigateTickets }: { onNa
       </section>
 
       {/* Play Stations Section */}
-      <section className="py-20 px-6 md:px-12 bg-gradient-to-br from-slate-900 via-brand-pink-dark/90 to-slate-900" id="games">
+      <section className="py-20 px-6 md:px-12 bg-slate-900 border-y-2 border-brand-pink/30" id="games">
         <div className="max-w-7xl mx-auto space-y-14">
           {/* Header */}
           <div className="space-y-4 text-center max-w-2xl mx-auto">

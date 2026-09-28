@@ -93,6 +93,10 @@ export default function AdminDashboard({
   const [loadingSettings, setLoadingSettings] = React.useState(false);
   const [savingSettings, setSavingSettings] = React.useState(false);
   const [settingsSavedMsg, setSettingsSavedMsg] = React.useState("");
+  const [testingStripe, setTestingStripe] = React.useState(false);
+  const [stripeTestResult, setStripeTestResult] = React.useState<{ success: boolean; message: string } | null>(null);
+  const [isStripeConfigured, setIsStripeConfigured] = React.useState<boolean>(false);
+  const [activeStripeMode, setActiveStripeMode] = React.useState<string>("none");
 
   // SMTP Outgoing Email State
   const [smtpForm, setSmtpForm] = React.useState<SmtpSettings>({
@@ -512,14 +516,16 @@ export default function AdminDashboard({
       const setRes = await fetch("/api/settings");
       const setData = await setRes.json();
       setStripeMode(setData.stripeMode || "test");
-      setStripeTestPublicKey(setData.stripeTestPublicKey || "pk_test_51MockPublicKeyAuraNetwork12345");
-      setStripeTestSecretKey(setData.stripeTestSecretKey || "sk_test_51MockSecretKeyAuraNetwork12345");
+      setStripeTestPublicKey(setData.stripeTestPublicKey || "");
+      setStripeTestSecretKey(setData.stripeTestSecretKey || "");
       setStripeLivePublicKey(setData.stripeLivePublicKey || "");
       setStripeLiveSecretKey(setData.stripeLiveSecretKey || "");
       setStripeWebhookSecret(setData.stripeWebhookSecret || "");
       setStripePublicKey(setData.stripePublicKey || "");
       setStripeSecretKey(setData.stripeSecretKey || "");
       setIsSubscriptionRequired(!!setData.isSubscriptionRequired);
+      setIsStripeConfigured(!!setData.isStripeConfigured);
+      setActiveStripeMode(setData.activeStripeMode || "none");
       if (setData.smtpSettings) {
         setSmtpForm(setData.smtpSettings);
       }
@@ -664,6 +670,7 @@ export default function AdminDashboard({
     e.preventDefault();
     setSavingSettings(true);
     setSettingsSavedMsg("");
+    setStripeTestResult(null);
     try {
       const activePub = stripeMode === "live" ? stripeLivePublicKey : stripeTestPublicKey;
       const activeSec = stripeMode === "live" ? stripeLiveSecretKey : stripeTestSecretKey;
@@ -683,14 +690,62 @@ export default function AdminDashboard({
           smtpSettings: smtpForm
         })
       });
+      const data = await res.json();
       if (res.ok) {
-        setSettingsSavedMsg("Stripe Mode & System Settings updated successfully!");
+        setSettingsSavedMsg("Stripe Mode & System Settings updated and saved successfully!");
+        setIsStripeConfigured(!!data.isStripeConfigured);
+        setActiveStripeMode(data.activeStripeMode || "none");
         setTimeout(() => setSettingsSavedMsg(""), 4000);
       }
     } catch (e) {
       console.error(e);
     } finally {
       setSavingSettings(false);
+    }
+  };
+
+  // Test Stripe Live Connection
+  const handleTestStripeConnection = async () => {
+    setTestingStripe(true);
+    setStripeTestResult(null);
+    try {
+      // First save current form inputs so server tests with fresh values
+      const activePub = stripeMode === "live" ? stripeLivePublicKey : stripeTestPublicKey;
+      const activeSec = stripeMode === "live" ? stripeLiveSecretKey : stripeTestSecretKey;
+      await fetch("/api/settings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          stripeMode,
+          stripeTestPublicKey,
+          stripeTestSecretKey,
+          stripeLivePublicKey,
+          stripeLiveSecretKey,
+          stripeWebhookSecret,
+          stripePublicKey: activePub,
+          stripeSecretKey: activeSec,
+          isSubscriptionRequired,
+          smtpSettings: smtpForm
+        })
+      });
+
+      const res = await fetch("/api/settings/test-stripe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" }
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setStripeTestResult({ success: true, message: data.message });
+        setIsStripeConfigured(true);
+        setActiveStripeMode(data.mode);
+      } else {
+        setStripeTestResult({ success: false, message: data.error || "Failed to verify Stripe connection." });
+        setIsStripeConfigured(false);
+      }
+    } catch (e: any) {
+      setStripeTestResult({ success: false, message: e.message || "Network error while testing Stripe connection." });
+    } finally {
+      setTestingStripe(false);
     }
   };
 
@@ -1136,6 +1191,7 @@ export default function AdminDashboard({
         body: JSON.stringify({
           title: slideForm.title,
           description: slideForm.description,
+          image: slideForm.image,
           imageUrl: slideForm.image,
           overlayColor: slideForm.overlayColor
         })
@@ -1926,18 +1982,54 @@ export default function AdminDashboard({
             
             {/* System Configuration Form */}
             <div className="bg-white p-6 rounded-2xl border border-slate-100 luxury-shadow space-y-6">
-              <div className="border-b border-slate-100 pb-4">
-                <h3 className="text-base font-bold text-slate-800 flex items-center gap-2">
-                  <DollarSign className="w-5 h-5 text-brand-pink" />
-                  <span>Stripe & Membership Gateway Settings</span>
-                </h3>
-                <p className="text-xs text-slate-400 mt-1">Configure Stripe credentials and toggle membership subscription requirements.</p>
+              <div className="border-b border-slate-100 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                  <h3 className="text-base font-bold text-slate-800 flex items-center gap-2">
+                    <DollarSign className="w-5 h-5 text-brand-pink" />
+                    <span>Stripe & Membership Gateway Settings</span>
+                  </h3>
+                  <p className="text-xs text-slate-400 mt-1">Configure Stripe API credentials, test connections, and toggle membership subscription requirements.</p>
+                </div>
+                <div className="flex items-center gap-2 shrink-0">
+                  {isStripeConfigured ? (
+                    <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold ${
+                      activeStripeMode === "live"
+                        ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                        : "bg-amber-50 text-amber-700 border border-amber-200"
+                    }`}>
+                      <span className={`w-2 h-2 rounded-full animate-pulse ${
+                        activeStripeMode === "live" ? "bg-emerald-500" : "bg-amber-500"
+                      }`} />
+                      Stripe Connected ({activeStripeMode.toUpperCase()})
+                    </span>
+                  ) : (
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-rose-50 text-rose-700 border border-rose-200">
+                      <span className="w-2 h-2 rounded-full bg-rose-500" />
+                      Stripe Not Configured
+                    </span>
+                  )}
+                </div>
               </div>
 
               {settingsSavedMsg && (
                 <div className="bg-emerald-50 text-emerald-800 text-xs font-semibold p-3.5 rounded-xl border border-emerald-100 flex items-center space-x-2">
                   <Check className="w-4 h-4 text-emerald-500 shrink-0" />
                   <span>{settingsSavedMsg}</span>
+                </div>
+              )}
+
+              {stripeTestResult && (
+                <div className={`text-xs font-semibold p-3.5 rounded-xl border flex items-start space-x-2 ${
+                  stripeTestResult.success
+                    ? "bg-emerald-50 text-emerald-800 border-emerald-200"
+                    : "bg-rose-50 text-rose-800 border-rose-200"
+                }`}>
+                  {stripeTestResult.success ? (
+                    <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                  ) : (
+                    <span className="w-4 h-4 text-rose-500 font-bold shrink-0 mt-0.5">✕</span>
+                  )}
+                  <span className="leading-relaxed">{stripeTestResult.message}</span>
                 </div>
               )}
 
@@ -2068,20 +2160,41 @@ export default function AdminDashboard({
                     </div>
                   </div>
 
-                  <button
-                    type="submit"
-                    disabled={savingSettings}
-                    className="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold p-3.5 rounded-xl transition cursor-pointer flex items-center justify-center gap-2"
-                  >
-                    {savingSettings ? (
-                      <>
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                        <span>Saving Configuration...</span>
-                      </>
-                    ) : (
-                      <span>Save System Settings</span>
-                    )}
-                  </button>
+                  <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                    <button
+                      type="submit"
+                      disabled={savingSettings || testingStripe}
+                      className="flex-1 bg-slate-900 hover:bg-slate-800 text-white font-bold p-3.5 rounded-xl transition cursor-pointer flex items-center justify-center gap-2"
+                    >
+                      {savingSettings ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <span>Saving Configuration...</span>
+                        </>
+                      ) : (
+                        <span>Save System Settings</span>
+                      )}
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={handleTestStripeConnection}
+                      disabled={savingSettings || testingStripe}
+                      className="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 font-bold p-3.5 rounded-xl transition cursor-pointer flex items-center justify-center gap-2 shadow-xs shrink-0"
+                    >
+                      {testingStripe ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin text-brand-pink" />
+                          <span>Verifying Stripe...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Sparkles className="w-4 h-4 text-brand-pink" />
+                          <span>Test Stripe Connection</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
                 </form>
               )}
             </div>

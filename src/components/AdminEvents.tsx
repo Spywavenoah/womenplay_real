@@ -906,7 +906,7 @@ export default function AdminEvents({ events, onRefresh }: AdminEventsProps) {
                         src={event.image}
                         alt={event.title}
                         referrerPolicy="no-referrer"
-                        onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=1200"; }}
+                        onError={(e) => { (e.target as HTMLImageElement).src = "/assets/women_tug_war.jpg"; }}
                         className="w-full md:w-36 h-24 object-cover rounded-xl border border-slate-100 shrink-0 self-center md:self-start"
                       />
                     )}

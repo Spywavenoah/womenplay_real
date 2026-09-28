@@ -1,12 +1,13 @@
 import React from "react";
-import { BookOpen, Loader2, MessageSquareHeart } from "lucide-react";
+import { Loader2, MessageSquareHeart, Facebook, Instagram, Youtube } from "lucide-react";
 import HeroBanner from "./HeroBanner";
 
 interface ContactViewProps {
   onNavigateHome: () => void;
+  onNavigateSponsorship?: () => void;
 }
 
-export default function ContactView({ onNavigateHome }: ContactViewProps) {
+export default function ContactView({ onNavigateHome, onNavigateSponsorship }: ContactViewProps) {
   const [contactForm, setContactForm] = React.useState({
     firstName: "",
     email: "",
@@ -17,24 +18,6 @@ export default function ContactView({ onNavigateHome }: ContactViewProps) {
   });
   const [contactSubmitted, setContactSubmitted] = React.useState(false);
   const [contactSubmitting, setContactSubmitting] = React.useState(false);
-  const [newsletterEmail, setNewsletterEmail] = React.useState("");
-  const [newsletterSubscribed, setNewsletterSubscribed] = React.useState(false);
-
-  const handleNewsletterSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newsletterEmail) return;
-    try {
-      await fetch("/api/newsletter", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: newsletterEmail })
-      });
-    } catch (err) {
-      console.error("Error subscribing to newsletter:", err);
-    }
-    setNewsletterSubscribed(true);
-    setNewsletterEmail("");
-  };
 
   const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -96,12 +79,12 @@ export default function ContactView({ onNavigateHome }: ContactViewProps) {
           {/* Contact Details */}
           <div className="space-y-8 text-left">
             <div className="space-y-4">
-              <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold-dark">Concierge Support</span>
+              <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold-dark">We’d Love to Hear From You</span>
               <h2 className="text-3xl md:text-4xl font-display font-extrabold text-slate-900">
-                The Secretariat is <em className="gold-text-gradient not-italic">here.</em>
+                Let’s Stay <em className="gold-text-gradient not-italic">Connected.</em>
               </h2>
               <p className="text-slate-600 text-sm md:text-base leading-relaxed">
-                Our executive secretariat responds within 24 business hours to every inquiry.
+                Have a question or idea? We’ll respond within 24 hours.
               </p>
             </div>
 
@@ -112,7 +95,7 @@ export default function ContactView({ onNavigateHome }: ContactViewProps) {
                 <div>
                   <div className="text-[10px] uppercase tracking-[2px] font-bold text-brand-gold-dark mb-0.5">Email</div>
                   <div className="text-sm text-slate-600">
-                    <a href="mailto:womenplay.org@gmail.com" className="text-slate-600 hover:text-brand-pink transition">womenplay.org@gmail.com</a>
+                    <a href="mailto:hello@womenplay.org" className="text-slate-600 hover:text-brand-pink transition">hello@womenplay.org</a>
                   </div>
                 </div>
               </div>
@@ -126,54 +109,77 @@ export default function ContactView({ onNavigateHome }: ContactViewProps) {
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 rounded-full bg-brand-pink-light flex items-center justify-center text-base shrink-0">📱</div>
                 <div>
-                  <div className="text-[10px] uppercase tracking-[2px] font-bold text-brand-gold-dark mb-0.5">Follow Us</div>
-                  <div className="text-sm text-slate-500">Instagram &nbsp;·&nbsp; Facebook &nbsp;·&nbsp; TikTok &nbsp;·&nbsp; YouTube</div>
+                  <div className="text-[10px] uppercase tracking-[2px] font-bold text-brand-gold-dark mb-1.5">Follow Us</div>
+                  <div className="flex items-center flex-wrap gap-2 pt-0.5">
+                    <a
+                      href="https://www.facebook.com/profile.php?id=61591292890238"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 hover:bg-[#1877F2] text-slate-700 hover:text-white text-xs font-medium transition shadow-2xs cursor-pointer"
+                      title="Follow WomenPlay on Facebook"
+                    >
+                      <Facebook className="w-3.5 h-3.5" />
+                      <span>Facebook</span>
+                    </a>
+                    <a
+                      href="https://www.instagram.com/womenplay_org/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 hover:bg-[#E1306C] text-slate-700 hover:text-white text-xs font-medium transition shadow-2xs cursor-pointer"
+                      title="Follow WomenPlay on Instagram"
+                    >
+                      <Instagram className="w-3.5 h-3.5" />
+                      <span>Instagram</span>
+                    </a>
+                    <a
+                      href="https://www.tiktok.com/@womenplay?lang=en"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 hover:bg-black text-slate-700 hover:text-white text-xs font-medium transition shadow-2xs cursor-pointer"
+                      title="Follow WomenPlay on TikTok"
+                    >
+                      <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 0 1-5.201 1.743l-.002-.001.002.001a2.895 2.895 0 0 1 3.183-4.51v-3.5a6.329 6.329 0 0 0-5.394 1.603A6.338 6.338 0 0 0 3 15.672a6.335 6.335 0 0 0 6.34 6.328 6.335 6.335 0 0 0 6.34-6.328V9.124a8.17 8.17 0 0 0 4.909 1.623V7.27a4.84 4.84 0 0 1-1-.584z" />
+                      </svg>
+                      <span>TikTok</span>
+                    </a>
+                    <a
+                      href="https://www.youtube.com/@WomenPlayOrg"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 hover:bg-[#FF0000] text-slate-700 hover:text-white text-xs font-medium transition shadow-2xs cursor-pointer"
+                      title="Subscribe to WomenPlay on YouTube"
+                    >
+                      <Youtube className="w-3.5 h-3.5" />
+                      <span>YouTube</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* Partnerships Note */}
-            <div className="bg-brand-gold-light/50 border-l-4 border-brand-gold rounded-r-xl p-5">
-              <div className="text-[10px] uppercase tracking-[2px] font-bold text-brand-gold-dark mb-1">Partnerships &amp; Sponsorships</div>
-              <p className="text-[13px] text-slate-500 leading-relaxed">
-                Interested in partnering with WomenPlay? We'd love to explore opportunities to create unique play spaces for women.
+            <div className="bg-brand-gold-light/40 border border-brand-gold/30 rounded-2xl p-6 space-y-3">
+              <div className="text-[10px] uppercase tracking-[2px] font-bold text-brand-gold-dark">Partnerships &amp; Sponsorships</div>
+              <p className="text-[13px] text-slate-600 leading-relaxed">
+                Interested in sponsoring or partnering with WomenPlay? We’d love to explore opportunities to create unique play spaces for women.
               </p>
-            </div>
-
-            {/* Luxury Newsletter Form */}
-            <div className="bg-brand-pink-light/30 border border-brand-pink/10 p-6 rounded-2xl relative overflow-hidden" id="newsletter-landing-box">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-brand-pink-light rounded-full blur-xl" />
-              <h3 className="text-sm font-bold text-slate-800 flex items-center space-x-2">
-                <BookOpen className="w-4 h-4 text-brand-pink" />
-                <span>Join our Newsletter & Strategic Announcements</span>
-              </h3>
-              <p className="text-slate-500 text-[11px] mt-1 leading-relaxed mb-4">
-                Receive weekly executive opportunities, boardroom vacancies, and invitation-only social tickets.
-              </p>
-
-              {newsletterSubscribed ? (
-                <div className="bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs py-3 px-4 rounded-xl font-medium animate-pulse">
-                  Thank you! You have been subscribed to WomenPlay Strategic Announcements.
-                </div>
-              ) : (
-                <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
-                  <input
-                    type="email"
-                    placeholder="Enter your executive email..."
-                    value={newsletterEmail}
-                    onChange={(e) => setNewsletterEmail(e.target.value)}
-                    id="input-newsletter-email"
-                    className="flex-1 bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:ring-2 focus:ring-brand-pink/20"
-                  />
-                  <button
-                    type="submit"
-                    id="btn-newsletter-submit"
-                    className="bg-brand-pink hover:bg-brand-pink-dark text-white text-xs px-5 rounded-xl font-bold transition shadow-md"
-                  >
-                    Subscribe
-                  </button>
-                </form>
-              )}
+              <div className="pt-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (onNavigateSponsorship) {
+                      onNavigateSponsorship();
+                    } else {
+                      window.location.hash = "#sponsorship";
+                    }
+                  }}
+                  className="inline-flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-wider text-brand-pink hover:text-brand-pink-dark transition cursor-pointer group"
+                >
+                  <span>SPONSOR OR PARTNER</span>
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                </button>
+              </div>
             </div>
           </div>
 
@@ -184,7 +190,7 @@ export default function ContactView({ onNavigateHome }: ContactViewProps) {
             {contactSubmitted ? (
               <div className="bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs py-4 px-6 rounded-2xl font-medium space-y-2">
                 <p className="font-bold">Message Submitted successfully!</p>
-                <p className="text-[11px] text-emerald-700">The executive secretariat will verify your contact details and reach out within 24 business hours.</p>
+                <p className="text-[11px] text-emerald-700">Our team will review your message and reach out within 24 hours.</p>
               </div>
             ) : (
               <form onSubmit={handleContactSubmit} className="space-y-4">

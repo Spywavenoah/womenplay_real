@@ -147,7 +147,7 @@ export default function VolunteerView({ onNavigateHome }: { onNavigateHome: () =
               key={idx}
               className="bg-white border border-slate-100 rounded-3xl p-8 space-y-4 hover:border-brand-pink/30 hover:shadow-lg transition-all duration-300 luxury-shadow group"
             >
-              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-brand-pink to-brand-gold text-white flex items-center justify-center shadow-md shadow-brand-pink/20 group-hover:scale-110 transition-transform duration-200 text-2xl">
+              <div className="w-14 h-14 rounded-full bg-brand-pink text-white border border-brand-gold/40 flex items-center justify-center shadow-md shadow-brand-pink/20 group-hover:scale-110 transition-transform duration-200 text-2xl">
                 {role.icon}
               </div>
               <h3 className="text-lg font-display font-bold text-slate-900">{role.name}</h3>
@@ -176,7 +176,7 @@ export default function VolunteerView({ onNavigateHome }: { onNavigateHome: () =
         </section>
 
         {/* Process */}
-        <section className="bg-gradient-to-br from-brand-pink/5 via-white to-brand-gold/5 border border-slate-100 rounded-3xl p-8 md:p-12 luxury-shadow">
+        <section className="bg-white border border-slate-200/80 rounded-3xl p-8 md:p-12 luxury-shadow">
           <div className="text-center space-y-3 mb-10">
             <span className="text-xs uppercase tracking-widest font-extrabold text-brand-pink inline-block">The Journey</span>
             <h3 className="text-2xl md:text-3xl font-display font-extrabold text-slate-900">From Application to Launch Day</h3>
@@ -184,7 +184,7 @@ export default function VolunteerView({ onNavigateHome }: { onNavigateHome: () =
           <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
             {PROCESS_STEPS.map((step, idx) => (
               <div key={idx} className="text-center space-y-2">
-                <div className="w-14 h-14 mx-auto rounded-2xl bg-gradient-to-br from-brand-pink to-brand-gold text-white font-display font-extrabold text-lg flex items-center justify-center shadow-md shadow-brand-pink/20">
+                <div className="w-14 h-14 mx-auto rounded-2xl bg-brand-pink text-white border border-brand-gold/40 font-display font-extrabold text-lg flex items-center justify-center shadow-md shadow-brand-pink/20">
                   {step.num}
                 </div>
                 <p className="text-sm font-bold text-slate-800">{step.label}</p>
@@ -194,14 +194,14 @@ export default function VolunteerView({ onNavigateHome }: { onNavigateHome: () =
         </section>
 
         {/* Application Form */}
-        <section className="bg-brand-gold-light/50 border-l-4 border-brand-gold rounded-r-xl p-5 text-black">
+        <section className="bg-white border border-slate-200/80 rounded-3xl p-8 md:p-12 luxury-shadow">
           <div className="absolute -top-12 -right-12 w-48 h-48 bg-brand-pink/15 rounded-full blur-3xl pointer-events-none" />
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-5 gap-10 p-8 md:p-12">
             {/* Info Aside */}
             <aside className="lg:col-span-2 space-y-5">
               <h3 className="text-2xl md:text-3xl font-display font-extrabold text-black">Become a Founding Volunteer</h3>
               <p className="text-black/80 text-sm leading-relaxed">
-                We are seeking dependable, warm and community-minded adults who can support the October 24, 2026 launch in Surrey, BC.
+                We are seeking dependable, warm and community-minded adults who can support the upcoming WomenPlay Launch Experience.
               </p>
               <p className="text-black/80 text-sm leading-relaxed">
                 <strong className="text-black">Expected commitment:</strong> orientation, final briefing and an assigned event-day shift.
@@ -308,7 +308,7 @@ export default function VolunteerView({ onNavigateHome }: { onNavigateHome: () =
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full md:w-auto inline-flex items-center justify-center gap-2 bg-gradient-to-r from-brand-pink to-brand-gold hover:opacity-95 text-white font-bold px-8 py-3.5 rounded-full shadow-lg shadow-brand-pink/25 transition-all hover:-translate-y-0.5 text-sm disabled:opacity-50"
+                  className="w-full md:w-auto inline-flex items-center justify-center gap-2 bg-brand-pink hover:bg-brand-pink-dark text-white border border-brand-gold/40 font-bold px-8 py-3.5 rounded-full shadow-lg shadow-brand-pink/25 transition-all hover:-translate-y-0.5 text-sm disabled:opacity-50"
                 >
                   {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Heart className="w-4 h-4" />}
                   <span>{loading ? "Submitting Application..." : "Apply to Join the Founding Team"}</span>

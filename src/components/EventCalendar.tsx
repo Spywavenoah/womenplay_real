@@ -170,33 +170,33 @@ export default function EventCalendar({
     switch (category) {
       case "Leadership":
         return {
-          bg: "bg-amber-50 text-amber-700 border-amber-200",
-          dot: "bg-amber-500",
-          badge: "bg-gradient-to-r from-amber-500 to-yellow-600 text-white"
+          bg: "bg-brand-gold/10 text-brand-gold-dark border-brand-gold/30",
+          dot: "bg-brand-gold",
+          badge: "bg-brand-gold text-slate-900 font-bold"
         };
       case "Workshop":
         return {
-          bg: "bg-pink-50 text-pink-700 border-pink-200",
+          bg: "bg-brand-pink/10 text-brand-pink-dark border-brand-pink/30",
           dot: "bg-brand-pink",
-          badge: "bg-gradient-to-r from-pink-500 to-rose-600 text-white"
+          badge: "bg-brand-pink text-white font-bold"
         };
       case "Networking":
         return {
           bg: "bg-blue-50 text-blue-700 border-blue-200",
           dot: "bg-blue-500",
-          badge: "bg-gradient-to-r from-blue-500 to-indigo-600 text-white"
+          badge: "bg-blue-600 text-white font-bold"
         };
       case "Conference":
         return {
           bg: "bg-purple-50 text-purple-700 border-purple-200",
           dot: "bg-purple-500",
-          badge: "bg-gradient-to-r from-purple-500 to-fuchsia-600 text-white"
+          badge: "bg-purple-600 text-white font-bold"
         };
       default:
         return {
           bg: "bg-slate-50 text-slate-700 border-slate-200",
           dot: "bg-slate-500",
-          badge: "bg-gradient-to-r from-slate-500 to-slate-600 text-white"
+          badge: "bg-slate-700 text-white font-bold"
         };
     }
   };

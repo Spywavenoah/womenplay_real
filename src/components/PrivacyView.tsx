@@ -17,7 +17,7 @@ export default function PrivacyView({ onNavigateHome }: PrivacyViewProps) {
             Data Protection Standard
           </span>
         }
-        title="Data Privacy Protocol"
+        title="Privacy Policy"
         description={
           <>
             At WomenPlay Executive Network, we enforce rigorous cryptographic data protection, non-disclosure compliance, and absolute privacy for all executive members, board candidates, and summit delegates.

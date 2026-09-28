@@ -9,18 +9,18 @@ interface FaqViewProps {
 
 const FAQ_ITEMS: { q: string; a: string }[] = [
   { q: "Do I need to be athletic to attend?", a: "No. WomenPlay is about joy, movement, laughter, and connection. You do not need to be athletic." },
-  { q: "What should I wear?", a: "Jersey Style: sports jersey, biker shorts or leggings, sneakers, and team colours. Come comfortable and photo-ready." },
-  { q: "Is this a women-only event?", a: "Yes. This launch experience is created for women." },
+  { q: "What should I wear?", a: "Each WomenPlay experience has its own style and atmosphere. The recommended attire will be shared on the event page and in your confirmation email—from jerseys and sneakers for a Play Day to relaxed-chic looks for social hangouts and destination-ready outfits for getaways. Whatever the experience, come comfortable, confident and ready to play, connect and enjoy every moment." },
+  { q: "Is this a women-only event?", a: "Yes, WomenPlay experience is created for women." },
   { q: "Will food be provided?", a: "Light refreshments will be included. Additional food or comfort food vendors may be available for purchase." },
-  { q: "Is merchandise included in my ticket?", a: "No. Merchandise will be sold separately in limited quantities." },
-  { q: "Where is the venue?", a: "The launch will take place in Surrey, BC. The final venue will be announced soon." },
-  { q: "Can I get a refund?", a: "Tickets are limited and event costs are committed in advance. The refund policy should be clearly displayed at checkout." },
+  { q: "Is merchandise included with registration?", a: "No. Exclusive WomenPlay merchandise will be available separately in limited quantities." },
+  { q: "Where will WomenPlay experiences take place?", a: "WomenPlay experiences will be hosted at thoughtfully selected venues suited to each event. Venue details will be shared on the relevant event page and with registered guests." },
+  { q: "When will registration open?", a: "We are putting the final details together. Join our priority update list to receive the date, venue, and registration opening first." },
   { q: "Is WomenPlay only for professionals?", a: "Not at all. WomenPlay welcomes women from all backgrounds, walks of life, and stages of their journey. Our community is for every woman who loves play and wants to relive her girl-child memories." },
-  { q: "Do I need to become a member?", a: "Not right now. WomenPlay is currently welcoming women into the Founding Circle during its pre-launch phase — completely free. Membership options will be introduced after launch." },
-  { q: "Will events only be in Surrey?", a: "Our initial focus is British Columbia, with plans to expand across BC and beyond over time. Travel and retreat experiences will extend further afield." },
+  { q: "Do I need a membership to attend WomenPlay experiences?", a: "No. You do not need to be a member to attend most WomenPlay experiences—tickets may be purchased individually when available. As our community grows, we may introduce optional membership opportunities with special benefits, early access and exclusive invitations. Any membership details will be announced through our official channels." },
+  { q: "Will there be membership options in the future?", a: "Yes. We plan to introduce optional membership opportunities as the WomenPlay community grows. These may include benefits such as early access, special invitations and exclusive member experiences. Full details will be shared when membership officially launches." },
+  { q: "Will WomenPlay experiences only be held in British Columbia?", a: "WomenPlay.Org is beginning in British Columbia, but our vision extends far beyond one location. As our community grows, we look forward to bringing WomenPlay experiences to more cities and destinations. Each event’s location will be clearly shared on its event page and through our official updates." },
   { q: "Are travel experiences available now?", a: "Travel experiences are currently being developed and will be announced to Founding Circle members first. Join the Founding Circle to be among the first to know." },
-  { q: "How do I stay informed?", a: "Join the Founding Circle and subscribe to our newsletter. You'll receive invitations, event announcements, travel updates, and exclusive WomenPlay news as we grow." },
-  { q: "Will there be membership options in the future?", a: "Yes. Membership opportunities are being thoughtfully developed and will be announced at a later stage. Founding Circle members will have first access." }
+  { q: "How do I stay informed?", a: "Join the Founding Circle and subscribe to our newsletter. You'll receive invitations, event announcements, travel updates, and exclusive WomenPlay news as we grow." }
 ];
 
 export default function FaqView({ onNavigateHome, onOpenContact }: FaqViewProps) {

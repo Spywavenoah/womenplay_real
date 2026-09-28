@@ -59,13 +59,13 @@ export default function DigitalBadge({
         transition={{ type: "spring", stiffness: 100 }}
         className={`relative w-full rounded-2xl overflow-hidden shadow-2xl p-6 flex flex-col justify-between border-4 h-[450px] ${
           isVIP 
-            ? "border-brand-gold gold-gradient" 
-            : "border-brand-pink-mid bg-gradient-to-b from-brand-pink-light/30 to-white"
+            ? "border-brand-gold bg-brand-gold-light" 
+            : "border-brand-pink bg-white"
         }`}
         style={{ perspective: 1000 }}
       >
         {/* Hologram / Gold Accent Borders */}
-        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-brand-pink via-brand-gold to-brand-pink" />
+        <div className="absolute top-0 left-0 w-full h-2 bg-brand-pink border-b border-brand-gold" />
         
         {/* Header Logo */}
         <div className="flex justify-between items-start">
@@ -73,7 +73,7 @@ export default function DigitalBadge({
             <span className="text-[10px] uppercase tracking-widest font-bold text-brand-pink">WOMENPLAY</span>
             <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-wider">OFFICIAL PASS</h4>
           </div>
-          <div className="p-2 rounded-full gold-gradient border border-brand-gold/30">
+          <div className="p-2 rounded-full bg-brand-gold-light border border-brand-gold/30">
             <Award className={`w-5 h-5 ${isVIP ? "text-brand-gold-dark animate-pulse" : "text-brand-pink"}`} />
           </div>
         </div>

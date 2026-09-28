@@ -244,7 +244,7 @@ export default function PortalTodo({ currentUser, registrations }: PortalTodoPro
               {/* Progress Bar background */}
               <div className="w-full bg-slate-200 h-3 rounded-full overflow-hidden flex">
                 <div
-                  className="bg-gradient-to-r from-brand-pink to-brand-gold h-full rounded-full transition-all duration-500"
+                  className="bg-brand-pink h-full rounded-full transition-all duration-500"
                   style={{ width: `${progressPercent}%` }}
                 />
               </div>
@@ -678,7 +678,7 @@ export default function PortalTodo({ currentUser, registrations }: PortalTodoPro
                 </div>
                 <button
                   onClick={handleCertifyAssessment}
-                  className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-brand-pink to-brand-gold hover:opacity-90 text-white font-bold rounded-xl text-xs uppercase tracking-wider shadow-md transition flex items-center justify-center space-x-2"
+                  className="w-full sm:w-auto px-6 py-3 bg-brand-pink hover:bg-brand-pink-dark text-white border border-brand-gold/40 font-bold rounded-xl text-xs uppercase tracking-wider shadow-md transition flex items-center justify-center space-x-2"
                 >
                   <Award className="w-4 h-4" />
                   <span>Certify Competencies & Sync Roadmap</span>
@@ -909,7 +909,7 @@ export default function PortalTodo({ currentUser, registrations }: PortalTodoPro
               <button
                 type="button"
                 onClick={handleApplyMobileOptimization}
-                className="w-full py-3 bg-gradient-to-r from-brand-pink to-brand-gold hover:opacity-95 text-white font-bold rounded-xl text-xs uppercase tracking-wider shadow-md transition flex items-center justify-center space-x-2"
+                className="w-full py-3 bg-brand-pink hover:bg-brand-pink-dark text-white border border-brand-gold/40 font-bold rounded-xl text-xs uppercase tracking-wider shadow-md transition flex items-center justify-center space-x-2"
               >
                 <Smartphone className="w-4 h-4" />
                 <span>Verify & Apply Optimizations</span>

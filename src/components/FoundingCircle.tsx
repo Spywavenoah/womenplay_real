@@ -25,7 +25,7 @@ const EXPERIENCES = [
 const BENEFITS = [
   "Founding Member recognition in our community",
   "Early access to all event registration",
-  "Priority invitations before public launch",
+  "Priority invitations to WomenPlay experiences before public launch",
   "Exclusive launch updates & behind-the-scenes access",
   "First access to future retreats and travel announcements",
   "Opportunities to share feedback and shape future experiences",
@@ -100,7 +100,7 @@ export default function FoundingCircle({ onOpenAuth }: FoundingCircleProps) {
   return (
     <section
       id="founding"
-      className="relative py-20 md:py-28 px-4 sm:px-6 md:px-12 overflow-hidden bg-gradient-to-b from-white via-brand-pink-light/30 to-slate-50"
+      className="relative py-20 md:py-28 px-4 sm:px-6 md:px-12 overflow-hidden bg-slate-50 border-y border-slate-100"
     >
       {/* Decorative glows */}
       <div className="pointer-events-none absolute -top-24 -left-24 w-72 h-72 bg-brand-pink/10 rounded-full blur-3xl" />
@@ -116,7 +116,7 @@ export default function FoundingCircle({ onOpenAuth }: FoundingCircleProps) {
             </span>
 
             <h2 className="mt-5 text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-slate-900 leading-tight">
-              Become A <em className="gold-text-gradient not-italic">Founding Member.</em>
+              Join the <em className="gold-text-gradient not-italic">Founding Circle.</em>
             </h2>
 
             {/* Companion Card */}
@@ -148,7 +148,7 @@ export default function FoundingCircle({ onOpenAuth }: FoundingCircleProps) {
                 <ul className="space-y-2.5">
                   {BENEFITS.map((benefit) => (
                     <li key={benefit} className="flex items-start gap-2.5 text-sm text-slate-700">
-                      <span className="mt-0.5 w-4 h-4 rounded-full bg-gradient-to-br from-brand-pink to-brand-gold text-white flex items-center justify-center shrink-0">
+                      <span className="mt-0.5 w-4 h-4 rounded-full bg-brand-pink text-white border border-brand-gold/40 flex items-center justify-center shrink-0">
                         <Check className="w-2.5 h-2.5" />
                       </span>
                       <span>{benefit}</span>

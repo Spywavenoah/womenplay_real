@@ -109,6 +109,10 @@ export default function AuthModal({ isOpen, onClose, onLoginSuccess }: AuthModal
           setSuccessMessage(data.message || "Please enter your 2FA verification code.");
           return;
         }
+        if (data.requiresFirstLoginSetup && data.token) {
+          window.location.href = `/activate?token=${encodeURIComponent(data.token)}`;
+          return;
+        }
         // Clear form after successful sign in
         resetForm();
         if (data.token) localStorage.setItem("wp_token", data.token);
@@ -172,7 +176,7 @@ export default function AuthModal({ isOpen, onClose, onLoginSuccess }: AuthModal
           <img 
             src="/assets/logo.png" 
             alt="WomenPlay Logo" 
-            onError={(e) => { (e.target as HTMLImageElement).src = "/assets/logo-light.svg"; }}
+            onError={(e) => { (e.target as HTMLImageElement).src = "/logo.png"; }}
             className="h-14 w-auto object-contain"
             referrerPolicy="no-referrer"
           />

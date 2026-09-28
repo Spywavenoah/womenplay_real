@@ -1,6 +1,7 @@
 import {StrictMode} from 'react';
 import {createRoot} from 'react-dom/client';
 import App from './App.tsx';
+import ErrorBoundary from './components/ErrorBoundary';
 import './index.css';
 
 // Global fetch interceptor: auto-inject the auth token on same-origin API requests.
@@ -63,6 +64,8 @@ window.fetch = async (input: RequestInfo | URL, init?: RequestInit) => {
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <ErrorBoundary>
+      <App />
+    </ErrorBoundary>
   </StrictMode>,
 );

@@ -1,20 +1,31 @@
 import React from "react";
-import { 
-  ArrowRight, Star, Check,
-  Sparkles, Quote, ChevronRight, ChevronLeft,
-  X
+import {
+  ArrowRight,
+  Sparkles,
+  Quote,
+  Calendar,
+  MapPin,
+  Ticket,
+  Heart,
+  Smile,
+  Users,
+  Compass,
+  Handshake,
+  HelpCircle,
+  ShieldCheck,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import type { BlogArticle, SuccessStory, Founder } from "../types";
-// import mentorImg from "../assets/images/executive_tea_party_1785235353940.jpg";
-import FoundingCircle from "./FoundingCircle";
+import type { NavView } from "./Header";
 
 interface HomeViewProps {
   blogs: BlogArticle[];
   successStories: SuccessStory[];
   onOpenAuth: () => void;
   currentUser: any;
-  onNavigate?: (view: "privacy" | "terms" | "sponsorship" | "founders" | "events" | "contact" | "profile") => void;
+  onNavigate?: (view: NavView) => void;
   founders?: Founder[];
 }
 
@@ -24,24 +35,58 @@ export default function HomeView({
   onOpenAuth,
   currentUser,
   onNavigate,
-  founders
 }: HomeViewProps) {
+  // Default Carousel Slides matching exact WomenPlay mockups
+  const defaultSlides = [
+    {
+      id: "slide-1",
+      image: "/assets/images/carousel_jenga_game.jpg",
+      eyebrow: "BECAUSE LIFE IS BETTER\nWHEN WOMEN CAN PLAY TOO!",
+      title: "Remember the girl\nwho loved to play?",
+      highlight: "She's still in there.",
+      suffix: "Come out and play.",
+      hasDivider: true,
+      description: "WomenPlay creates intentional spaces for women to reconnect with carefree joy through games, laughter, movement and shared experiences.",
+      overlayColor: "rgba(0,0,0,0.4)"
+    },
+    {
+      id: "slide-2",
+      image: "/assets/images/carousel_tea_party_1789553555002.jpg",
+      eyebrow: "MEANINGFUL CONNECTIONS",
+      title: "Play. Connect.\nPlay Again.",
+      hasDivider: false,
+      description: "Because life is better when women can play too. WomenPlay is a judgment-free space to let your guard down, connect authentically and simply have fun.",
+      overlayColor: "rgba(0,0,0,0.4)"
+    },
+    {
+      id: "slide-3",
+      image: "/assets/images/carousel_yacht_party_1789553569691.jpg",
+      eyebrow: "EXPERIENCES BEYOND THE EVERYDAY",
+      title: "Who said we had\nto outgrow play?",
+      highlight: "Growing up doesn't mean\nwe have to stop playing.",
+      hasDivider: true,
+      description: "At WomenPlay, we create joyful experiences that help women reconnect, explore and play again.",
+      overlayColor: "rgba(0,0,0,0.4)"
+    }
+  ];
+
   // Carousel States
-  const [slides, setSlides] = React.useState<any[]>([]);
+  const [slides, setSlides] = React.useState<any[]>(defaultSlides);
   const [currentSlideIndex, setCurrentSlideIndex] = React.useState(0);
 
-  // States
-  const [selectedBlog, setSelectedBlog] = React.useState<BlogArticle | null>(null);
-
+  // Fetch Slides
   React.useEffect(() => {
     fetch("/api/carousel")
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) return [];
+        return res.json();
+      })
       .then((data) => {
-        if (data && data.length > 0) {
+        if (data && Array.isArray(data) && data.length > 0) {
           setSlides(data);
         }
       })
-      .catch((err) => console.error("Error loading carousel slides:", err));
+      .catch((err) => console.warn("Notice: Carousel slides unavailable:", err));
   }, []);
 
   // Slide rotation interval
@@ -49,625 +94,532 @@ export default function HomeView({
     if (slides.length <= 1) return;
     const interval = setInterval(() => {
       setCurrentSlideIndex((prev) => (prev + 1) % slides.length);
-    }, 6000); // Rotate every 6 seconds
+    }, 9000);
     return () => clearInterval(interval);
   }, [slides]);
 
-  // Approved success stories & slider state
-  const approvedStories = successStories.filter(s => s.approved);
-  const [activeStoryIndex, setActiveStoryIndex] = React.useState(0);
-  const [isStoryPaused, setIsStoryPaused] = React.useState(false);
+  // Slide content renderer matching exact mockup styling
+  const renderSlideContent = (slide: any, idx: number) => {
+    const isOriginalSlide1 = (idx === 0 || slide.id === "slide-1") && (!slide.title || slide.title.includes("Remember the girl"));
+    const isOriginalSlide2 = (idx === 1 || slide.id === "slide-2") && (!slide.title || slide.title.includes("Play. Connect."));
+    const isOriginalSlide3 = (idx === 2 || slide.id === "slide-3") && (!slide.title || slide.title.includes("Who said we had"));
 
-  React.useEffect(() => {
-    if (approvedStories.length <= 1 || isStoryPaused) return;
-    const storyTimer = setInterval(() => {
-      setActiveStoryIndex(prev => (prev + 1) % approvedStories.length);
-    }, 5500);
-    return () => clearInterval(storyTimer);
-  }, [approvedStories.length, isStoryPaused]);
+    if (isOriginalSlide1) {
+      return {
+        eyebrow: (
+          <div className="text-[11px] sm:text-xs font-semibold tracking-[0.22em] text-[#dfc09f] uppercase font-sans leading-tight">
+            BECAUSE LIFE IS BETTER<br />WHEN WOMEN CAN PLAY TOO!
+          </div>
+        ),
+        title: (
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-normal leading-[1.12] tracking-tight text-white">
+            Remember the girl<br />
+            who loved to play?<br />
+            <span className="italic text-[#dba08d]">She&apos;s still in there.</span><br />
+            Come out and play.
+          </h1>
+        ),
+        hasDivider: true,
+        description: slide.description || "WomenPlay creates intentional spaces for women to reconnect with carefree joy through games, laughter, movement and shared experiences."
+      };
+    }
+
+    if (isOriginalSlide2) {
+      return {
+        eyebrow: (
+          <div className="text-[11px] sm:text-xs font-semibold tracking-[0.22em] text-[#dfc09f] uppercase font-sans leading-tight">
+            MEANINGFUL CONNECTIONS
+          </div>
+        ),
+        title: (
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-normal leading-[1.12] tracking-tight text-white">
+            Play. Connect.<br />
+            Play Again.
+          </h1>
+        ),
+        hasDivider: false,
+        description: slide.description || "Because life is better when women can play too. WomenPlay is a judgment-free space to let your guard down, connect authentically and simply have fun."
+      };
+    }
+
+    if (isOriginalSlide3) {
+      return {
+        eyebrow: (
+          <div className="text-[11px] sm:text-xs font-semibold tracking-[0.22em] text-[#dfc09f] uppercase font-sans leading-tight">
+            EXPERIENCES BEYOND THE EVERYDAY
+          </div>
+        ),
+        title: (
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-normal leading-[1.12] tracking-tight text-white">
+            Who said we had<br />
+            to outgrow play?<br />
+            <span className="italic text-[#dba08d]">Growing up doesn&apos;t mean</span><br />
+            <span className="italic text-[#dba08d]">we have to stop playing.</span>
+          </h1>
+        ),
+        hasDivider: true,
+        description: slide.description || "At WomenPlay, we create joyful experiences that help women reconnect, explore and play again."
+      };
+    }
+
+    return {
+      eyebrow: slide.eyebrow ? (
+        <div className="text-[11px] sm:text-xs font-semibold tracking-[0.22em] text-[#dfc09f] uppercase font-sans leading-tight whitespace-pre-line">
+          {slide.eyebrow}
+        </div>
+      ) : (
+        <div className="text-[11px] sm:text-xs font-semibold tracking-[0.22em] text-[#dfc09f] uppercase font-sans leading-tight">
+          WOMENPLAY MOMENTS
+        </div>
+      ),
+      title: (
+        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-normal leading-[1.12] tracking-tight text-white whitespace-pre-line">
+          {slide.title}
+        </h1>
+      ),
+      hasDivider: Boolean(slide.hasDivider),
+      description: slide.description
+    };
+  };
+
+  // Approved success stories
+  const defaultStories: SuccessStory[] = [
+    {
+      id: "story-1",
+      userId: "member-tara",
+      userFullName: "Tara M.",
+      userAvatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200",
+      title: "Reconnecting with pure, uninhibited laughter",
+      content: "Attending the pilot games evening reminded me how much I missed just laughing until my stomach hurt. No awkward small talk or work pressure — just genuine warmth, playful games, and incredible women who welcomed me with open arms.",
+      approved: true,
+      createdAt: "2026-07-15T00:00:00.000Z"
+    },
+    {
+      id: "story-2",
+      userId: "member-kimberly",
+      userFullName: "Kimberly S.",
+      userAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
+      title: "A space where you can fully be yourself",
+      content: "WomenPlay is completely different from any traditional women's group I've experienced. The atmosphere is vibrant, warm, and judgment-free. I left the gathering feeling deeply energized and with lifelong friends I can actually be silly with.",
+      approved: true,
+      createdAt: "2026-07-22T00:00:00.000Z"
+    },
+    {
+      id: "story-3",
+      userId: "member-amina",
+      userFullName: "Amina K.",
+      userAvatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200",
+      title: "Laughter, connection, and spotlight moments",
+      content: "From the team game stations to the tea party conversations, every single detail made each woman feel seen, celebrated, and valued. You don't need permission to be bold here. I cannot wait for the Jersey Style launch!",
+      approved: true,
+      createdAt: "2026-08-05T00:00:00.000Z"
+    },
+    {
+      id: "story-4",
+      userId: "member-danielle",
+      userFullName: "Danielle R.",
+      userAvatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200",
+      title: "Collecting memories, not just attending events",
+      content: "As a busy professional and mother, I needed a space to unwind and just play. WomenPlay gave me permission to feel carefree again with the confidence of who I am today. It's the most refreshing community in BC.",
+      approved: true,
+      createdAt: "2026-08-12T00:00:00.000Z"
+    }
+  ];
+
+  const approvedStories = successStories.filter((s) => s.approved);
+  const displayStories = approvedStories.length > 0 ? approvedStories : defaultStories;
 
   return (
-    <div className="w-full bg-slate-50 min-h-screen" id="home-view-container">
+    <div className="w-full bg-slate-50 min-h-screen text-left" id="home-view-container">
       {/* 1. Hero / Carousel Banner Section */}
-      <section className="relative w-full h-[650px] overflow-hidden bg-slate-950 flex items-center justify-center text-white border-b border-brand-gold/30" id="home-carousel-container">
+      <section
+        className="relative w-full min-h-[580px] sm:min-h-[620px] md:h-[660px] lg:h-[700px] overflow-hidden bg-slate-950 flex items-center text-white border-b border-brand-gold/30"
+        id="home-carousel-container"
+      >
         {slides.length > 0 ? (
           <AnimatePresence mode="wait">
             {slides.map((slide, idx) => {
               if (idx !== currentSlideIndex) return null;
+              const content = renderSlideContent(slide, idx);
               return (
                 <motion.div
                   key={slide.id || idx}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.8 }}
-                  className="absolute inset-0 w-full h-full flex items-center justify-center bg-cover bg-center"
+                  transition={{ duration: 0.75, ease: "easeInOut" }}
+                  className="absolute inset-0 w-full h-full flex items-center bg-cover bg-center md:bg-[center_top]"
                   style={{ backgroundImage: `url(${slide.image})` }}
                 >
-                  {/* Luxury Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/60 to-slate-950/90" />
-                  
-                  {/* Content Container */}
-                  <div className="relative z-10 max-w-4xl px-6 md:px-16 text-center space-y-6 flex flex-col items-center">
-                    <motion.div
-                      initial={{ y: 20, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 0.2, duration: 0.5 }}
-                      className="inline-flex items-center space-x-2 bg-brand-gold-dark/20 border border-brand-gold/40 py-1.5 px-4 rounded-full shadow-xs"
-                    >
-                      <Sparkles className="w-4 h-4 text-brand-gold animate-pulse" />
-                      <span className="text-[10px] uppercase tracking-wider font-extrabold text-brand-gold">WomenPlay Community</span>
-                    </motion.div>
+                  {/* Backdrop Overlay - darker on the left where text sits, fading toward the right so smiling women stay luminous */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 sm:via-black/45 to-black/20 md:to-transparent" />
 
-                    <motion.h1
-                      initial={{ y: 30, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 0.3, duration: 0.6 }}
-                      className="text-4xl md:text-6xl font-display font-light leading-[1.1] tracking-tight text-white max-w-3xl"
-                    >
-                      {slide.title}
-                    </motion.h1>
+                  {/* Content Container (Left-Aligned, max-w-7xl) */}
+                  <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-12 md:px-16 lg:px-24 flex flex-col justify-center h-full py-16">
+                    <div className="max-w-xl md:max-w-2xl text-left space-y-4 sm:space-y-5">
+                      {/* Eyebrow */}
+                      <motion.div
+                        initial={{ y: 15, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.15, duration: 0.5 }}
+                      >
+                        {content.eyebrow}
+                      </motion.div>
 
-                    <motion.p
-                      initial={{ y: 35, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 0.4, duration: 0.6 }}
-                      className="text-base md:text-lg text-slate-200 max-w-2xl leading-relaxed"
-                    >
-                      {slide.description}
-                    </motion.p>
+                      {/* Headline */}
+                      <motion.div
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.25, duration: 0.6 }}
+                      >
+                        {content.title}
+                      </motion.div>
 
-                    <motion.div
-                      initial={{ y: 40, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 0.5, duration: 0.6 }}
-                      className="flex flex-wrap gap-4 pt-4 justify-center"
-                    >
-                      {currentUser ? (
-                        <a
-                          href="/events"
-                          onClick={(e) => { e.preventDefault(); onNavigate?.("events"); }}
-                          className="gold-button-gradient shadow-lg shadow-brand-gold/20 text-slate-900 font-bold px-8 py-3.5 rounded-xl hover:opacity-90 transition transform hover:-translate-y-0.5 text-sm flex items-center space-x-2"
-                        >
-                          <span>Register for Events</span>
-                          <ArrowRight className="w-4 h-4" />
-                        </a>
-                      ) : (
-                        <>
-                         <a
-              href="/founders"
-              className="inline-flex items-center bg-brand-pink hover:bg-brand-pink-dark text-white font-bold px-8 py-3.5 rounded-full shadow-md shadow-brand-pink/25 transition hover:-translate-y-0.5 text-sm"
-            >Apply for Membership</a>
-                          {/* <button
-                            onClick={onOpenAuth}
-                            className="bg-brand-pink text-white hover:bg-brand-pink-dark px-8 py-3.5 rounded-xl font-bold text-sm shadow-md transition transform hover:-translate-y-0.5 flex items-center space-x-2"
-                          >
-                            <span>Apply for Membership</span>
-                            <ArrowRight className="w-4 h-4" />
-                          </button> */}
-
-                           <a
-              href="/profile"
-              className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-6 py-3.5 rounded-xl font-semibold text-sm hover:bg-white/20 transition"
-            >Learn More</a>
-                          {/* <button
-                            onClick={() => {
-                              const el = document.getElementById("about-section-landing");
-                              el?.scrollIntoView({ behavior: "smooth" });
-                            }}
-                            className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-6 py-3.5 rounded-xl font-semibold text-sm hover:bg-white/20 transition"
-                          >
-                            Learn More
-                          </button> */}
-                        </>
+                      {/* Subtle thin warm divider line (Slides 1 & 3) */}
+                      {content.hasDivider && (
+                        <motion.div
+                          initial={{ scaleX: 0 }}
+                          animate={{ scaleX: 1 }}
+                          transition={{ delay: 0.35, duration: 0.4 }}
+                          className="w-16 sm:w-20 h-[1.5px] bg-[#dba08d]/70 origin-left my-2 sm:my-3"
+                        />
                       )}
-                    </motion.div>
+
+                      {/* Description Paragraph */}
+                      <motion.p
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.35, duration: 0.6 }}
+                        className="text-xs sm:text-sm md:text-[15px] text-white/90 font-sans max-w-lg leading-relaxed pt-1"
+                      >
+                        {content.description}
+                      </motion.p>
+
+                      {/* Action Buttons */}
+                      <motion.div
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.45, duration: 0.6 }}
+                        className="flex flex-wrap gap-3 sm:gap-4 pt-3 sm:pt-4 items-center"
+                      >
+                        <button
+                          type="button"
+                          onClick={() => onNavigate?.("events" as any)}
+                          id="hero-cta-events"
+                          className="px-6 sm:px-7 py-3 rounded-full bg-[#cd7f6c] hover:bg-[#ba6d5b] text-white font-sans text-xs sm:text-[13px] font-semibold tracking-wide shadow-md transition-all duration-200 inline-flex items-center gap-2 cursor-pointer hover:-translate-y-0.5"
+                        >
+                          <span>Explore Events & Gatherings</span>
+                          <ArrowRight className="w-4 h-4" />
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => onNavigate?.("founders" as any)}
+                          id="hero-cta-founders"
+                          className="px-6 sm:px-7 py-3 rounded-full bg-black/25 hover:bg-white/15 backdrop-blur-xs border border-white/50 text-white font-sans text-xs sm:text-[13px] font-semibold tracking-wide transition-all duration-200 cursor-pointer hover:-translate-y-0.5"
+                        >
+                          Join the Founding Circle
+                        </button>
+                      </motion.div>
+
+                      {/* Bottom-left Counter (01 / 03) and Dots */}
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.55, duration: 0.4 }}
+                        className="flex items-center gap-3 pt-5 sm:pt-7"
+                      >
+                        <span className="text-xs sm:text-[13px] text-white/75 font-mono tracking-widest font-medium">
+                          {String(idx + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
+                        </span>
+                        <div className="flex items-center gap-2">
+                          {slides.map((_, dotIdx) => (
+                            <button
+                              key={dotIdx}
+                              type="button"
+                              onClick={() => setCurrentSlideIndex(dotIdx)}
+                              className={`transition-all duration-300 rounded-full cursor-pointer ${
+                                dotIdx === currentSlideIndex
+                                  ? "w-2.5 h-2.5 bg-[#cd7f6c]"
+                                  : "w-2 h-2 bg-white/35 hover:bg-white/60"
+                              }`}
+                              aria-label={`Go to slide ${dotIdx + 1}`}
+                            />
+                          ))}
+                        </div>
+                      </motion.div>
+                    </div>
                   </div>
                 </motion.div>
               );
             })}
           </AnimatePresence>
         ) : (
-          // Static Fallback while loading
-          <div className="text-slate-500">Loading premium corporate slides...</div>
+          <div className="text-slate-400 py-24 text-center w-full">Loading WomenPlay experiences...</div>
         )}
 
-        {/* Previous / Next Arrows */}
+        {/* Carousel Arrow Controls (subtle side navigators) */}
         {slides.length > 1 && (
           <>
             <button
+              type="button"
               onClick={() => setCurrentSlideIndex((prev) => (prev - 1 + slides.length) % slides.length)}
-              className="absolute left-4 z-20 p-3 rounded-full bg-slate-900/40 hover:bg-slate-900/70 text-white/80 hover:text-white transition duration-200 border border-white/10 flex items-center justify-center cursor-pointer"
+              className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-11 md:h-11 rounded-full bg-black/30 hover:bg-black/60 border border-white/20 text-white flex items-center justify-center backdrop-blur-xs transition hover:scale-105 cursor-pointer shadow-lg opacity-60 hover:opacity-100"
               aria-label="Previous slide"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7" />
-              </svg>
+              <ChevronLeft className="w-5 h-5" />
             </button>
             <button
+              type="button"
               onClick={() => setCurrentSlideIndex((prev) => (prev + 1) % slides.length)}
-              className="absolute right-4 z-20 p-3 rounded-full bg-slate-900/40 hover:bg-slate-900/70 text-white/80 hover:text-white transition duration-200 border border-white/10 flex items-center justify-center cursor-pointer"
+              className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-11 md:h-11 rounded-full bg-black/30 hover:bg-black/60 border border-white/20 text-white flex items-center justify-center backdrop-blur-xs transition hover:scale-105 cursor-pointer shadow-lg opacity-60 hover:opacity-100"
               aria-label="Next slide"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
-              </svg>
+              <ChevronRight className="w-5 h-5" />
             </button>
           </>
         )}
-
-        {/* Carousel Indicators / Dots */}
-        {slides.length > 1 && (
-          <div className="absolute bottom-6 z-20 flex space-x-2.5">
-            {slides.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentSlideIndex(idx)}
-                className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                  idx === currentSlideIndex 
-                    ? "w-8 bg-brand-pink" 
-                    : "w-2.5 bg-white/40 hover:bg-white/60"
-                }`}
-                aria-label={`Go to slide ${idx + 1}`}
-              />
-            ))}
-          </div>
-        )}
       </section>
 
-      {/* 2. For Women — Who We're For */}
-      <section className="py-20 px-6 md:px-12 max-w-7xl mx-auto text-center space-y-14" id="about-section-landing">
-        <div className="max-w-3xl mx-auto space-y-4">
-          <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold-dark">PLAY • CONNECT • PLAY AGAIN</span>
+      {/* 2. Brand Core & Pillars (The Heart of WomenPlay) */}
+      <section className="py-20 px-6 md:px-12 max-w-7xl mx-auto text-center space-y-12">
+        <div className="max-w-3xl mx-auto space-y-3">
+          <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold-dark">
+            OUR PURPOSE & SPIRIT
+          </span>
           <h2 className="text-3xl md:text-4xl font-display font-extrabold text-slate-900">
-            WomenPlay Is For Women <em className="gold-text-gradient not-italic">Who...</em>
+            Where Women Come Together to <em className="gold-text-gradient not-italic">Play & Connect</em>
           </h2>
-        </div>
-
-        {/* For Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-          {[
-            "Want to play, connect, and play again",
-            "Want to relive their girl-child memories",
-            "Don't need permission to be silly, bold, and fully themselves",
-            "Are tired of networking events that feel like work",
-            "Want to play without worrying about being judged",
-            "Want to feel like a kid again — with the confidence of a grown woman",
-            "Want to laugh until their stomach hurts",
-            "Want to reconnect with the carefree version of themselves",
-            "Want to collect memories instead of just attending another event"
-          ].map((line, i) => (
-            <div
-              key={i}
-              className="bg-white p-5 md:p-6 rounded-2xl border border-slate-100 luxury-shadow hover:border-brand-pink/30 hover:shadow-lg transition duration-300 flex items-center gap-4 text-left"
-            >
-              <div className="w-9 h-9 md:w-10 md:h-10 shrink-0 rounded-full bg-gradient-to-br from-brand-pink to-brand-gold text-white flex items-center justify-center shadow-md shadow-brand-pink/20">
-                <Check className="w-4 h-4 md:w-5 md:h-5" />
-              </div>
-              <span className="text-slate-700 text-sm md:text-base font-semibold leading-snug">{line}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* CTA */}
-        <div className="flex flex-col items-center gap-6">
-          <p className="text-slate-600 text-sm md:text-base font-medium">
-            If any of these feel true for you, WomenPlay was made with you in mind.
+          <p className="text-slate-600 text-sm md:text-base leading-relaxed">
+            WomenPlay was created to bring adult women together for joyful play, uninhibited laughter,
+            warm friendships, and uplifting shared moments in private, beautiful venues.
           </p>
-          <a
-            href="/founders"
-            className="inline-flex items-center space-x-2 bg-brand-pink hover:bg-brand-pink-dark text-white font-bold px-8 py-3.5 rounded-full shadow-md shadow-brand-pink/25 transition hover:-translate-y-0.5 text-sm"
-          >
-            <Sparkles className="w-4 h-4" />
-            <span>Become A Founding Member</span>
-          </a>
+        </div>
+
+        {/* 4 Pillars Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[
+            {
+              icon: Smile,
+              title: "Play & Pure Joy",
+              desc: "Relive carefree girlhood memories and laugh until your stomach hurts without any pressure or judgment."
+            },
+            {
+              icon: Users,
+              title: "Warm Connection",
+              desc: "Make real friends easily through shared games and conversations rather than stuffy corporate networking."
+            },
+            {
+              icon: Sparkles,
+              title: "Spotlight Moments",
+              desc: "Curated experiences where every woman gets her spotlight moment to shine, sing, play, and celebrate."
+            },
+            {
+              icon: Heart,
+              title: "Safe & Judgment-Free",
+              desc: "A warm, inclusive space where adult women can be bold, silly, and 100% authentically themselves."
+            }
+          ].map((item, idx) => {
+            const Icon = item.icon;
+            return (
+              <div
+                key={idx}
+                className="bg-white p-7 rounded-3xl border border-slate-200/80 luxury-shadow hover:border-brand-pink/30 hover:shadow-lg transition-all duration-300 text-left space-y-3"
+              >
+                <div className="w-12 h-12 rounded-2xl bg-brand-pink/10 text-brand-pink border border-brand-pink/20 flex items-center justify-center">
+                  <Icon className="w-6 h-6" />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900">{item.title}</h3>
+                <p className="text-slate-500 text-xs md:text-sm leading-relaxed">{item.desc}</p>
+              </div>
+            );
+          })}
         </div>
       </section>
 
-      {/* Founding Circle Signup */}
-      <FoundingCircle />
-
-      {/* Signature Experiences */}
-      <section className="py-20 px-6 md:px-12 bg-gradient-to-b from-white via-brand-pink-light/40 to-slate-50 border-t border-slate-100" id="experiences-section-landing">
+      {/* 3. Signature Experiences Teaser */}
+      <section className="py-20 px-6 md:px-12 bg-white border-y border-slate-200/80">
         <div className="max-w-7xl mx-auto space-y-12 text-center">
-          <div className="max-w-3xl mx-auto space-y-4">
-            <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold-dark">Signature Experiences</span>
+          <div className="max-w-3xl mx-auto space-y-3">
+            <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold-dark">
+              SIGNATURE GATHERINGS
+            </span>
             <h2 className="text-3xl md:text-4xl font-display font-extrabold text-slate-900">
-              Curated Gatherings. <em className="gold-text-gradient not-italic">Beautiful Moments.</em>
+              Curated Gatherings. <em className="gold-text-gradient not-italic">Memorable Moments.</em>
             </h2>
             <p className="text-slate-600 text-sm md:text-base leading-relaxed">
-              Curated gatherings designed to help women unwind, laugh, celebrate, explore, connect, and enjoy life through beautiful shared experiences.
+              Curated experiences designed to help women unwind, laugh, explore, connect, and enjoy life together.
             </p>
           </div>
 
-          {/* Experience Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          {/* 4 Clean Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
             {[
-              { icon: "🌸", name: "Brunch & Bloom", txt: "Elegant dining experiences with beautiful tablescapes, conversation, laughter, and the kind of connection that makes mornings memorable." },
-              { icon: "🎤", name: "Karaoke Socials", txt: "Private venue experiences where every woman gets her spotlight moment. No judgment — just laughter, singing, and shared joy." },
-              { icon: "🎲", name: "Games Evenings", txt: "Laughter-filled nights designed for fun, ease, and genuine connection. Great company, good drinks, and playful competition." },
-              { icon: "🧘🏾‍♀️", name: "Wellness Moments", txt: "Restorative experiences focused on peace, self-care, reflection, beauty, and renewal. Because every woman deserves to exhale." },
-              { icon: "🫖", name: "Themed Socials", txt: "Seasonal gatherings, tea parties, cultural experiences, celebration nights, and elevated social events designed to delight and inspire." },
-              { icon: "🥂", name: "Networking & Lifestyle Mixers", txt: "Stylish gatherings where women connect, share ideas, build meaningful relationships, and enjoy memorable conversations." }
-            ].map((exp, i) => (
+              {
+                emoji: "🌸",
+                title: "Brunch & Bloom",
+                desc: "Elegant dining experiences with beautiful tablescapes, vibrant conversation, and morning warmth."
+              },
+              {
+                emoji: "🎤",
+                title: "Karaoke Socials",
+                desc: "Private venue sing-alongs where every woman gets her spotlight moment without any judgment."
+              },
+              {
+                emoji: "🎲",
+                title: "Games Nights",
+                desc: "Laughter-filled nights of interactive trivia, board classics, and playful friendly competition."
+              },
+              {
+                emoji: "🌴",
+                title: "Travel & Retreats",
+                desc: "Curated weekend getaways, wellness escapes, and travel experiences designed for women to explore, recharge, and connect."
+              }
+            ].map((exp, idx) => (
               <div
-                key={i}
-                className="bg-white p-6 md:p-8 rounded-2xl border border-slate-100 luxury-shadow hover:border-brand-pink/30 hover:shadow-lg transition duration-300 text-center"
+                key={idx}
+                className="bg-slate-50 p-6 sm:p-7 rounded-3xl border border-slate-200/70 hover:border-brand-pink/40 hover:shadow-md transition-all duration-300 space-y-3"
               >
-                <span className="text-3xl md:text-4xl block mb-4">{exp.icon}</span>
-                <div className="text-slate-900 font-bold text-base md:text-lg mb-2">{exp.name}</div>
-                <p className="text-slate-500 text-xs md:text-sm leading-relaxed">{exp.txt}</p>
+                <span className="text-3xl block">{exp.emoji}</span>
+                <h3 className="text-lg font-bold text-slate-900">{exp.title}</h3>
+                <p className="text-slate-500 text-xs md:text-sm leading-relaxed">{exp.desc}</p>
               </div>
             ))}
           </div>
 
-          {/* Coming Soon Note */}
-          <div className="max-w-3xl mx-auto">
-            <p className="text-xs md:text-sm text-slate-500 bg-white/70 border border-slate-100 rounded-full px-6 py-3 luxury-shadow inline-block">
-              <strong className="text-brand-pink">Coming Soon:</strong> Our first signature experience will be announced soon. Founding Circle members receive priority access to all event registration.
-            </p>
-          </div>
-
-          {/* CTA Row */}
-          <div className="flex flex-wrap justify-center gap-4">
-            <a
-              href="/tickets"
-              className="inline-flex items-center space-x-2 bg-brand-pink hover:bg-brand-pink-dark text-white font-bold px-8 py-3.5 rounded-full shadow-md shadow-brand-pink/25 transition hover:-translate-y-0.5 text-sm"
+          <div>
+            <button
+              type="button"
+              onClick={() => onNavigate?.("events" as any)}
+              id="btn-home-explore-events"
+              className="inline-flex items-center gap-2 border-2 border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-white font-bold px-8 py-3.5 rounded-full transition hover:-translate-y-0.5 text-sm cursor-pointer"
             >
-              <Sparkles className="w-4 h-4" />
-              <span>Get Early Access</span>
-            </a>
-            <a
-              href="/events"
-              onClick={(e) => { e.preventDefault(); onNavigate?.("events"); }}
-              className="inline-flex items-center space-x-2 border-2 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white font-bold px-8 py-3 rounded-full transition hover:-translate-y-0.5 text-sm"
-            >
-              <span>Explore Events</span>
-            </a>
+              <span>Explore All Events & Gatherings</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
       </section>
 
-      {/* 4. Interactive Community Voices & Gatherings Section */}
-      <section className="py-20 max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-stretch" id="stories-section-landing">
-        
-        {/* Left Column: Community Testimonials (col-md-5) */}
-        <div className="md:col-span-5 col-md-5 space-y-6 text-left flex flex-col justify-between">
-          <div className="space-y-3">
-            <div className="flex items-center space-x-2">
-              <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold-dark">COMMUNITY VOICES</span>
-              <span className="px-2 py-0.5 rounded-full bg-brand-pink-light/30 text-brand-pink text-[10px] font-extrabold uppercase">
-                WomenPlay Circle
-              </span>
-            </div>
-            <h2 className="text-2xl md:text-3xl font-display font-extrabold text-slate-900">Joyful Moments & Playful Connections</h2>
-            <p className="text-slate-500 text-xs md:text-sm leading-relaxed">
-              We aren’t a stuffy networking club. Expect laughter, games, and playful moments that genuinely lift your spirit.
+      {/* 5. Founding Member Teaser (Replacing long form) */}
+      <section className="py-16 px-6 md:px-12 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white border-t border-brand-gold/30">
+        <div className="max-w-4xl mx-auto text-center space-y-6">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-gold/15 border border-brand-gold/30 text-brand-gold text-xs font-bold uppercase tracking-wider">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Founding Circle</span>
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-white">
+            Join the <em className="gold-text-gradient not-italic">Founding Circle</em>
+          </h2>
+
+          <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+            Join our initial circle of women shaping the future of WomenPlay.
+            Founding members receive priority invitations to WomenPlay experiences, early ticket access, exclusive gatherings,
+            and special community recognition.
+          </p>
+
+          <div className="pt-2 flex flex-wrap gap-4 justify-center">
+            <button
+              type="button"
+              onClick={() => onNavigate?.("founders" as any)}
+              id="btn-home-founding-circle"
+              className="bg-brand-pink hover:bg-brand-pink-dark text-white font-bold px-8 py-4 rounded-full shadow-lg shadow-brand-pink/25 transition hover:-translate-y-0.5 text-sm inline-flex items-center gap-2 cursor-pointer"
+            >
+              <span>Join the Founding Circle</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Clean White Community & Next Steps Section */}
+      <section className="py-20 px-6 md:px-12 bg-white border-t border-slate-200/80 text-slate-900 text-left" id="community-get-involved-section">
+        <div className="max-w-7xl mx-auto space-y-12">
+          <div className="text-center space-y-3 max-w-3xl mx-auto">
+            <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold-dark">
+              CONNECT & COLLABORATE
+            </span>
+            <h2 className="text-3xl md:text-4xl font-display font-extrabold text-slate-900">
+              More Ways to <em className="gold-text-gradient not-italic">Get Involved</em>
+            </h2>
+            <p className="text-slate-600 text-sm md:text-base leading-relaxed">
+              Whether you want to sponsor our gatherings, volunteer your talents, host an experience, or have questions about our upcoming events, we would love to connect.
             </p>
           </div>
 
-          {/* Interactive Sliding Track */}
-          <div 
-            className="relative overflow-hidden min-h-[280px] rounded-3xl my-2"
-            onMouseEnter={() => setIsStoryPaused(true)}
-            onMouseLeave={() => setIsStoryPaused(false)}
-          >
-            {approvedStories.length > 0 ? (
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeStoryIndex}
-                  initial={{ opacity: 0, x: 25 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -25 }}
-                  transition={{ duration: 0.45, ease: "easeOut" }}
-                  className="grid grid-cols-1 gap-6"
-                >
-                  {[approvedStories[activeStoryIndex]].map((story, i) => (
-                    <div 
-                      key={story.id + "-" + i} 
-                      className="bg-white p-6 md:p-7 rounded-2xl border border-slate-100 luxury-shadow flex flex-col justify-between relative group hover:border-brand-gold/40 transition-all duration-300 min-h-[260px]"
-                    >
-                      <Quote className="w-8 h-8 text-brand-pink/15 absolute top-5 right-5 pointer-events-none" />
-                      
-                      <div className="space-y-4">
-                        <div className="flex items-center space-x-3.5">
-                          <img 
-                            src={story.userAvatar || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200"} 
-                            alt={story.userFullName} 
-                            loading="lazy"
-                            decoding="async"
-                            onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200"; }}
-                            className="w-12 h-12 rounded-full border-2 border-brand-gold object-cover shadow-xs"
-                          />
-                          <div>
-                            <div className="flex items-center space-x-1.5">
-                              <h4 className="text-xs font-black text-slate-900">{story.userFullName}</h4>
-                              <Star className="w-3 h-3 text-brand-gold fill-brand-gold shrink-0" />
-                            </div>
-                            <span className="text-[10px] uppercase tracking-wider font-extrabold text-brand-gold-dark block">
-                              WomenPlay Community
-                            </span>
-                          </div>
-                        </div>
-
-                        <h3 className="text-sm font-extrabold text-slate-900 leading-snug">
-                          "{story.title}"
-                        </h3>
-
-                        <p className="text-slate-600 text-xs leading-relaxed line-clamp-5 italic">
-                          "{story.content}"
-                        </p>
-                      </div>
-
-                      <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-[10px]">
-                        <span className="font-semibold text-slate-400">
-                          {new Date(story.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}
-                        </span>
-                        <span className="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full font-bold">
-                          Community Joy
-                        </span>
-                      </div>
-                    </div>
-                  ))}
-                </motion.div>
-              </AnimatePresence>
-            ) : (
-              <div className="bg-white p-8 rounded-2xl border border-slate-100 text-center py-16 space-y-2">
-                <Quote className="w-8 h-8 text-slate-300 mx-auto" />
-                <p className="text-slate-500 text-xs font-semibold">Because life is better when… Women can play too!</p>
-              </div>
-            )}
-          </div>
-
-          {/* Slides Control UNDER the Stories */}
-          {approvedStories.length > 0 && (
-            <div className="flex flex-wrap items-center justify-between gap-4 pt-2 border-t border-slate-100/80">
-              {/* Pagination Dots */}
-              <div className="flex items-center space-x-1.5">
-                {approvedStories.map((s, idx) => (
-                  <button
-                    key={s.id}
-                    onClick={() => setActiveStoryIndex(idx)}
-                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                      idx === activeStoryIndex 
-                        ? "w-6 bg-brand-pink shadow-xs" 
-                        : "w-2 bg-slate-200 hover:bg-slate-300"
-                    }`}
-                    aria-label={`Go to slide ${idx + 1}`}
-                  />
-                ))}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            {/* Sponsor & Partner Card */}
+            <div className="bg-slate-50 p-8 rounded-3xl border border-slate-200/80 hover:border-brand-pink/40 hover:shadow-lg transition-all duration-300 flex flex-col justify-between space-y-6">
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-2xl bg-brand-pink/10 text-brand-pink border border-brand-pink/20 flex items-center justify-center">
+                  <Handshake className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-900">Partnerships & Sponsorships</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">
+                  Bring your brand to life within a growing community of women through playful experiences, thoughtful activations and memorable partnerships.
+                </p>
               </div>
 
-              {/* Prev/Next Buttons + Counter */}
-              <div className="flex items-center space-x-2 shrink-0">
-                <button
-                  type="button"
-                  onClick={() => setActiveStoryIndex(prev => (prev === 0 ? approvedStories.length - 1 : prev - 1))}
-                  className="p-2 rounded-full border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 hover:text-brand-pink transition cursor-pointer shadow-xs"
-                  aria-label="Previous Story"
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                </button>
-                <span className="text-xs font-bold text-slate-600 min-w-[45px] text-center font-mono">
-                  {activeStoryIndex + 1} / {approvedStories.length}
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setActiveStoryIndex(prev => (prev + 1) % approvedStories.length)}
-                  className="p-2 rounded-full border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 hover:text-brand-pink transition cursor-pointer shadow-xs"
-                  aria-label="Next Story"
-                >
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* Right Column: Signature Gatherings & Socials Card (col-md-7) */}
-        <div className="md:col-span-7 col-md-7 bg-slate-900 rounded-3xl border border-slate-800 luxury-shadow overflow-hidden flex flex-col justify-between text-left relative group min-h-[440px] h-full" id="signature-gatherings-card">
-          <div className="relative h-full w-full overflow-hidden flex flex-col justify-end">
-            <img 
-              src="/assets/executive_tea_party_1785235353940-DMMx34TC.jpg"
-              alt="Joyful Gatherings & Play Moments" 
-              loading="lazy"
-              decoding="async"
-              className="w-full h-full object-cover absolute inset-0 transition-transform duration-700 group-hover:scale-105"
-              referrerPolicy="no-referrer"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
-            
-            <div className="absolute top-4 left-4 inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-slate-900/80 backdrop-blur-md border border-brand-gold/40 text-brand-gold-light text-[10px] font-bold uppercase tracking-widest shadow">
-              <Sparkles className="w-3.5 h-3.5 text-brand-pink" />
-              <span>Signature Gatherings</span>
-            </div>
-
-            <div className="relative z-10 p-6 md:p-8 space-y-3 text-white">
-              <h3 className="text-2xl md:text-3xl font-display font-extrabold text-white">Curated Play & Social Gatherings</h3>
-              <p className="text-xs md:text-sm text-slate-300 leading-relaxed max-w-xl">
-                Private venue experiences where every woman gets her spotlight moment. No judgment — just laughter, singing, and shared joy.
-              </p>
               <button
-                onClick={() => onNavigate?.("events" as any)}
-                className="mt-4 inline-flex items-center space-x-2 text-xs md:text-sm font-bold text-brand-pink-light hover:text-white transition group/btn cursor-pointer bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 px-5 py-2.5 rounded-full"
+                type="button"
+                onClick={() => onNavigate?.("sponsorship" as any)}
+                id="btn-home-partner-cta"
+                className="inline-flex items-center gap-2 text-sm font-bold text-brand-pink hover:text-brand-pink-dark transition cursor-pointer"
               >
-                <span>Explore Events & Gatherings</span>
-                <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
+                <span>Explore Partnerships</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Volunteer & Team Card */}
+            <div className="bg-slate-50 p-8 rounded-3xl border border-slate-200/80 hover:border-brand-gold/40 hover:shadow-lg transition-all duration-300 flex flex-col justify-between space-y-6">
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-2xl bg-brand-gold/15 text-brand-gold-dark border border-brand-gold/30 flex items-center justify-center">
+                  <Users className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-900">Volunteer With WomenPlay</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">
+                  Help bring WomenPlay experiences to life- from welcoming guests and supporting activities to creating fun, memorable moments.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => onNavigate?.("volunteer" as any)}
+                id="btn-home-volunteer-cta"
+                className="inline-flex items-center gap-2 text-sm font-bold text-brand-gold-dark hover:text-slate-900 transition cursor-pointer uppercase tracking-wider text-xs"
+              >
+                <span>EXPLORE VOLUNTEER OPPORTUNITIES</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* FAQ & Support Card */}
+            <div className="bg-slate-50 p-8 rounded-3xl border border-slate-200/80 hover:border-brand-pink/40 hover:shadow-lg transition-all duration-300 flex flex-col justify-between space-y-6">
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-2xl bg-slate-200 text-slate-800 border border-slate-300 flex items-center justify-center">
+                  <HelpCircle className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-900">Frequently Asked Questions</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">
+                  Have questions about WomenPlay, upcoming experiences or attending solo? Find answers or chat with Mira.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => onNavigate?.("faq" as any)}
+                id="btn-home-faq-cta"
+                className="inline-flex items-center gap-2 text-sm font-bold text-slate-800 hover:text-brand-pink transition cursor-pointer"
+              >
+                <span>Explore FAQs</span>
+                <ArrowRight className="w-4 h-4" />
               </button>
             </div>
           </div>
         </div>
       </section>
-
-      {/* 5. Blog & Community Stories Section */}
-      <section className="py-20 max-w-7xl mx-auto px-6 md:px-12 space-y-12 text-left" id="blog-section-landing">
-        <div className="space-y-3">
-          <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold-dark font-display">WOMENPLAY STORIES</span>
-          <h2 className="text-3xl font-display font-extrabold text-slate-900">Inspiration, Play & Community News</h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {blogs.map((blog) => (
-            <div 
-              key={blog.id} 
-              onClick={() => setSelectedBlog(blog)}
-              className="bg-white rounded-2xl overflow-hidden border border-slate-100 luxury-shadow hover:border-brand-pink/20 cursor-pointer transition-all hover:scale-[1.01] duration-300 flex flex-col md:flex-row group"
-            >
-              <div className="w-full md:w-1/3 h-48 md:h-full bg-slate-100 shrink-0 overflow-hidden">
-                <img 
-                  src={blog.image} 
-                  alt={blog.title} 
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-                />
-              </div>
-              <div className="p-6 w-full md:w-2/3 space-y-3 flex flex-col justify-between">
-                <div className="space-y-2">
-                  <div className="flex justify-between items-center text-[10px] uppercase font-bold text-brand-pink">
-                    <span>{blog.category}</span>
-                    <span className="text-slate-400 font-medium">{new Date(blog.createdAt).toLocaleDateString()}</span>
-                  </div>
-                  <h3 className="text-base font-bold text-slate-800 line-clamp-2 group-hover:text-brand-pink transition-colors">
-                    {blog.title}
-                  </h3>
-                  <p className="text-slate-500 text-xs leading-relaxed line-clamp-3">{blog.content}</p>
-                </div>
-                
-                <div className="flex items-center justify-between pt-2 border-t border-slate-50">
-                  <div className="text-[10px] text-slate-400 font-semibold">By: {blog.author}</div>
-                  <span className="text-[10px] font-extrabold uppercase text-brand-pink group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                    <span>Read Article</span>
-                    <ArrowRight className="w-3 h-3" />
-                  </span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Blog Reading Modal Overlay */}
-      <AnimatePresence>
-        {selectedBlog && (
-          <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-md flex items-center justify-center p-4 z-100 animate-fade-in" id="blog-reader-modal">
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95, y: 15 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 15 }}
-              className="bg-white w-full max-w-3xl rounded-2xl overflow-hidden border border-slate-100 shadow-2xl flex flex-col max-h-[85vh] text-left"
-            >
-              {/* Header Cover Banner */}
-              <div className="h-64 md:h-80 w-full relative shrink-0">
-                <img src={selectedBlog.image} alt={selectedBlog.title} className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-slate-950/50" />
-                
-                {/* Close Button */}
-                <button 
-                  onClick={() => setSelectedBlog(null)}
-                  className="absolute top-4 right-4 bg-white/10 hover:bg-white/20 text-white p-2 rounded-full backdrop-blur-xs transition cursor-pointer"
-                  title="Close Article"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-
-                {/* Cover Meta Data */}
-                <div className="absolute bottom-6 left-6 right-6 space-y-2">
-                  <span className="text-[9px] font-extrabold uppercase bg-brand-pink text-white px-2.5 py-0.5 rounded-full tracking-wider">
-                    {selectedBlog.category}
-                  </span>
-                  <h1 className="text-xl md:text-3xl font-display font-extrabold text-white leading-tight">
-                    {selectedBlog.title}
-                  </h1>
-                </div>
-              </div>
-
-              {/* Scrollable Content Body */}
-              <div className="p-6 md:p-8 overflow-y-auto space-y-6 text-slate-700">
-                {/* Meta details */}
-                <div className="flex justify-between items-center text-xs text-slate-400 border-b border-slate-100 pb-4">
-                  <div className="flex items-center gap-2">
-                    <span className="font-semibold text-slate-600">By: {selectedBlog.author}</span>
-                  </div>
-                  <span>Published on {new Date(selectedBlog.createdAt).toLocaleDateString()}</span>
-                </div>
-
-                {/* Article text */}
-                <div className="text-sm md:text-base leading-relaxed text-slate-600 space-y-4 whitespace-pre-wrap font-sans">
-                  {selectedBlog.content}
-                </div>
-              </div>
-
-              {/* Modal Footer */}
-              <div className="p-4 bg-slate-50 border-t border-slate-100 flex justify-end shrink-0">
-                <button 
-                  onClick={() => setSelectedBlog(null)}
-                  className="bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs py-2.5 px-6 rounded-xl transition cursor-pointer"
-                >
-                  Close Article
-                </button>
-              </div>
-
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
-
-      {/* Coming Soon Section */}
-      <section className="py-20 px-6 md:px-12 max-w-7xl mx-auto" id="coming-soon">
-        <div className="space-y-12">
-          {/* Section Header */}
-          <div className="text-center space-y-4 max-w-3xl mx-auto">
-            <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold-dark">What&apos;s Next</span>
-            <h2 className="text-4xl md:text-5xl font-display font-extrabold text-slate-900">
-              Coming <em className="gold-text-gradient not-italic">Soon.</em>
-            </h2>
-            <p className="text-slate-500 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-              Full details will be released closer to launch on Saturday, October 24, 2026.
-            </p>
-          </div>
-
-          {/* Coming Soon Items Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            {[
-              { title: "Venue Reveal", subtitle: "Surrey, BC" },
-              { title: "Game Line-Up", subtitle: "6 exciting play stations" },
-              { title: "Merch Collection", subtitle: "Limited quantities" },
-              { title: "Vendor Village", subtitle: "Food + lifestyle" },
-              { title: "Official Teams", subtitle: "Classy Queens 👑, Tomboy Tribe 🏀, Simple Souls ✨, Free Spirits 🦋, Fearless 🔥, Wildflowers 🌸" },
-              { title: "Founding Membership", subtitle: "Brand community" },
-              { title: "Future Events Calendar", subtitle: "Beyond launch" },
-              { title: "Full Vendor + Prize List", subtitle: "Coming closer to launch" }
-            ].map((item, index) => (
-              <div
-                key={index}
-                className="bg-white border border-slate-100 rounded-2xl p-6 luxury-shadow hover:border-brand-pink/30 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-left group"
-              >
-                <h3 className="text-lg font-bold text-slate-900 group-hover:text-brand-pink transition-colors mb-1">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-slate-500 font-medium">{item.subtitle}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* CTA */}
-          <div className="text-center pt-8">
-            <p className="text-slate-600 text-sm md:text-base mb-6">
-              Stay tuned for exciting announcements and exclusive previews.
-            </p>
-            <a
-              href="/contact"
-              onClick={(e) => { e.preventDefault(); onNavigate?.("contact"); }}
-              className="inline-flex items-center space-x-2 bg-brand-pink hover:bg-brand-pink-dark text-white font-bold px-8 py-3.5 rounded-full shadow-md shadow-brand-pink/25 transition hover:-translate-y-0.5 text-sm"
-            >
-              <Sparkles className="w-4 h-4" />
-              <span>Subscribe for Updates</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
     </div>
   );
 }

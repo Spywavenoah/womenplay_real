@@ -1,9 +1,11 @@
 import React from "react";
-import { Check, Sparkles, Star, ThumbsUp, Baby, Laugh, Users } from "lucide-react";
+import { Check, Sparkles, Star, ThumbsUp, Baby, Laugh, Users, Calendar, ArrowRight } from "lucide-react";
 import HeroBanner from "./HeroBanner";
+import { VIEW_PATHS } from "../router";
 
 interface WhyChooseUsViewProps {
   onNavigateHome: () => void;
+  onNavigate?: (view: any) => void;
 }
 
 const REASONS = [
@@ -16,16 +18,25 @@ const REASONS = [
 ];
 
 const FOR_WHOM = [
-  "Women who want to play, connect, and play again",
-  "Women who want to relive their girl-child memories",
-  "Women who don't need permission to be silly, bold, and fully themselves",
-  "Women tired of networking events that feel like work",
-  "Women who want to laugh until their stomach hurts",
-  "Women who want to feel like a kid again — with the confidence of a grown woman",
-  "Women who want to collect memories instead of just attending another event"
+  "Are ready to play, connect and play again",
+  "Want to activate their girl-child again and relive those carefree memories",
+  "Don’t need permission to be silly, bold and fully themselves",
+  "Are tired of networking events that feel like another day at work",
+  "Want to laugh until their stomachs hurt- and then laugh some more",
+  "Want to feel like a kid again, with the confidence of a grown woman",
+  "Would rather collect unforgettable memories than simply attend another event"
 ];
 
-export default function WhyChooseUsView({ onNavigateHome }: WhyChooseUsViewProps) {
+export default function WhyChooseUsView({ onNavigateHome, onNavigate }: WhyChooseUsViewProps) {
+  const handleExploreEvents = (e?: React.MouseEvent) => {
+    if (e) e.preventDefault();
+    if (onNavigate) {
+      onNavigate("events");
+    } else {
+      window.location.href = "/events";
+    }
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 text-left" id="why-choose-us-view">
       {/* Hero Banner */}
@@ -41,7 +52,7 @@ export default function WhyChooseUsView({ onNavigateHome }: WhyChooseUsViewProps
             Why Choose <em className="gold-text-gradient not-italic">WomenPlay?</em>
           </>
         }
-        description="Because play is not a luxury — it's a necessity. Here's why thousands of women are choosing to play again."
+        description="Because play is not a luxury—it’s a necessity. Here’s why WomenPlay is creating more ways for women to play, connect and feel alive again."
         onNavigateHome={onNavigateHome}
       />
 
@@ -52,7 +63,7 @@ export default function WhyChooseUsView({ onNavigateHome }: WhyChooseUsViewProps
           <div className="max-w-3xl mx-auto text-center space-y-3 mb-8">
             <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold-dark">PLAY • CONNECT • PLAY AGAIN</span>
             <h2 className="text-2xl md:text-3xl font-display font-extrabold text-slate-900">
-              WomenPlay Is For Women <em className="gold-text-gradient not-italic">Who...</em>
+              WomenPlay Is for Women <em className="gold-text-gradient not-italic">Who…</em>
             </h2>
           </div>
 
@@ -62,7 +73,7 @@ export default function WhyChooseUsView({ onNavigateHome }: WhyChooseUsViewProps
                 key={i}
                 className="bg-slate-50 p-5 rounded-2xl border border-slate-100 flex items-center gap-4 text-left hover:border-brand-pink/30 transition"
               >
-                <div className="w-9 h-9 shrink-0 rounded-full bg-gradient-to-br from-brand-pink to-brand-gold text-white flex items-center justify-center shadow-md shadow-brand-pink/20">
+                <div className="w-9 h-9 shrink-0 rounded-full bg-brand-pink text-white border border-brand-gold/40 flex items-center justify-center shadow-md shadow-brand-pink/20">
                   <Check className="w-4 h-4" />
                 </div>
                 <span className="text-slate-700 text-sm font-semibold leading-snug">{line}</span>
@@ -70,8 +81,8 @@ export default function WhyChooseUsView({ onNavigateHome }: WhyChooseUsViewProps
             ))}
           </div>
 
-          <p className="text-center text-slate-600 text-sm mt-8 font-medium">
-            If any of these feel true for you, WomenPlay was made with you in mind.
+          <p className="text-center text-slate-700 text-sm sm:text-base mt-8 font-medium">
+            If any of these sound like you, WomenPlay was made with you in mind.
           </p>
         </section>
 
@@ -102,19 +113,24 @@ export default function WhyChooseUsView({ onNavigateHome }: WhyChooseUsViewProps
         </section>
 
         {/* CTA */}
-        <div className="text-center pb-6">
-          <p className="text-slate-500 text-sm mb-5">
+        <div className="text-center pb-6 space-y-4">
+          <p className="text-slate-600 text-sm md:text-base font-medium">
             Ready to laugh, play, and connect with women who get it?
           </p>
-          <button
-            onClick={onNavigateHome}
-            className="inline-flex items-center bg-brand-pink hover:bg-brand-pink-dark text-white font-bold px-8 py-3.5 rounded-full shadow-md shadow-brand-pink/25 transition hover:-translate-y-0.5 text-sm"
-          >
-            <Sparkles className="w-4 h-4 mr-2" />
-            Join The WomenPlay Community
-          </button>
+          <div>
+            <a
+              href={VIEW_PATHS.events}
+              onClick={handleExploreEvents}
+              className="inline-flex items-center justify-center gap-2 bg-brand-pink hover:bg-brand-pink-dark text-white font-bold px-8 py-4 rounded-full shadow-lg shadow-brand-pink/25 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 text-xs sm:text-sm tracking-wider uppercase cursor-pointer"
+            >
+              <Calendar className="w-4 h-4" />
+              <span>EXPLORE UPCOMING EXPERIENCES</span>
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
         </div>
       </div>
     </div>
   );
 }
+

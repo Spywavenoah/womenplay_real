@@ -166,7 +166,7 @@ export default function PortalProfile({ currentUser, onUpdateProfile, onRefreshD
       const res = await fetch("/api/payments");
       if (res.ok) {
         const allPayments = await res.json();
-        setMemberPayments(allPayments.filter((p: any) => p.userId === currentUser.id));
+        setMemberPayments(allPayments.filter((p: any) => p.userId === currentUser.id || (currentUser.email && p.userId?.toLowerCase() === currentUser.email.toLowerCase())));
       }
     } catch (err) { console.error("Error fetching payments:", err); }
     finally { setLoadingPayments(false); }
@@ -659,13 +659,13 @@ export default function PortalProfile({ currentUser, onUpdateProfile, onRefreshD
             <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               className="bg-white rounded-3xl p-6 md:p-8 border border-slate-100 shadow-2xl w-full max-w-sm text-center relative overflow-hidden space-y-6">
-              <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-brand-pink to-brand-gold" />
+              <div className="absolute top-0 inset-x-0 h-1.5 bg-brand-pink border-b border-brand-gold" />
               <button type="button" onClick={() => setSelectedContactCard(null)}
                 className="absolute top-4 right-4 p-1.5 hover:bg-slate-100 rounded-lg text-slate-400 hover:text-slate-600 transition cursor-pointer">
                 <X className="w-5 h-5" />
               </button>
               <div className="pt-4 flex flex-col items-center space-y-3">
-                <div className="w-20 h-20 rounded-full p-1 bg-gradient-to-tr from-brand-pink to-brand-gold">
+                <div className="w-20 h-20 rounded-full p-1 bg-brand-pink border border-brand-gold">
                   <div className="w-full h-full rounded-full bg-white p-0.5">
                     <div className="w-full h-full rounded-full bg-slate-100 flex items-center justify-center text-lg font-bold text-slate-800 overflow-hidden">
                       {selectedContactCard.avatarUrl ? <img src={selectedContactCard.avatarUrl} alt={selectedContactCard.fullName} className="w-full h-full object-cover" referrerPolicy="no-referrer" />

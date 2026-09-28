@@ -14,6 +14,7 @@ interface AdminContactsProps {
 export default function AdminContacts({ contacts = [], onRefreshData }: AdminContactsProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<"all" | "new" | "read" | "replied" | "archived">("all");
+  const [typeFilter, setTypeFilter] = useState<"all" | "sponsorship" | "general">("all");
   const [selectedContact, setSelectedContact] = useState<ContactMessage | null>(null);
   const [replyText, setReplyText] = useState("");
   const [sendingReply, setSendingReply] = useState(false);
@@ -35,9 +36,19 @@ export default function AdminContacts({ contacts = [], onRefreshData }: AdminCon
         c.message.toLowerCase().includes(searchTerm.toLowerCase());
       
       const matchesStatus = statusFilter === "all" || c.status === statusFilter;
-      return matchesSearch && matchesStatus;
+      
+      const isSponsorship = (c.interest || "").toLowerCase().includes("sponsor") || 
+                            (c.subject || "").toLowerCase().includes("sponsor") ||
+                            (c.subject || "").toLowerCase().includes("partner") ||
+                            (c.message || "").includes("[Sponsorship Inquiry]");
+      
+      const matchesType = typeFilter === "all" || 
+                          (typeFilter === "sponsorship" && isSponsorship) ||
+                          (typeFilter === "general" && !isSponsorship);
+
+      return matchesSearch && matchesStatus && matchesType;
     });
-  }, [contacts, searchTerm, statusFilter]);
+  }, [contacts, searchTerm, statusFilter, typeFilter]);
 
   // Statistics
   const stats = useMemo(() => {
@@ -46,7 +57,13 @@ export default function AdminContacts({ contacts = [], onRefreshData }: AdminCon
     const readCount = contacts.filter(c => c.status === "read").length;
     const repliedCount = contacts.filter(c => c.status === "replied").length;
     const archivedCount = contacts.filter(c => c.status === "archived").length;
-    return { total, newCount, readCount, repliedCount, archivedCount };
+    const sponsorInquiryCount = contacts.filter(c => 
+      (c.interest || "").toLowerCase().includes("sponsor") || 
+      (c.subject || "").toLowerCase().includes("sponsor") ||
+      (c.subject || "").toLowerCase().includes("partner") ||
+      (c.message || "").includes("[Sponsorship Inquiry]")
+    ).length;
+    return { total, newCount, readCount, repliedCount, archivedCount, sponsorInquiryCount };
   }, [contacts]);
 
   // Handle Refresh
@@ -277,21 +294,58 @@ export default function AdminContacts({ contacts = [], onRefreshData }: AdminCon
       </div>
 
       {/* Search and Filters */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
-        <div className="relative w-full sm:w-80">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-          <input
-            type="text"
-            placeholder="Search by name, email, subject..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-brand-pink/20"
-          />
+      <div className="flex flex-col md:flex-row items-center justify-between gap-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+        <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
+          <div className="relative w-full sm:w-72">
+            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <input
+              type="text"
+              placeholder="Search by name, email, org, topic..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-brand-pink/20"
+            />
+          </div>
+
+          {/* Type Filter Pills */}
+          <div className="flex items-center space-x-1.5 w-full sm:w-auto overflow-x-auto">
+            <button
+              onClick={() => setTypeFilter("all")}
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer shrink-0 ${
+                typeFilter === "all"
+                  ? "bg-slate-900 text-white shadow-xs"
+                  : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+              }`}
+            >
+              All Inquiries
+            </button>
+            <button
+              onClick={() => setTypeFilter("sponsorship")}
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer shrink-0 flex items-center space-x-1.5 ${
+                typeFilter === "sponsorship"
+                  ? "bg-[#b04a68] text-white shadow-xs"
+                  : "bg-pink-50 text-brand-pink hover:bg-pink-100"
+              }`}
+            >
+              <Sparkles className="w-3 h-3" />
+              <span>Sponsorships ({stats.sponsorInquiryCount})</span>
+            </button>
+            <button
+              onClick={() => setTypeFilter("general")}
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer shrink-0 ${
+                typeFilter === "general"
+                  ? "bg-slate-800 text-white shadow-xs"
+                  : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+              }`}
+            >
+              General
+            </button>
+          </div>
         </div>
 
-        <div className="flex items-center space-x-2 text-xs w-full sm:w-auto overflow-x-auto pb-1 sm:pb-0">
+        <div className="flex items-center space-x-2 text-xs w-full md:w-auto overflow-x-auto pb-1 md:pb-0">
           <Filter className="w-3.5 h-3.5 text-slate-400" />
-          <span className="text-slate-500 font-medium">Filter:</span>
+          <span className="text-slate-500 font-medium">Status:</span>
           {(["all", "new", "read", "replied", "archived"] as const).map(f => (
             <button
               key={f}

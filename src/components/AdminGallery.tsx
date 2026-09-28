@@ -8,7 +8,7 @@ interface AdminGalleryProps {
   onRefresh: () => void;
 }
 
-const CATEGORIES = ["General", "Summits", "Networking", "Socials", "Milestones"];
+const CATEGORIES = ["Play in Action", "Social Spark", "Away We Go", "Milestone Magic"];
 
 export default function AdminGallery({ gallery, onRefresh }: AdminGalleryProps) {
   const [search, setSearch] = React.useState("");
@@ -25,7 +25,7 @@ export default function AdminGallery({ gallery, onRefresh }: AdminGalleryProps) 
   const [form, setForm] = React.useState({
     title: "",
     caption: "",
-    category: "General",
+    category: "Play in Action",
     image: "",
     featured: false
   });
@@ -34,7 +34,7 @@ export default function AdminGallery({ gallery, onRefresh }: AdminGalleryProps) 
   const [pdfData, setPdfData] = React.useState<{ title: string; headers: string[]; rows: string[][] } | null>(null);
 
   const resetForm = () => {
-    setForm({ title: "", caption: "", category: "General", image: "", featured: false });
+    setForm({ title: "", caption: "", category: "Play in Action", image: "", featured: false });
     setIsCreating(false);
     setEditingItem(null);
   };

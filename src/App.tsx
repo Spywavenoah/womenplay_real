@@ -6,44 +6,39 @@ import {
 import { UserRole } from "./types";
 import type { User, EventItem, BlogArticle, SuccessStory, Announcement, Registration, AuditLog, Founder } from "./types";
 import { showSuccessAlert, showErrorAlert } from "./lib/swal";
+import { redirectToCheckout } from "./lib/stripeRedirect";
 import Header, { NavView } from "./components/Header";
 import Footer from "./components/Footer";
 import AuthModal from "./components/AuthModal";
+import ErrorBoundary from "./components/ErrorBoundary";
 import { pathToView, VIEW_PATHS } from "./router";
 
-// Lazy-load the heavy route components so they only download when needed
-const HomeView = React.lazy(() => import("./components/HomeView"));
-const Portal = React.lazy(() => import("./components/Portal"));
-const AdminDashboard = React.lazy(() => import("./components/AdminDashboard"));
-const PrivacyView = React.lazy(() => import("./components/PrivacyView"));
-const TermsView = React.lazy(() => import("./components/TermsView"));
-const SponsorshipView = React.lazy(() => import("./components/SponsorshipView"));
-const FaqView = React.lazy(() => import("./components/FaqView"));
-const ProfileView = React.lazy(() => import("./components/ProfileView"));
-const GalleryView = React.lazy(() => import("./components/GalleryView"));
-const WhyChooseUsView = React.lazy(() => import("./components/WhyChooseUsView"));
-const LaunchView = React.lazy(() => import("./components/LaunchView"));
-const TicketsView = React.lazy(() => import("./components/TicketsView"));
-const FoundersView = React.lazy(() => import("./components/FoundersView"));
-const EventsView = React.lazy(() => import("./components/EventsView"));
-const ContactView = React.lazy(() => import("./components/ContactView"));
-const VolunteerView = React.lazy(() => import("./components/VolunteerView"));
-const EventCheckoutModal = React.lazy(() => import("./components/EventCheckoutModal"));
-const BadgeScannerModal = React.lazy(() => import("./components/BadgeScannerModal"));
-const BusinessCardQRModal = React.lazy(() => import("./components/BusinessCardQRModal"));
-const Mandatory2FAModal = React.lazy(() => import("./components/Mandatory2FAModal"));
-const ResetPasswordPage = React.lazy(() => import("./components/ResetPassword"));
-const VerifyEmailPage = React.lazy(() => import("./components/VerifyEmail"));
-const ActivateAccountPage = React.lazy(() => import("./components/ActivateAccount"));
-const MiraChatbot = React.lazy(() => import("./components/MiraChatbot"));
-
-function ViewFallback() {
-  return (
-    <div className="flex items-center justify-center py-40">
-      <Loader2 className="w-8 h-8 text-brand-pink animate-spin" />
-    </div>
-  );
-}
+// Direct component imports to ensure 100% reliable rendering without dynamic import chunk fetch errors
+import HomeView from "./components/HomeView";
+import Portal from "./components/Portal";
+import AdminDashboard from "./components/AdminDashboard";
+import PrivacyView from "./components/PrivacyView";
+import TermsView from "./components/TermsView";
+import SponsorshipView from "./components/SponsorshipView";
+import FaqView from "./components/FaqView";
+import ProfileView from "./components/ProfileView";
+import GalleryView from "./components/GalleryView";
+import WhyChooseUsView from "./components/WhyChooseUsView";
+import LaunchView from "./components/LaunchView";
+import TicketsView from "./components/TicketsView";
+import FoundersView from "./components/FoundersView";
+import EventsView from "./components/EventsView";
+import ContactView from "./components/ContactView";
+import VolunteerView from "./components/VolunteerView";
+import EventCheckoutModal from "./components/EventCheckoutModal";
+import BadgeScannerModal from "./components/BadgeScannerModal";
+import BusinessCardQRModal from "./components/BusinessCardQRModal";
+import Mandatory2FAModal from "./components/Mandatory2FAModal";
+import ResetPasswordPage from "./components/ResetPassword";
+import VerifyEmailPage from "./components/VerifyEmail";
+import ActivateAccountPage from "./components/ActivateAccount";
+import MiraChatbot from "./components/MiraChatbot";
+// import LaunchTicketPopup from "./components/LaunchTicketPopup";
 
 export default function App() {
   const [currentUser, setCurrentUser] = React.useState<User | null>(() => {
@@ -90,10 +85,10 @@ export default function App() {
     },
     tickets: {
       title: "Launch Experience Tickets — WomenPlay",
-      description: "Secure your Launch Experience ticket. Early Bird, Regular and Last Call phases. Limited to 100 women.",
+      description: "Secure your Launch Experience ticket. Early Bird and Last Call phases. Limited to 100 women.",
     },
     founders: {
-      title: "Become a Founding Member — WomenPlay",
+      title: "Join the Founding Circle — WomenPlay",
       description: "Join the Founding Circle for free during pre-launch: early access to events, exclusive launch updates and more.",
     },
     events: {
@@ -159,13 +154,10 @@ export default function App() {
         "@context": "https://schema.org",
         "@type": "Event",
         name: "WomenPlay Launch Experience — Jersey Style",
-        startDate: "2026-09-19T13:00:00-07:00",
-        endDate: "2026-09-19T18:00:00-07:00",
         eventStatus: "https://schema.org/EventScheduled",
         eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
-        location: { "@type": "Place", name: "Surrey, BC" },
+        location: { "@type": "Place", name: "British Columbia, Canada" },
         description: "A high-energy women-only play experience for 100 women, launching the WomenPlay brand.",
-        offers: { "@type": "Offer", price: "49.99", priceCurrency: "CAD", url: "https://womenplay.org/tickets" },
       },
       faq: {
         "@context": "https://schema.org",
@@ -327,81 +319,133 @@ export default function App() {
   // Core Data Fetcher
   const fetchGlobalData = async () => {
     try {
-      const evRes = await fetch("/api/events");
-      const evData = await evRes.json();
-      setEvents(evData);
+      const [blRes, storRes, annRes, foundRes] = await Promise.allSettled([
+        // fetch("/api/events"), // Event fetching commented out in favor of dedicated design layout
+        fetch("/api/blogs"),
+        fetch("/api/success-stories"),
+        fetch("/api/announcements"),
+        fetch("/api/founders"),
+      ]);
 
-      const blRes = await fetch("/api/blogs");
-      const blData = await blRes.json();
-      setBlogs(blData);
+      /*
+      if (evRes.status === "fulfilled" && evRes.value.ok) {
+        try {
+          const evData = await evRes.value.json();
+          if (Array.isArray(evData)) setEvents(evData);
+        } catch { }
+      }
+      */
 
-      const storRes = await fetch("/api/success-stories");
-      const storData = await storRes.json();
-      setSuccessStories(storData);
+      if (blRes.status === "fulfilled" && blRes.value.ok) {
+        try {
+          const blData = await blRes.value.json();
+          if (Array.isArray(blData)) setBlogs(blData);
+        } catch { /* safely ignore parse errors */ }
+      }
 
-      const annRes = await fetch("/api/announcements");
-      const annData = await annRes.json();
-      setAnnouncements(annData);
+      if (storRes.status === "fulfilled" && storRes.value.ok) {
+        try {
+          const storData = await storRes.value.json();
+          if (Array.isArray(storData)) setSuccessStories(storData);
+        } catch { /* safely ignore parse errors */ }
+      }
 
-      const foundRes = await fetch("/api/founders");
-      if (foundRes.ok) {
-        const foundData = await foundRes.json();
-        setFounders(foundData);
+      if (annRes.status === "fulfilled" && annRes.value.ok) {
+        try {
+          const annData = await annRes.value.json();
+          if (Array.isArray(annData)) setAnnouncements(annData);
+        } catch { /* safely ignore parse errors */ }
+      }
+
+      if (foundRes.status === "fulfilled" && foundRes.value.ok) {
+        try {
+          const foundData = await foundRes.value.json();
+          if (Array.isArray(foundData)) setFounders(foundData);
+        } catch { /* safely ignore parse errors */ }
       }
 
       // If user logged in, verify session and fetch specific data
       const cachedUser = localStorage.getItem("aura_user");
       const token = localStorage.getItem("wp_token");
       if (cachedUser) {
-        const u = JSON.parse(cachedUser);
-        
-        // Verify session with /api/auth/me
-        if (token) {
-          const meRes = await fetch("/api/auth/me");
-          if (meRes.ok) {
-            const meData = await meRes.json();
-            setCurrentUser(meData.user);
-            localStorage.setItem("aura_user", JSON.stringify(meData.user));
-          } else if (meRes.status === 401) {
-            // Token is invalid/expired — clear stale session
-            localStorage.removeItem("aura_user");
-            localStorage.removeItem("wp_token");
-            setCurrentUser(null);
-            return;
+        let u: User | null = null;
+        try {
+          u = JSON.parse(cachedUser);
+        } catch {
+          u = null;
+        }
+
+        if (u) {
+          // Verify session with /api/auth/me
+          if (token) {
+            try {
+              const meRes = await fetch("/api/auth/me");
+              if (meRes.ok) {
+                const meData = await meRes.json();
+                if (meData?.user) {
+                  setCurrentUser(meData.user);
+                  localStorage.setItem("aura_user", JSON.stringify(meData.user));
+                  u = meData.user;
+                }
+              } else if (meRes.status === 401) {
+                // Token is invalid/expired — clear stale session
+                localStorage.removeItem("aura_user");
+                localStorage.removeItem("wp_token");
+                setCurrentUser(null);
+                return;
+              }
+            } catch (err) {
+              console.warn("Session verification notice:", err);
+            }
           }
-        }
 
-        // Fetch members directory
-        const memsRes = await fetch("/api/members");
-        if (memsRes.ok) {
-          const memsData = await memsRes.json();
-          setAllMembers(memsData);
-
-          const refreshed = memsData.find((member: User) => member.id === u.id);
-          if (refreshed) {
-            setCurrentUser(refreshed);
-            localStorage.setItem("aura_user", JSON.stringify(refreshed));
+          // Fetch members directory
+          try {
+            const memsRes = await fetch("/api/members");
+            if (memsRes.ok) {
+              const memsData = await memsRes.json();
+              if (Array.isArray(memsData)) {
+                setAllMembers(memsData);
+                const refreshed = memsData.find((member: User) => member.id === u?.id);
+                if (refreshed) {
+                  setCurrentUser(refreshed);
+                  localStorage.setItem("aura_user", JSON.stringify(refreshed));
+                }
+              }
+            }
+          } catch (err) {
+            console.warn("Notice: Member directory not synced:", err);
           }
-        }
 
-        // Fetch attendee registrations for this user
-        const regsRes = await fetch("/api/registrations");
-        if (regsRes.ok) {
-          const regsData = await regsRes.json();
-          setRegistrations(regsData.filter((r: Registration) => r.userId === u.id));
-        }
+          // Fetch attendee registrations for this user
+          try {
+            const regsRes = await fetch("/api/registrations");
+            if (regsRes.ok) {
+              const regsData = await regsRes.json();
+              if (Array.isArray(regsData)) {
+                setRegistrations(regsData.filter((r: Registration) => r.userId === u?.id));
+              }
+            }
+          } catch (err) {
+            console.warn("Notice: Registrations not synced:", err);
+          }
 
-        // Fetch logs if Admin
-        if (u.role === UserRole.ADMIN) {
-          const logRes = await fetch("/api/reports");
-          if (logRes.ok) {
-            const logData = await logRes.json();
-            setAuditLogs(logData.auditLogs || []);
+          // Fetch logs if Admin
+          if (u.role === UserRole.ADMIN) {
+            try {
+              const logRes = await fetch("/api/reports");
+              if (logRes.ok) {
+                const logData = await logRes.json();
+                setAuditLogs(logData.auditLogs || []);
+              }
+            } catch (err) {
+              console.warn("Notice: Audit logs not synced:", err);
+            }
           }
         }
       }
     } catch (err) {
-      console.error("Failed to sync global Aura directories:", err);
+      console.warn("Notice: Syncing global directories:", err);
     } finally {
       setLoadingInitial(false);
     }
@@ -463,7 +507,7 @@ export default function App() {
       const data = await res.json();
       if (res.ok) {
         if (data.checkoutUrl) {
-          window.location.href = data.checkoutUrl;
+          redirectToCheckout(data.checkoutUrl);
           return;
         }
         setCurrentUser(data.user);
@@ -523,9 +567,12 @@ export default function App() {
 
   // 4 most recent announcements for the header marquee
   const recentAnnouncementTitles = [...announcements]
+    .filter(a => a.active !== false)
     .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
     .slice(0, 4)
-    .map(a => a.title);
+    .map(a => (a.title && (a.title.includes("Executive Fellowship") || a.title.includes("Fellowship Program")))
+      ? "New WomenPlay experiences are coming soon. Watch this space →"
+      : a.title);
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 font-sans" id="aura-network-root">
@@ -541,35 +588,30 @@ export default function App() {
 
       {/* Main Screen Router */}
       <main className="flex-1">
-        {window.location.pathname.startsWith("/verify-email") ? (
-          <React.Suspense fallback={<ViewFallback />}>
+        <ErrorBoundary>
+          {window.location.pathname.startsWith("/verify-email") ? (
             <VerifyEmailPage />
-          </React.Suspense>
-        ) : window.location.pathname.startsWith("/reset-password") ? (
-          <React.Suspense fallback={<ViewFallback />}>
+          ) : window.location.pathname.startsWith("/reset-password") ? (
             <ResetPasswordPage />
-          </React.Suspense>
-        ) : window.location.pathname.startsWith("/activate") ? (
-          <React.Suspense fallback={<ViewFallback />}>
+          ) : window.location.pathname.startsWith("/activate") ? (
             <ActivateAccountPage />
-          </React.Suspense>
-        ) : loadingInitial ? (
-          <div className="flex flex-col items-center justify-center py-32 text-slate-500 space-y-4">
-            <Loader2 className="w-10 h-10 animate-spin text-brand-pink" />
-            <p className="font-display font-bold text-sm tracking-widest text-slate-700">PREPPING EXECUTIVES INTERFACES...</p>
-          </div>
-        ) : (
-          <React.Suspense fallback={<ViewFallback />}>
-            {currentView === "home" && (
-              <HomeView
-                blogs={blogs}
-                successStories={successStories}
-                onOpenAuth={() => setAuthOpen(true)}
-                currentUser={currentUser}
-                onNavigate={navigate}
-                founders={founders}
-              />
-            )}
+          ) : loadingInitial ? (
+            <div className="flex flex-col items-center justify-center py-32 text-slate-500 space-y-4">
+              <Loader2 className="w-10 h-10 animate-spin text-brand-pink" />
+              <p className="font-display font-bold text-sm tracking-widest text-slate-700">PREPPING EXECUTIVES INTERFACES...</p>
+            </div>
+          ) : (
+            <>
+              {currentView === "home" && (
+                <HomeView
+                  blogs={blogs}
+                  successStories={successStories}
+                  onOpenAuth={() => setAuthOpen(true)}
+                  currentUser={currentUser}
+                  onNavigate={navigate}
+                  founders={founders}
+                />
+              )}
 
             {currentView === "portal" && currentUser && (
               <Portal
@@ -690,11 +732,17 @@ export default function App() {
             )}
 
             {currentView === "gallery" && (
-              <GalleryView onNavigateHome={() => navigate("home")} />
+              <GalleryView
+                onNavigateHome={() => navigate("home")}
+                onNavigate={(v) => navigate(v)}
+              />
             )}
 
             {currentView === "whychooseus" && (
-              <WhyChooseUsView onNavigateHome={() => navigate("home")} />
+              <WhyChooseUsView
+                onNavigateHome={() => navigate("home")}
+                onNavigate={(v) => navigate(v)}
+              />
             )}
 
             {currentView === "launch" && (
@@ -727,18 +775,24 @@ export default function App() {
                   }
                 }}
                 onNavigateHome={() => navigate("home")}
+                onNavigateFounders={() => navigate("founders")}
+                onNavigateTickets={() => navigate("tickets")}
               />
             )}
 
             {currentView === "contact" && (
-              <ContactView onNavigateHome={() => navigate("home")} />
+              <ContactView 
+                onNavigateHome={() => navigate("home")} 
+                onNavigateSponsorship={() => navigate("sponsorship")}
+              />
             )}
 
             {currentView === "volunteer" && (
               <VolunteerView onNavigateHome={() => navigate("home")} />
             )}
-          </React.Suspense>
+          </>
         )}
+        </ErrorBoundary>
       </main>
 
       {/* Footer Branding */}
@@ -753,15 +807,13 @@ export default function App() {
 
       {/* Event Checkout Modal Overlay */}
       {currentUser && (
-        <React.Suspense fallback={null}>
-          <EventCheckoutModal
-            isOpen={checkoutOpen}
-            onClose={() => setCheckoutOpen(false)}
-            event={selectedEventCheckout}
-            currentUser={currentUser}
-            onSuccess={handleCheckoutSuccess}
-          />
-        </React.Suspense>
+        <EventCheckoutModal
+          isOpen={checkoutOpen}
+          onClose={() => setCheckoutOpen(false)}
+          event={selectedEventCheckout}
+          currentUser={currentUser}
+          onSuccess={handleCheckoutSuccess}
+        />
       )}
 
       {/* SUCCESSFUL REGISTRATION POPUP RECEIPT */}
@@ -781,7 +833,7 @@ export default function App() {
               </div>
 
               {/* HIGH-FIDELITY EVENT ENTRY PASS WITH DYNAMIC QR CODE */}
-              <div className="bg-gradient-to-br from-slate-900 via-slate-950 to-brand-pink text-white rounded-2xl p-5 border border-slate-800 text-left relative overflow-hidden shadow-xl space-y-4">
+              <div className="bg-slate-900 text-white rounded-2xl p-5 border-2 border-brand-pink/40 text-left relative overflow-hidden shadow-xl space-y-4">
                 {/* Background decorative glowing orb */}
                 <div className="absolute -top-12 -right-12 w-32 h-32 bg-brand-pink/15 rounded-full blur-2xl pointer-events-none" />
                 <div className="absolute -bottom-8 -left-8 w-24 h-24 bg-brand-pink/10 rounded-full blur-2xl pointer-events-none" />
@@ -987,47 +1039,42 @@ export default function App() {
 
       {/* BADGE SCANNER MODAL (Admin Only) */}
       {currentUser && currentUser.role === UserRole.ADMIN && (
-        <React.Suspense fallback={null}>
-          <BadgeScannerModal
-            isOpen={scannerOpen}
-            onClose={() => setScannerOpen(false)}
-            currentUser={currentUser}
-            allMembers={allMembers}
-            onAddContact={handleAddContact}
-          />
-        </React.Suspense>
+        <BadgeScannerModal
+          isOpen={scannerOpen}
+          onClose={() => setScannerOpen(false)}
+          currentUser={currentUser}
+          allMembers={allMembers}
+          onAddContact={handleAddContact}
+        />
       )}
 
       {/* BUSINESS CARD QR MODAL */}
-      <React.Suspense fallback={null}>
-        <BusinessCardQRModal
-          isOpen={qrModalOpen}
-          onClose={() => {
-            setQrModalOpen(false);
-            setQrTargetMember(null);
-          }}
-          scannedMember={qrTargetMember}
-          currentUser={currentUser}
-        />
-      </React.Suspense>
+      <BusinessCardQRModal
+        isOpen={qrModalOpen}
+        onClose={() => {
+          setQrModalOpen(false);
+          setQrTargetMember(null);
+        }}
+        scannedMember={qrTargetMember}
+        currentUser={currentUser}
+      />
 
       {/* MANDATORY 2FA ENFORCEMENT MODAL */}
       {currentUser && currentUser.twoFactorEnabled !== true && (
-        <React.Suspense fallback={null}>
-          <Mandatory2FAModal
-            currentUser={currentUser}
-            onUpdateCurrentUser={(updatedUser) => {
-              setCurrentUser(updatedUser);
-              localStorage.setItem("aura_user", JSON.stringify(updatedUser));
-            }}
-          />
-        </React.Suspense>
+        <Mandatory2FAModal
+          currentUser={currentUser}
+          onUpdateCurrentUser={(updatedUser) => {
+            setCurrentUser(updatedUser);
+            localStorage.setItem("aura_user", JSON.stringify(updatedUser));
+          }}
+        />
       )}
 
+      {/* LAUNCH TICKET INAUGURAL POPUP (Removed for now) */}
+      {/* <LaunchTicketPopup onSecureTicket={() => navigate("tickets")} /> */}
+
       {/* MIRA CONCIERGE CHATBOT WIDGET */}
-      <React.Suspense fallback={null}>
-        <MiraChatbot onNavigate={navigate} />
-      </React.Suspense>
+      <MiraChatbot onNavigate={navigate} />
     </div>
   );
 }

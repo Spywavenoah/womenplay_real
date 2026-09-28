@@ -76,7 +76,7 @@ export default function ResetPasswordPage() {
           <img
             src="/assets/logo.png"
             alt="WomenPlay Logo"
-            onError={(e) => { (e.target as HTMLImageElement).src = "/assets/logo-light.svg"; }}
+            onError={(e) => { (e.target as HTMLImageElement).src = "/logo.png"; }}
             className="h-14 w-auto object-contain"
             referrerPolicy="no-referrer"
           />

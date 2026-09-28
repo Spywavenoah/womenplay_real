@@ -5,6 +5,7 @@ export default function VerifyEmailPage() {
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState("");
   const [email, setEmail] = React.useState("");
+  const [requiresPasswordSetup, setRequiresPasswordSetup] = React.useState(false);
 
   React.useEffect(() => {
     const pathToken = window.location.pathname.split("/verify-email/")[1] || "";
@@ -24,6 +25,9 @@ export default function VerifyEmailPage() {
         const data = await res.json();
         if (res.ok) {
           setEmail(data.email || "");
+          if (data.requiresPasswordSetup) {
+            setRequiresPasswordSetup(true);
+          }
         } else {
           setError(data.error || "This verification link is invalid or has already been used.");
         }
@@ -44,7 +48,7 @@ export default function VerifyEmailPage() {
           <img
             src="/assets/logo.png"
             alt="WomenPlay Logo"
-            onError={(e) => { (e.target as HTMLImageElement).src = "/assets/logo-light.svg"; }}
+            onError={(e) => { (e.target as HTMLImageElement).src = "/logo.png"; }}
             className="h-14 w-auto object-contain"
             referrerPolicy="no-referrer"
           />
@@ -68,21 +72,37 @@ export default function VerifyEmailPage() {
             <div>
               <h3 className="text-lg font-display font-extrabold text-slate-900">Email Verified Successfully!</h3>
               <p className="text-xs text-slate-500 mt-2 leading-relaxed">
-                {email ? (
+                {requiresPasswordSetup ? (
+                  <>Your email address <strong className="text-slate-700">{email}</strong> has been confirmed. Please configure your password and two-factor authentication (2FA) to complete your account setup.</>
+                ) : email ? (
                   <>Your email address <strong className="text-slate-700">{email}</strong> has been confirmed. You may now sign in to access your executive portal.</>
                 ) : (
                   "Your email address has been confirmed. You may now sign in to access your executive portal."
                 )}
               </p>
             </div>
-            <button
-              type="button"
-              onClick={() => { window.location.href = "/?verified=true"; }}
-              className="w-full mt-4 bg-brand-pink hover:bg-brand-pink-hover text-white font-bold py-3 px-6 rounded-xl text-xs uppercase tracking-wider transition flex justify-center items-center space-x-2 shadow-md cursor-pointer"
-            >
-              <span>Sign In Now</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
+            {requiresPasswordSetup ? (
+              <button
+                type="button"
+                onClick={() => {
+                  const pathToken = window.location.pathname.split("/verify-email/")[1] || "";
+                  window.location.href = `/activate?token=${encodeURIComponent(pathToken)}`;
+                }}
+                className="w-full mt-4 bg-brand-pink hover:bg-brand-pink-hover text-white font-bold py-3 px-6 rounded-xl text-xs uppercase tracking-wider transition flex justify-center items-center space-x-2 shadow-md cursor-pointer"
+              >
+                <span>Configure Password & 2FA</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={() => { window.location.href = "/?verified=true"; }}
+                className="w-full mt-4 bg-brand-pink hover:bg-brand-pink-hover text-white font-bold py-3 px-6 rounded-xl text-xs uppercase tracking-wider transition flex justify-center items-center space-x-2 shadow-md cursor-pointer"
+              >
+                <span>Sign In Now</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            )}
           </div>
         )}
 

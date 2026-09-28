@@ -2,12 +2,20 @@ import React from "react";
 import { DollarSign, Loader2, Check, Sparkles, Plus, Trash2 } from "lucide-react";
 
 export default function AdminStripeSettings() {
-  const [stripePublicKey, setStripePublicKey] = React.useState("");
-  const [stripeSecretKey, setStripeSecretKey] = React.useState("");
+  const [stripeMode, setStripeMode] = React.useState<"test" | "live">("test");
+  const [stripeTestPublicKey, setStripeTestPublicKey] = React.useState("");
+  const [stripeTestSecretKey, setStripeTestSecretKey] = React.useState("");
+  const [stripeLivePublicKey, setStripeLivePublicKey] = React.useState("");
+  const [stripeLiveSecretKey, setStripeLiveSecretKey] = React.useState("");
+  const [stripeWebhookSecret, setStripeWebhookSecret] = React.useState("");
   const [isSubscriptionRequired, setIsSubscriptionRequired] = React.useState(false);
   const [loadingSettings, setLoadingSettings] = React.useState(false);
   const [savingSettings, setSavingSettings] = React.useState(false);
+  const [testingStripe, setTestingStripe] = React.useState(false);
   const [settingsSavedMsg, setSettingsSavedMsg] = React.useState("");
+  const [stripeTestResult, setStripeTestResult] = React.useState<{ success: boolean; message: string } | null>(null);
+  const [isStripeConfigured, setIsStripeConfigured] = React.useState<boolean>(false);
+  const [activeStripeMode, setActiveStripeMode] = React.useState<string>("none");
 
   const [carouselSlides, setCarouselSlides] = React.useState<any[]>([]);
   const [newSlideTitle, setNewSlideTitle] = React.useState("");
@@ -19,9 +27,15 @@ export default function AdminStripeSettings() {
     try {
       const setRes = await fetch("/api/settings");
       const setData = await setRes.json();
-      setStripePublicKey(setData.stripePublicKey || "");
-      setStripeSecretKey(setData.stripeSecretKey || "");
+      setStripeMode(setData.stripeMode || "test");
+      setStripeTestPublicKey(setData.stripeTestPublicKey || "");
+      setStripeTestSecretKey(setData.stripeTestSecretKey || "");
+      setStripeLivePublicKey(setData.stripeLivePublicKey || "");
+      setStripeLiveSecretKey(setData.stripeLiveSecretKey || "");
+      setStripeWebhookSecret(setData.stripeWebhookSecret || "");
       setIsSubscriptionRequired(!!setData.isSubscriptionRequired);
+      setIsStripeConfigured(!!setData.isStripeConfigured);
+      setActiveStripeMode(setData.activeStripeMode || "none");
 
       const slideRes = await fetch("/api/carousel");
       const slideData = await slideRes.json();
@@ -41,20 +55,78 @@ export default function AdminStripeSettings() {
     e.preventDefault();
     setSavingSettings(true);
     setSettingsSavedMsg("");
+    setStripeTestResult(null);
     try {
+      const activePub = stripeMode === "live" ? stripeLivePublicKey : stripeTestPublicKey;
+      const activeSec = stripeMode === "live" ? stripeLiveSecretKey : stripeTestSecretKey;
       const res = await fetch("/api/settings", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ stripePublicKey, stripeSecretKey, isSubscriptionRequired })
+        body: JSON.stringify({
+          stripeMode,
+          stripeTestPublicKey,
+          stripeTestSecretKey,
+          stripeLivePublicKey,
+          stripeLiveSecretKey,
+          stripeWebhookSecret,
+          stripePublicKey: activePub,
+          stripeSecretKey: activeSec,
+          isSubscriptionRequired
+        })
       });
+      const data = await res.json();
       if (res.ok) {
-        setSettingsSavedMsg("Stripe Credentials & Subscription requirements updated successfully!");
+        setSettingsSavedMsg("Stripe Credentials & Subscription requirements saved successfully!");
+        setIsStripeConfigured(!!data.isStripeConfigured);
+        setActiveStripeMode(data.activeStripeMode || "none");
         setTimeout(() => setSettingsSavedMsg(""), 4000);
       }
     } catch (e) {
       console.error(e);
     } finally {
       setSavingSettings(false);
+    }
+  };
+
+  const handleTestStripeConnection = async () => {
+    setTestingStripe(true);
+    setStripeTestResult(null);
+    try {
+      const activePub = stripeMode === "live" ? stripeLivePublicKey : stripeTestPublicKey;
+      const activeSec = stripeMode === "live" ? stripeLiveSecretKey : stripeTestSecretKey;
+      await fetch("/api/settings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          stripeMode,
+          stripeTestPublicKey,
+          stripeTestSecretKey,
+          stripeLivePublicKey,
+          stripeLiveSecretKey,
+          stripeWebhookSecret,
+          stripePublicKey: activePub,
+          stripeSecretKey: activeSec,
+          isSubscriptionRequired
+        })
+      });
+
+      const res = await fetch("/api/settings/test-stripe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" }
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setStripeTestResult({ success: true, message: data.message });
+        setIsStripeConfigured(true);
+        setActiveStripeMode(data.mode);
+      } else {
+        setStripeTestResult({ success: false, message: data.error || "Failed to verify Stripe connection." });
+        setIsStripeConfigured(false);
+      }
+    } catch (e: any) {
+      setStripeTestResult({ success: false, message: e.message || "Network error while testing Stripe connection." });
+    } finally {
+      setTestingStripe(false);
     }
   };
 
@@ -93,18 +165,54 @@ export default function AdminStripeSettings() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* System Configuration Form */}
         <div className="bg-white p-6 rounded-2xl border border-slate-100 luxury-shadow space-y-6">
-          <div className="border-b border-slate-100 pb-4">
-            <h3 className="text-base font-bold text-slate-800 flex items-center gap-2">
-              <DollarSign className="w-5 h-5 text-brand-pink" />
-              <span>Stripe & Membership Gateway Settings</span>
-            </h3>
-            <p className="text-xs text-slate-400 mt-1">Configure Stripe credentials and toggle membership subscription requirements.</p>
+          <div className="border-b border-slate-100 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <h3 className="text-base font-bold text-slate-800 flex items-center gap-2">
+                <DollarSign className="w-5 h-5 text-brand-pink" />
+                <span>Stripe & Membership Gateway Settings</span>
+              </h3>
+              <p className="text-xs text-slate-400 mt-1">Configure Stripe credentials and toggle membership subscription requirements.</p>
+            </div>
+            <div className="flex items-center gap-2 shrink-0">
+              {isStripeConfigured ? (
+                <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold ${
+                  activeStripeMode === "live"
+                    ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                    : "bg-amber-50 text-amber-700 border border-amber-200"
+                }`}>
+                  <span className={`w-2 h-2 rounded-full animate-pulse ${
+                    activeStripeMode === "live" ? "bg-emerald-500" : "bg-amber-500"
+                  }`} />
+                  Stripe Connected ({activeStripeMode.toUpperCase()})
+                </span>
+              ) : (
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-rose-50 text-rose-700 border border-rose-200">
+                  <span className="w-2 h-2 rounded-full bg-rose-500" />
+                  Stripe Not Configured
+                </span>
+              )}
+            </div>
           </div>
 
           {settingsSavedMsg && (
             <div className="bg-emerald-50 text-emerald-800 text-xs font-semibold p-3.5 rounded-xl border border-emerald-100 flex items-center space-x-2">
               <Check className="w-4 h-4 text-emerald-500 shrink-0" />
               <span>{settingsSavedMsg}</span>
+            </div>
+          )}
+
+          {stripeTestResult && (
+            <div className={`text-xs font-semibold p-3.5 rounded-xl border flex items-start space-x-2 ${
+              stripeTestResult.success
+                ? "bg-emerald-50 text-emerald-800 border-emerald-200"
+                : "bg-rose-50 text-rose-800 border-rose-200"
+            }`}>
+              {stripeTestResult.success ? (
+                <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+              ) : (
+                <span className="w-4 h-4 text-rose-500 font-bold shrink-0 mt-0.5">✕</span>
+              )}
+              <span className="leading-relaxed">{stripeTestResult.message}</span>
             </div>
           )}
 
@@ -115,14 +223,98 @@ export default function AdminStripeSettings() {
             </div>
           ) : (
             <form onSubmit={handleSaveSettings} className="space-y-5 text-xs text-left">
-              <div className="space-y-1.5">
-                <label className="font-extrabold text-slate-600 uppercase tracking-wider block">Stripe Publishable Key</label>
-                <input type="text" className="w-full bg-slate-50 border border-slate-200 p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-pink/20 focus:bg-white text-slate-800 font-mono transition" placeholder="pk_test_..." value={stripePublicKey} onChange={(e) => setStripePublicKey(e.target.value)} />
+              {/* Stripe Mode Selector */}
+              <div className="space-y-2 bg-slate-50 p-4 rounded-xl border border-slate-200/80">
+                <label className="font-extrabold text-slate-700 uppercase tracking-wider block">Stripe Operating Environment Mode</label>
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setStripeMode("test")}
+                    className={`py-2 px-3 rounded-lg font-bold text-xs transition border ${
+                      stripeMode === "test"
+                        ? "bg-amber-50 text-amber-900 border-amber-300 shadow-xs"
+                        : "bg-white text-slate-600 border-slate-200 hover:bg-slate-100"
+                    }`}
+                  >
+                    Sandbox / Test Mode
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setStripeMode("live")}
+                    className={`py-2 px-3 rounded-lg font-bold text-xs transition border ${
+                      stripeMode === "live"
+                        ? "bg-emerald-50 text-emerald-900 border-emerald-300 shadow-xs"
+                        : "bg-white text-slate-600 border-slate-200 hover:bg-slate-100"
+                    }`}
+                  >
+                    Production / Live Mode
+                  </button>
+                </div>
               </div>
-              <div className="space-y-1.5">
-                <label className="font-extrabold text-slate-600 uppercase tracking-wider block">Stripe Secret Key</label>
-                <input type="password" className="w-full bg-slate-50 border border-slate-200 p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-pink/20 focus:bg-white text-slate-800 font-mono transition" placeholder="sk_test_..." value={stripeSecretKey} onChange={(e) => setStripeSecretKey(e.target.value)} />
+
+              {stripeMode === "test" ? (
+                <div className="space-y-4 p-4 rounded-xl border border-amber-200 bg-amber-50/30">
+                  <span className="text-[10px] font-extrabold text-amber-800 uppercase tracking-wider block">Sandbox API Keys</span>
+                  <div className="space-y-1.5">
+                    <label className="font-extrabold text-slate-600 uppercase tracking-wider block text-[10px]">Test Publishable Key</label>
+                    <input
+                      type="text"
+                      className="w-full bg-white border border-slate-200 p-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-pink/20 text-slate-800 font-mono transition text-xs"
+                      placeholder="pk_test_..."
+                      value={stripeTestPublicKey}
+                      onChange={(e) => setStripeTestPublicKey(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="font-extrabold text-slate-600 uppercase tracking-wider block text-[10px]">Test Secret Key</label>
+                    <input
+                      type="password"
+                      className="w-full bg-white border border-slate-200 p-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-pink/20 text-slate-800 font-mono transition text-xs"
+                      placeholder="sk_test_..."
+                      value={stripeTestSecretKey}
+                      onChange={(e) => setStripeTestSecretKey(e.target.value)}
+                    />
+                  </div>
+                </div>
+              ) : (
+                <div className="space-y-4 p-4 rounded-xl border border-emerald-200 bg-emerald-50/30">
+                  <span className="text-[10px] font-extrabold text-emerald-800 uppercase tracking-wider block">Production Live API Keys</span>
+                  <div className="space-y-1.5">
+                    <label className="font-extrabold text-slate-600 uppercase tracking-wider block text-[10px]">Live Publishable Key</label>
+                    <input
+                      type="text"
+                      className="w-full bg-white border border-slate-200 p-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-pink/20 text-slate-800 font-mono transition text-xs"
+                      placeholder="pk_live_..."
+                      value={stripeLivePublicKey}
+                      onChange={(e) => setStripeLivePublicKey(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="font-extrabold text-slate-600 uppercase tracking-wider block text-[10px]">Live Secret Key</label>
+                    <input
+                      type="password"
+                      className="w-full bg-white border border-slate-200 p-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-pink/20 text-slate-800 font-mono transition text-xs"
+                      placeholder="sk_live_..."
+                      value={stripeLiveSecretKey}
+                      onChange={(e) => setStripeLiveSecretKey(e.target.value)}
+                    />
+                  </div>
+                </div>
+              )}
+
+              <div className="space-y-1.5 p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+                <label className="font-extrabold text-slate-600 uppercase tracking-wider block text-[10px]">Stripe Webhook Signing Secret</label>
+                <input
+                  type="password"
+                  className="w-full bg-white border border-slate-200 p-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-pink/20 text-slate-800 font-mono transition text-xs"
+                  placeholder="whsec_..."
+                  value={stripeWebhookSecret}
+                  onChange={(e) => setStripeWebhookSecret(e.target.value)}
+                />
               </div>
+
               <div className="pt-4 border-t border-slate-50">
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5 max-w-[80%]">
@@ -134,13 +326,34 @@ export default function AdminStripeSettings() {
                   </button>
                 </div>
               </div>
-              <button type="submit" disabled={savingSettings} className="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold p-3.5 rounded-xl transition cursor-pointer flex items-center justify-center gap-2">
-                {savingSettings ? (
-                  <><Loader2 className="w-4 h-4 animate-spin" /><span>Saving Configuration...</span></>
-                ) : (
-                  <span>Save System Settings</span>
-                )}
-              </button>
+
+              <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                <button type="submit" disabled={savingSettings || testingStripe} className="flex-1 bg-slate-900 hover:bg-slate-800 text-white font-bold p-3.5 rounded-xl transition cursor-pointer flex items-center justify-center gap-2">
+                  {savingSettings ? (
+                    <><Loader2 className="w-4 h-4 animate-spin" /><span>Saving Configuration...</span></>
+                  ) : (
+                    <span>Save System Settings</span>
+                  )}
+                </button>
+                <button
+                  type="button"
+                  onClick={handleTestStripeConnection}
+                  disabled={savingSettings || testingStripe}
+                  className="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 font-bold p-3.5 rounded-xl transition cursor-pointer flex items-center justify-center gap-2 shadow-xs shrink-0"
+                >
+                  {testingStripe ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin text-brand-pink" />
+                      <span>Verifying Stripe...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles className="w-4 h-4 text-brand-pink" />
+                      <span>Test Stripe Connection</span>
+                    </>
+                  )}
+                </button>
+              </div>
             </form>
           )}
         </div>

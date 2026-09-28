@@ -151,7 +151,7 @@ END:VCARD`;
           {/* Core Content Box */}
           <div className="flex flex-col items-center space-y-4">
             {/* Elegant QR Frame */}
-            <div className="relative p-4 bg-gradient-to-br from-brand-pink/5 via-white to-brand-gold/5 rounded-3xl border border-slate-150 shadow-md flex items-center justify-center w-52 h-52">
+            <div className="relative p-4 bg-white rounded-3xl border-2 border-brand-pink/20 shadow-md flex items-center justify-center w-52 h-52">
               <img
                 src={qrCodeUrl}
                 alt="vCard QR Code"
