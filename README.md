@@ -1,5 +1,5 @@
 <div align="center">
-<img width="200" height="475" alt="GHBanner" src="https://womenplay.org/womenplay_logo_.png" />
+<img width="200" height="375" alt="GHBanner" src="https://womenplay.org/womenplay_logo_.png" />
 </div>
 
 # Run and deploy your AI Studio app
